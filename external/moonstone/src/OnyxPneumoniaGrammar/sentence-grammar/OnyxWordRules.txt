@@ -1,0 +1,491 @@
+'(
+wordrule
+
+;; 5/18/2018:  Removed interstitial inhibition for use with pneumonia
+((ruleid is-auxilliary-word-rule)
+ (macro "_IS_")
+ (concept ":IS:")
+ (words ("_WAS_" "is" "are" "has been" 
+ 		"remain" "remains" "be" "being" "will be" "appears to be" "appears to have"))
+  (inhibit-interstitial true)
+ )
+ 
+((ruleid may-be-auxilliary-word-rule)
+ (macro "_MAY_BE_")
+ (concept ":MAY_BE:")
+ (words ("probably represents" "may represent"))
+ (inhibit-interstitial true))
+ 
+((ruleid was-auxilliary-word-rule)
+ (macro "_WAS_")
+ (concept ":WAS:")
+ (words ("was" "were" "had been" "remained"))
+ (inhibit-interstitial true)
+ (properties (temporality past)))
+ 
+ ((ruleid isnt-auxilliary-word-rule)
+ (macro "_ISNT_")
+ (concept ":ISNT:")
+ (words ("isn't" "is not" "aren\'t" "are not"  "hasn't been" "haven't been" "has not been" "have not been")))
+
+;; 10/29/2016:  Interstitial was blocking "patient is not homeless but can't pay 
+;;	rent" 
+;; RESTORED 4/2/2012.  Conjuncts appearing in verb phrases...
+((ruleid conjunct-word-rule)
+ (macro "_CONJ_")
+ (words ("and" "or" "and/or" "and or" "as well as" "&" "but" ","
+ 
+ 		"as well as"))
+ ;; (inhibit-interstitial true) 
+ )  
+ 
+ ((ruleid finding-conjunct-word-rule)
+ (macro "_CONJ_")
+ (words ("with" "accompanying")))  
+ 
+((ruleid multi-conjunct-word-rule)
+ (macro "_CONJ_")
+ (juxtaposed true)
+ (words ("_CONJ_") ("_CONJ_"))
+ ;; (inhibit-interstitial true)
+ )
+ 
+((ruleid have-word-rule)
+ (macro "_HAVE_")
+ (words ("have" "has" "had"))
+ (inhibit-interstitial true))
+ 
+((ruleid preposition-word-rule)
+
+ ;; 10/5/2017 TEST
+ (concept ":PREP:")
+ 
+ (macro "_PREP_")
+ (words ("w/" "w" "of" "to" "with" "at" "in" "on" "under" "for" "alongside" "through" "@" "in with" "from" "but at" "out of" "by" "throughout" ":OVERLAYING:"))
+ (inhibit-interstitial true))
+ 
+((ruleid locational-preposition-word-rule)
+ (macro "_AT_")
+ (words ("at" "in" "to"))
+ (inhibit-interstitial true))
+ 		
+((ruleid need-word-rule-1)
+ (concept ":NEED:")
+ (words ("need" "needs" "needed" "require" "requires" "required" "requirements" 
+ 			"should" "must")))
+ 			
+ ((ruleid probably-word-rule-1)
+  (concept ":LIKELY:")
+  (words ("probably" "likely" "possibly")))
+  
+;; 3/12/2018
+((ruleid do-word-rule)
+ (concept ":DO:")
+ (words ("do" "does" "did"))
+ (inhibit-interstitial))
+ 
+((ruleid dont-word-rule)
+ (concept ":DONT:")
+ (words ("don't" "doesn't" "didn't"))
+ (inhibit-interstitial))
+ 		
+((ruleid inability-property-word-rule-1)
+ (concept ":UNABLE:")
+ (words ("difficult" "unable")))
+ 
+
+((ruleid ability-property-word-rule-1)
+ (concept ":ABLE:")
+ (words ("able" "can" "could")))
+ 
+
+((ruleid number-words-rule) 
+  (words 
+    ("one" "two" "three" "four" "five" "six" 
+	"seven" "eight" "nine" "ten")) 
+  (concept ":NUMBER:")
+  (properties (number ?0)))
+ 
+((ruleid take-word-rule)
+  (concept ":TAKE:")
+  (words ("take" "taking" "takes" "took" "taken")))
+  
+((ruleid good-word-rule)
+ (concept ":GOOD:")
+ (words ("good" "well" "fairly well" "fairly good")))
+ 
+((ruleid poor-word-rule)
+ (concept ":POOR:")
+ (words ("poor" "incomplete")))
+ 
+((ruleid good-condition-word-rule)
+ (concept ":GOOD-CONDITION:")
+ (words ("good" "stable") ("condition")))
+ 
+((ruleid bad-condition-word-rule)
+ (concept ":BAD-CONDITION:")
+ (words ("unstable" "serious") ("condition")))
+ 
+((ruleid minimally-word-rule)
+ (concept ":MINIMALLY:")
+ (words ("minimally" "mildly")))
+ 
+((ruleid minimal-word-rule)
+ (concept ":MINIMAL:")
+ (words ("minimal" "minimum" "un poquito" "a little" "mild")))
+ 
+((ruleid moderately-word-rule)
+ (concept ":MODERATELY:")
+ (words ("moderately")))
+ 
+((ruleid moderate-word-rule)
+ (concept ":MODERATE:")
+ (words ("moderate" "significant" "substantial" "slight" 
+ 			"increased" "worsened" "progressive" "general" "significant")))
+ 			
+((ruleid decreased-word-rule)
+ (concept ":DECREASED:")
+ (words ("decreased" "decreasing")))
+ 
+((ruleid increased-word-rule)
+ (concept ":INCREASED:")
+ (words ("increased" "increasing" "worsening")))
+ 			
+((ruleid severely-word-rule)
+ (concept ":MAXIMALLY:")
+ (words ("severely" "maximally")))
+ 
+((ruleid severe-word-rule)
+ (concept ":MAXIMAL:")
+ (words ("severe" "maximal" "grave")))
+ 
+((ruleid concern-word-rule)
+ (concept ":CONCERN:")
+ (words ("concern" "concerns" "fear" "fears")))
+ 
+((ruleid available-word-rule)
+ ;; (stype "<STATE>")
+ (concept ":AVAILABLE:")
+ (words ("available")))
+ 
+((ruleid if-word-rule)
+ (concept ":IF:")
+ (words ("if" "whether")))
+ 
+((ruleid unsure-word-rule)
+ (concept ":UNSURE:")
+ (words ("unsure")))
+ 
+
+((ruleid examine-word-rule)
+ (concept ":EXAMINE:")
+ (words ("examine" "examined" "examination" "seen" "see")))
+ 
+((ruleid appear-action-word-rule)
+ (concept ":APPEAR:")
+ (words ("appears" "looks" "seems")))
+ 
+((ruleid involved-word-rule)
+ (concept ":INVOLVED:")
+ (words ("involved")))
+ 
+((ruleid failure-word-rule)
+ (concept ":FAILURE:")
+ (words ("failure")))
+ 
+
+((ruleid symptoms-word-rule)
+ (concept ":SYMPTOM:")
+ (words ("symptom" "symptoms" "signs" "signs and symptoms")))
+ 
+((ruleid due-to-connection-word-rule)
+ (concept ":BECAUSE-OF:")
+ (inhibit-interstitial true)
+ (words ("secondary to" "because of" "due to" "since" "therefore" "caused by" 
+ 			"causing" "related to" "as a result of" "resulting from"
+ 			"because" "since")))
+ 			
+((ruleid consistent-with-word-rule)
+ (concept ":CONSISTENT-WITH:")
+ (words ("consistent with" "suggests" "suggestive of" "suggesting" 
+ 	"to suggest" "indicates" "to indicate" "indicating"
+ 	"indicative of" "compatible with" "representing" "represents" "may represent" 
+ 	"due to")))
+ 		
+((ruleid finding-conjunct-word-rule)
+ (concept ":WITH:")
+ (words ("with" "accompanying" )))
+ 
+((ruleid "unchanged-0") 
+  (concept ":UNCHANGED:") 
+  (words 
+    ("persistent" "unchanged" "still" "persist" "persists" "no interval change" 
+    	"not changed")))
+    	
+((ruleid "stable-rule-0") 
+  (concept ":STABLE:") 
+  (words 
+    ("stable")))
+ 		 
+((ruleid procedure-word-rule)
+ (concept ":MEDICAL-PROCEDURE:")
+ (words ("procedure" "medical procedure" "urinalysis")))
+ 
+((ruleid diagnosis-word-rule)
+ (concept ":DIAGNOSIS:")
+ (words ("diagnosis" "diagnosed")))
+ 
+((ruleid diagnosis-of-disease-rule)
+ (concept ":DIAGNOSIS:")
+ (words (":DIAGNOSIS:") (":DISEASE:"))
+ (properties (disease ?1)))
+ 
+((ruleid difficulty-word-rule)
+  (concept ":DIFFICULTY:")
+  (words ("difficult" "difficulty" "difficulties" 
+  			"struggle" "struggled" "struggling" "struggles"
+  			"trouble" "troubled" "labored" "laboured")))
+ 
+;; 3/13/2018
+((ruleid wh-word-rule)
+ (concept ?0)
+ (words (":WHAT:" ":WHERE:" ":WHEN:" ":WHY:" ":WHO:")))
+ 
+((ruleid what-word-rule)
+ (concept ":WHAT:")
+ (words ("what")))
+ 
+((ruleid when-word-rule)
+ (concept ":WHEN:")
+ (words ("when")))
+ 
+((ruleid where-word-rule)
+ (concept ":WHERE:")
+ (words ("where")))
+ 
+((ruleid why-word-rule)
+ (concept ":WHY:")
+ (words ("why")))
+ 
+((ruleid who-word-rule)
+ (concept ":WHO:")
+ (words ("who")))
+ 
+((ruleid absent-property-word-rule)
+ (concept ":ABSENT:")
+ (words ("absent" "none" "zero" "free of")))
+
+((ruleid short-term-word-rule)
+ (concept ":SHORT-TERM:")
+ (words ("short term" "short-term")))
+ 
+((ruleid long-term-word-rule)
+ (concept ":LONG-TERM:")
+ (words ("long term" "long-term" "chronic")))
+ 
+((ruleid constant-word-rule)
+ (concept ":CONSTANT:")
+ (words ("constant")))
+ 
+((ruleid long-term-word-rule)
+ (concept ":INTERMITTENT:")
+ (words ("intermittent" "recurring")))
+
+((ruleid generalized-property-word-rule)
+ (concept ":GENERALIZED:")
+ (words ("general" "generalized" "generally")))
+ 
+((ruleid localized-word-rule)
+ (concept ":LOCALIZED:")
+ (words ("local" "localized" ":FOCAL:")))
+ 
+ ((ruleid focal-word-rule)
+ (concept ":FOCAL:")
+ (words ("focal")))
+ 
+((ruleid silhouette-word-rule)
+ (concept ":SILHOUETTE:")
+ (words ("silhouetting" "silhouette" )))
+
+((ruleid silhouette-word-rule)
+ (concept ":SHADOW:")
+ (words ("shadow" "shadows")))
+ 
+((ruleid overlaying-word-rule)
+ (concept ":OVERLAYING:")
+ (words ("overlaying" "overlays" "overlay" "overlie" "overlying")))
+ 
+((ruleid cuffing-word-rule)
+ (concept ":CUFFING:")
+ (words ("cuffing")))
+ 
+((ruleid thickening-word-rule)
+ (concept ":THICKENING:")
+ (words ("thickening")))
+ 
+((ruleid "bronchiectasis-word-rule") 
+ (concept ":BRONCHIECTASIS:") 
+ (words ("bronchiectasis")))
+ 
+((ruleid "congestive-word-rule") 
+ (concept ":CONGESTIVE:") 
+ (words ("congestive")))
+
+((ruleid "artifact-word-rule") 
+  (concept ":ARTIFACT:") 
+  (words 
+    ("technical changes")))
+    
+((ruleid "aspirationpneumonia-word-rule") 
+  (concept ":ASPIRATION-PNEUMONIA:") 
+  (words 
+    ("aspiration pneumonia" "aspiration")))
+ 
+((ruleid "chf-word-rule") 
+  (concept ":CHF:") 
+  (words 
+    ("congestive heart failure" "congestive failure" "heart failure" "chf")))
+    
+((ruleid "atypical-word-rule") 
+  (concept ":ATYPICAL:") 
+  (words 
+    ("atypical")))
+    
+((ruleid "blood-word-rule") 
+  (concept ":BLOOD:") 
+  (words 
+    ("blood")))
+    
+((ruleid "obstructive-word-rule") 
+  (concept ":OBSTRUCTIVE:") 
+  (words ("obstructive")))
+  
+((ruleid "diaphragm-word-rule") 
+  (concept ":DIAPHRAGM:") 
+  (words ("diaphragm")))
+  
+((ruleid "diseasenos-6") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":DISEASE:")))
+    
+((ruleid "elevated-word-rule-0") 
+  (concept ":ELEVATED:") 
+  (words("elevated")))
+  
+((ruleid "enlarged-word-rule") 
+  (concept ":ENLARGED:") 
+  (words("enlarged")))
+  
+((ruleid "contour-word-rule") 
+  (concept ":CONTOUR:") 
+  (words("contours" "contour")))
+  
+((ruleid "prominence-word-rule") 
+  (concept ":PROMINENCE:") 
+  (words("prominence")))
+  
+((ruleid "fluid-word-rule") 
+  (concept ":FLUID:") 
+  (words("fluid")))
+  
+((ruleid "fracture-word-rule") 
+  (concept ":FRACTURE:") 
+  (words("fracture" "fractures" "fractured")))
+  
+((ruleid "healed-word-rule") 
+  (concept ":HEALED:") 
+  (words("healed")))
+    
+((ruleid "full-word-rule") 
+  (concept ":FULL:") 
+  (words ("full")))
+  
+((ruleid "node-word-rule") 
+  (concept ":NODE:") 
+  (words ("node" "nodular")))
+  
+((ruleid "hyperinflation-word-rule") 
+  (concept ":HYPERINFLATION:") 
+  (words ("hyperinflation")))
+  
+((ruleid "aeration-word-rule") 
+  (concept ":AERATION:") 
+  (words ("aeration" "aerated")))
+  
+((ruleid "heart-word-rule") 
+  (concept ":HEART:") 
+  (words 
+    ("heart" "cardiac")))
+    
+((ruleid "clearing-word-rule") 
+  (concept ":CLEARING:") 
+  (words 
+    ("clearing" "cleared")))
+    
+((ruleid "improving-word-rule") 
+  (concept ":IMPROVING:") 
+  (words 
+    ("improved" "improving" "improvement" "resolving"
+    	"less prominent")))
+    	
+((ruleid "resolved-word-rule") 
+  (concept ":RESOLVED:") 
+  (words 
+    ("resolved")))
+    
+((ruleid "rather-than-word-rule") 
+  (concept ":INSTEAD-OF:") 
+  (words 
+    ("rather than" "instead of")))
+    
+((ruleid "fissure-word-rule") 
+  (concept ":FISSURE:") 
+  (words 
+    ("fissure")))
+    
+((ruleid "lateral-word-rule") 
+  (concept ":LATERAL:") 
+  (words ("lateral" "laterally")))
+  
+((ruleid "lateral-word-rule") 
+  (concept ":COSTOPHRENIC:") 
+  (words ("costophrenic")))
+  
+((ruleid "confluent-word-rule") 
+  (concept ":CONFLUENT:") 
+  (words ("confluent")))
+  
+((ruleid "septal-lines-word-rule") 
+  (concept ":SEPTAL-LINES:") 
+  (words ("septal lines" "kerley lines")))
+  
+((ruleid "lesion-word-rule") 
+  (concept ":LESION:") 
+  (words ("lesion" "lesions")))
+  
+((ruleid "obscuration-word-rule") 
+  (concept ":OBSCURATION:") 
+  (words ("obscuration" "obscure" "obscured")))
+
+((ruleid "loss-word-rule") 
+  (concept ":LOSS:") 
+  (words ("loss")))
+  
+((ruleid "evidence-of-finding-rule") 
+  (concept ?1) 
+  (words ("evidence of") ("<CHEST-XRAY-FINDING-THING>" "<DISEASE-THING>")))
+  
+((ruleid "possibilit-of-disease-rule") 
+  (concept ?1) 
+  (words (":POSSIBILITY:") ("<DISEASE-THING>"))
+  (properties (directionality possible)))
+  
+((ruleid "possibility-word-rule") 
+  (concept ":POSSIBILITY:") 
+  (words ("possible" "possibility" "probable" "probability" "suspicious for" "suspect" 		
+  			"likely represents" "most likely represents" "probable for" 
+  			"most likely this represents")))
+
+ )
+ 

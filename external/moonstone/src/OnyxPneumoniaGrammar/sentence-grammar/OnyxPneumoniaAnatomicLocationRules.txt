@@ -1,0 +1,1401 @@
+'(
+wordrule
+
+((ruleid aorta-word-rule) 
+  (concept ":AORTA:") 
+  (words ("aorta" "aortic")))
+    
+((ruleid lung-word-rule)
+ (concept ":LUNG:")
+ (words ("lung" "lungs" "lung area" "lung areas" "lung field" "lung fields")))
+ 
+((ruleid lobe-word-rule)
+ (concept ":LOBE:")
+ (words ("lobe" "lobes" "lobular")))
+ 
+((ruleid base-word-rule)
+ (concept ":BASE:")
+ (words ("base" "bases" "basilar" "bibasilar" "by basilar")))
+ 
+((ruleid hemithorax-word-rule)
+ (concept (":HEMITHORAX:"))
+ (words ("hemithorax")))
+
+((ruleid "local-lung-area-rule-0") 
+  (concept ":LOCAL-LUNG-AREA:") 
+  (words 
+    (":SINGLE-LUNG:" ":LUNG-LOBE:")))
+
+((ruleid "localized-lung-rule-0") 
+  (concept ":LUNG-AREA:") 
+  (words 
+    (":GENERAL-LUNG-AREA:" ":LOCAL-LUNG-AREA:")))
+  
+((ruleid single-lung-rule) 
+  (words 
+    (":LEFT-LUNG:" ":RIGHT-LUNG:")) 
+  (concept ":SINGLE-LUNG:"))
+
+((ruleid lung-area-rule) 
+  (words 
+    (":LOCAL-LUNG-AREA:" ":GENERAL-LUNG-AREA:" ":LUNG:")) 
+  (concept ":LUNG-AREA:"))
+
+((ruleid lung-lobe-rule) 
+  (words 
+    (":LEFT-UPPER-LOBE:" ":LEFT-LOWER-LOBE:" ":RIGHT-UPPER-LOBE:" ":RIGHT-MIDDLE-LOBE:" ":RIGHT-LOWER-LOBE:" ":MID-REGION-LEFT-LUNG:" ":UPPER-LOBE:" ":LOWER-LOBE:")) 
+  (concept ":LUNG-LOBE:"))
+  
+((ruleid superior-segment-lobe-rule-0) 
+  (concept ?1) 
+  (words 
+    ("superior segment") (":LUNG-LOBE:")))
+
+((ruleid general-lung-area-rule) 
+  (words 
+    (":BILATERAL-LUNG:" ":BILATERAL-LOWER-LOBES:" ":BILATERAL-UPPER-LOBES:" 
+    	":LOWER-LUNG-REGIONS:")) 
+  (concept ":GENERAL-LUNG-AREA:"))
+  
+((ruleid upper-lobe-rule) 
+  (words 
+    (":BILATERAL-UPPER-LOBES:" ":UPPER-LOBE:" ":RIGHT-UPPER-LOBE:" ":LEFT-UPPER-LOBE:")) 
+  (concept ":UPPER-LOBE:"))
+  
+((ruleid upper-lobe-word-rule)
+ (concept ":UPPER-LOBE:")
+ (words (":UPPER:") (":LOBE:" ":LUNG:")))
+  
+((ruleid lower-lobe-rule) 
+  (words 
+    (":BILATERAL-LOWER-LOBES:" ":LOWER-LOBES:" ":RIGHT-LOWER-LOBE:" ":LEFT-LOWER-LOBE:")) 
+  (concept ":LOWER-LOBE:"))
+  
+((ruleid interpleural-space-rule) 
+  (concept ":INTERPLEURAL-SPACE:")
+  (words (":RIGHT-INTERPLEURAL-SPACE:" ":LEFT-INTERPLEURAL-SPACE:" 
+  			":INTERPLEURAL-SPACE-NS:")))
+  
+;; interstitial regions
+((ruleid interstitial-word-rule)
+ (concept ":INTERSTITIAL:")
+ (words ("interstitial")))
+ 
+((ruleid "bronchialwall-0") 
+  (concept ":BRONCHIAL-WALL:") 
+  (words 
+    ("bronchial" "peribronchial" "bronchial wall")))
+
+((ruleid "onyx-16592-0") 
+  (concept ":BRONCHIAL-WALL:") 
+  (words 
+    (":MIDDLE:") 
+    (":BRONCHIAL-WALL:")))
+    
+((ruleid "cardiopulmonary-0") 
+  (concept ":CARDIOPULMONARY:") 
+  (words 
+    ("cardiopulmonary")))
+    
+((ruleid "abdomen-0") 
+  (concept ":ABDOMEN:") 
+  (words 
+    ("abdomen" "abdominal")))
+
+;; Right lung
+((ruleid right-lung-1) 
+  (words 
+    (":LUNG:") (":RIGHT:")) 
+  (concept ":RIGHT-LUNG:"))
+  
+((ruleid "onyx-17231-0") 
+  (concept ":RIGHT-LUNG:") 
+  (words 
+    (":PULMONARY:") 
+    ("right sided")))
+  
+((ruleidXXX right-lung-2) 
+  (words (":RIGHT:")) 
+  (concept ":RIGHT-LUNG:"))
+  
+((ruleidXXX left-lung-2) 
+  (words (":LEFT:")) 
+  (concept ":LEFT-LUNG:"))
+
+((ruleid "rightlung-2") 
+  (words 
+    (":MIDDLE:" "midlung" "mid lung") (":RIGHT:")) 
+  (concept ":RIGHT-MIDDLE-LOBE:"))
+
+;; RIGHT UPPER LOBE
+((ruleid "rightlung-3") 
+  (words 
+    (":LUNG:" ":LOBE:") (":RIGHT:") (":UPPER:")) 
+  (concept ":RIGHT-UPPER-LOBE:"))
+  
+  ;; Right upper lobe
+
+((ruleid "rightupperlobe-1") 
+  (words 
+    (":LOBE:" ":LUNG:") (":RIGHT:") ("apex")) 
+  (concept ":RIGHT-UPPER-LOBE:"))
+
+((ruleid "rightupperlobe-3") 
+  (words 
+    (":RIGHT:") (":UPPER:")) 
+  (concept ":RIGHT-UPPER-LOBE:"))
+  
+:: RIGHT MIDDLE LOBE
+
+((ruleid "rightmiddlelobe-4") 
+  (words 
+    (":LOBE:" ":LUNG:") (":RIGHT:") (":MIDDLE:")) 
+  (concept ":RIGHT-MIDDLE-LOBE:"))
+
+((ruleid "rightmiddlelobe-5") 
+  (words 
+    (":RIGHT:") (":MIDDLE:")) 
+  (concept ":RIGHT-MIDDLE-LOBE:"))
+
+;; RIGHT LOWER LOBE
+
+((ruleid "rightlowerlobe-0") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":LOBE:" ":LUNG:") 
+    (":RIGHT:") 
+    (":LOWER:")))
+
+((ruleid "rightlowerlobe-1") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":RIGHT:") 
+    (":BASE:" ":LOWER:")))
+
+((ruleid "rightlowerlobe-2") 
+  (concept ?1) 
+  (words 
+    ("superior segment") 
+    (":LOBE:" ":LUNG:")))
+
+((ruleid "rightlowerlobe-4") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":LUNG:") 
+    (":RIGHT:") 
+    (":BASE:")))
+
+((ruleid "rightlowerlobe-5") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":RIGHT:") 
+    (":BASE:")))
+
+((ruleid "rightlowerlobe-8") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":RIGHT:") 
+    (":BASE:")))
+
+((ruleid "rightlowerlobe-9") 
+  (concept ":RIGHT-LOWER-LOBE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":MIDDLE:") 
+    (":RIGHT:") 
+    (":BASE:")))
+    
+((ruleid posterior-lower-lobe-base-rule) 
+ (concept ?1)
+ (words 
+    (":POSTERIOR:") (":LUNG-LOBE:") (":BASE:")))
+
+;; LEFT LUNG
+
+((ruleid "leftlung-1") 
+  (words (":LEFT:") (":LUNG:")) 
+  (concept ":LEFT-LUNG:"))
+  
+;; LEFT UPPER LOBE
+
+((ruleid "leftupperlobe") 
+  (words 
+    (":LOBE:" ":LUNG:" "lingula") (":LEFT:") (":UPPER:")) 
+  (concept ":LEFT-UPPER-LOBE:"))
+
+((ruleid "leftupperlobe-0") 
+  (concept ":LEFT-UPPER-LOBE:") 
+  (words 
+    (":LOBE:") 
+    (":LEFT:") 
+    (":UPPER:")))
+
+((ruleid "leftupperlobe-1") 
+  (concept ":LEFT-UPPER-LOBE:") 
+  (words 
+    (":LINGULA:") 
+    (":LEFT:") 
+    (":UPPER:")))
+
+((ruleid "leftupperlobe-2") 
+  (concept ":LEFT-UPPER-LOBE:") 
+  (words 
+    (":LUNG:") 
+    (":LEFT:") 
+    (":UPPER:")))
+
+((ruleid "leftupperlobe-3") 
+  (concept ":LEFT-UPPER-LOBE:") 
+  (words 
+    (":LUNG:") 
+    (":RIGHT:") 
+    (":UPPER:")))
+    
+;;; LEFT LOWER LOBE
+
+((ruleid "leftlowerlobe-6") 
+  (words 
+    (":LEFT:") (":LOWER:")) 
+  (concept ":LEFT-LOWER-LOBE:"))
+  
+((ruleid "leftlowerlobe-1") 
+  (words 
+    ("medial" ":MIDDLE:" ":LOWER:") (":LEFT:") (":BASE:" ":LOBE:" ":LUNG:")) 
+  (concept ":LEFT-LOWER-LOBE:"))
+
+((ruleid "leftlowerlobe-2") 
+  (words 
+    (":LEFT:") (":BASE:" ":LOBE:" ":LUNG:")) 
+  (concept ":LEFT-LOWER-LOBE:"))
+      
+((ruleid "leftlowerlobe-5") 
+  (words 
+    (":LUNG:" ":LOBE:") (":LEFT:") (":LOWER:" ":BASE:")) 
+  (concept ":LEFT-LOWER-LOBE:"))
+
+((ruleid "leftlowerlobe-7") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":LEFT:") 
+    (":BASE:")))
+
+((ruleid "leftlowerlobe-8") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":PULMONARY:") 
+    (":LEFT:")))
+
+((ruleid "leftlowerlobe-9") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":LOBE:") 
+    (":LEFT:") 
+    (":LOWER:")))
+
+((ruleid "leftlowerlobe-10") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":LUNG:") 
+    (":LEFT:") 
+    (":LOWER:")))
+
+((ruleid "leftlowerlobe-11") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":LATERAL:") 
+    (":LEFT:")))
+
+((ruleid "leftlowerlobe-12") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":LATERAL:") 
+    (":LOBE:") 
+    (":LEFT:") 
+    (":LOWER:")))
+
+((ruleid "leftlowerlobe-13") 
+  (concept ":LEFT-LOWER-LOBE:") 
+  (words 
+    (":LEFT:") 
+    (":LOWER:")))
+
+;; BILATERAL LOWER LOBES
+((ruleid "bilaterallowerlobes-0") 
+  (concept ":BILATERAL-LOWER-LOBES:") 
+  (words 
+    (":LOBE:") 
+    (":BILATERAL:") 
+    (":LOWER:")))
+
+((ruleid "bilaterallowerlobes-1") 
+  (concept ":BILATERAL-LOWER-LOBES:") 
+  (words 
+    (":PERIHILAR:") 
+    (":LUNG:") 
+    (":LOWER:")))
+
+;;; POSITIONALLY QUANLIFIED LOBE PHRASES
+((ruleid "posterior-lobe-region-rule-1") 
+ (concept ?1)
+ (words 
+    (":POSTERIOR:" ":LATERAL:" "aspect of" "superior segment" ":BASE:" ":PERIHILAR:") 
+    (":LEFT-UPPER-LOBE:" ":LEFT-LOWER-LOBE:" ":RIGHT-UPPER-LOBE:" ":RIGHT-MIDDLE-LOBE:" 
+    	":RIGHT-LOWER-LOBE:" ":MID-REGION-LEFT-LUNG:")))
+
+;; Right interpleural space
+((ruleid "rightinterpleuralspace-1") 
+  (words 
+    (":PLEURA:") (":RIGHT:")) 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:"))
+
+((ruleid "rightinterpleuralspace-2") 
+  (words 
+    (":PLEURA:") (":RIGHT:") (":MIDDLE:")) 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:"))
+
+((ruleid "posterior-interpleural-space-rule") 
+  (words 
+    ("<PULMONARY-LOCATION-MODIFIER-POSTERIOR-ANTERIOR>") 
+    (":INTERPLEURAL-SPACE:")) 
+  (concept ?1))
+
+((ruleid "rightinterpleuralspace-3") 
+  (words 
+    (":HEMITHORAX:") (":RIGHT:")) 
+  (concept ":RIGHT-HEMITHORAX:"))
+
+((ruleid "onyx-16502-0") 
+  (concept ":LEFT-HEMITHORAX:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":LEFT:")))
+
+((ruleid "rightinterpleuralspace-4") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") (":MIDDLE:")) 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:"))
+
+;;;;;
+((ruleid "costophrenicsulcus-1") 
+  (words 
+    ("costophrenic sulcus" ":LEFT-COSTOPHRENIC-SULCUS:" ":RIGHT-COSTOPHRENIC-SULCUS:")) 
+  (concept ":COSTOPHRENIC-SULCUS:"))
+  
+((ruleid "costophrenicsulcus-2") 
+  (words 
+    (":COSTOPHRENIC-SULCUS:") (":LEFT:")) 
+  (concept ":LEFT-COSTOPHRENIC-SULCUS:"))
+
+((ruleid "costophrenicsulcus-3") 
+  (words 
+    (":COSTOPHRENIC-SULCUS:") (":RIGHT:")) 
+  (concept ":RIGHT-COSTOPHRENIC-SULCUS:"))
+  
+((ruleid "left-or-right-hemidiaphgram-is-hemidiaphragm-rule") 
+  (words 
+    (":LEFT-HEMIDIAPHRAGM:" ":RIGHT-HEMIDIAPHRAGM:"))
+  (concept ":HEMIDIAPHRAGM:"))
+
+((ruleid "lefthemidiaphragm-1") 
+  (words 
+    (":LEFT:") (":HEMIDIAPHRAGM:")) 
+  (concept ":LEFT-HEMIDIAPHRAGM:"))
+  
+((ruleid "righthemidiaphragm-1") 
+  (words 
+    (":RIGHT:") (":HEMIDIAPHRAGM:")) 
+  (concept ":RIGHT-HEMIDIAPHRAGM:"))
+
+((ruleid "leftinterpleuralspace-1") 
+  (words 
+    (":PLEURA:") (":LEFT:")) 
+  (concept ":LEFT-INTERPLEURAL-SPACE:"))
+
+((ruleid "leftperihilarregion-1") 
+  (words 
+    (":PERIHILAR:") (":LEFT:")) 
+  (concept ":LEFT-PERIHILAR-REGION:"))
+
+((ruleid "leftthorax-1") 
+  (words 
+    (":CHEST:") (":LEFT:")) 
+  (concept ":LEFT-THORAX:"))
+
+;;;;;;;
+((ruleid "interlobularfissure-1") 
+  (words 
+    ("fissure")) 
+  (concept ":INTERLOBULAR-FISSURE:"))
+
+;; ????
+((ruleid "interpleuralspacens-1") 
+  (words 
+    (":POSITIONAL-MODIFIER:") 
+    (":COSTOPHRENIC-ANGLE:"))
+  (concept ":INTERPLEURAL-SPACE-NS:"))
+
+((ruleid "interpleuralspacens-2") 
+  (words 
+    (":POSITIONAL-MODIFIER:") (":COSTOPHRENIC-ANGLE:") (":PLEURA:")) 
+  (concept ":INTERPLEURAL-SPACE-NS:"))
+  
+((ruleid costophrenia-angle-rule) 
+ (concept ":COSTOPHRENIC-ANGLE:")
+ (words 
+    (":COSTOPHRENIC:" "costophrenic angle" ":COSTOPHRENIC-SULCUS:")))
+
+;;;;;;;
+
+((ruleid "lung-word-rule") 
+  (words 
+    (":LUNG:" "lungs")) 
+  (concept ":LUNG:"))
+  
+((ruleid "chest-word-rule") 
+  (concept ":CHEST:") 
+  (words ("chest")))
+  
+((ruleid lobe-word-rule)
+ (concept ":LOBE:")
+ (words ("lobe" "lobes")))
+  
+((ruleid pulmonary-word-rule)
+ (concept ":PULMONARY:")
+ (words ("pulmonary")))
+ 
+;;;;;;;;;;;
+;;;;;;;;
+
+((ruleid "local-positional-modifier-word-rule") 
+  (concept ":LOCAL-POSITIONAL-MODIFIER:")
+  (words (":POSTERIOR:" ":ANTERIOR:" ":RIGHT:" ":LEFT:"
+  			":MIDDLE:" ":UPPER:" ":LOWER:")))
+  			
+((ruleid "general-positional-modifier-word-rule") 
+  (concept ":GENERAL-POSITIONAL-MODIFIER:")
+  (words (":BILATERAL:" ":LATERAL:")))
+  	
+((ruleid "compound-positional-modifier-word-rule") 
+  (concept ?0)
+  (type ?0)
+  (words (":POSITIONAL-MODIFIER:") (":POSITIONAL-MODIFIER:")))
+
+((ruleid "bilateral-word-rule") 
+  (concept ":BILATERAL:")
+  (words ("bilateral" "bilaterally" "both")))
+  
+((ruleid "left-word-rule") 
+  (concept ":LEFT:")
+  (words ("left" "left sided" "left-sided" "left side" "left-side")))
+  
+((ruleid "right-word-rule") 
+  (concept ":RIGHT:")
+  (words ("right" "right sided" "right-sided" "right side" "right-side")))
+  
+((ruleid "upper-word-rule") 
+  (concept ":UPPER:")
+  (words ("upper")))
+
+((ruleid "middle-word-rule") 
+  (concept ":MIDDLE:")
+  (words ("mid" "middle" "medial" "central")))
+  
+((ruleid "lower-word-rule") 
+  (concept ":LOWER:")
+  (words ("lower")))
+  
+((ruleid "posterior-word-rule") 
+  (concept ":POSTERIOR:")
+  (words ("posterior" "posteriorly" "back")))
+  
+((ruleid "anterior-word-rule") 
+  (concept ":ANTERIOR:")
+  (words ("anterior")))
+
+((ruleid "onyx-16751-0") 
+  (concept ":HILUM:") 
+  (words 
+    (":LYMPH-NODE:") 
+    (":BILATERAL:")))
+
+((ruleid "bilateralhilum-0") 
+  (words 
+    ("hilar")) 
+  (concept ":BILATERAL-HILUM:"))
+
+((ruleid perihilar-word-rule)
+ (concept ":PERIHILAR:")
+ (words ("perihilar")))
+ 
+((ruleid infrahilar-word-rule)
+ (concept ":INFRAHILAR:")
+ (words ("infrahilar")))
+ 
+((ruleid structure-word-rule)
+ (concept ":STRUCTURE:")
+ (words ("structure" "structures")))
+
+((ruleid either-hilum-is-hilum-rule)
+ (concept ":HILUM:")
+ (words (":RIGHT-HILUM:" ":LEFT-HILUM:" ":BILATERAL-HILUM:")))
+ 
+((ruleid "right-hilum-1") 
+  (words 
+    ("hilar") (":RIGHT:")) 
+  (concept ":RIGHT-HILUM:"))
+  
+((ruleid "left-hilum-1") 
+  (words 
+    ("hilar") (":LEFT:")) 
+  (concept ":LEFT-HILUM:"))
+  
+((ruleid "bilaterallung-2") 
+  (concept ":BILATERAL-LUNG:") 
+  (words 
+    (":BILATERAL:") 
+    (":LUNG:")))
+    
+((ruleid "bilaterallung-3") 
+  (concept ":BILATERAL-LUNG:") 
+  (words 
+    ("central portion") 
+    (":LUNG:") 
+    (":BILATERAL:")))
+
+((ruleid "bilateralperihilarregion-0") 
+  (concept ":BILATERAL-PERIHILAR-REGION:") 
+  (words 
+    (":PERIHILAR:") 
+    (":BILATERAL:")))
+
+((ruleid "bilaterallowerlobes-1") 
+  (words 
+    (":BILATERAL:") (":LOWER:") (":LOBE:" ":LUNG:")) 
+  (concept ":BILATERAL-LOWER-LOBES:"))
+
+((ruleid "bilaterallowerlobes-2") 
+  (words 
+    (":LUNG:") ("bases")) 
+  (concept ":BILATERAL-LOWER-LOBES:"))
+
+((ruleid "bilaterallowerlobes-3") 
+  (words 
+    (":BILATERAL:") (":BASE:")) 
+  (concept ":BILATERAL-LOWER-LOBES:"))
+
+((ruleid "bilaterallowerlobes-4") 
+  (words 
+    (":BILATERAL") (":BASE:")) 
+  (concept ":BILATERAL-LOWER-LOBES:"))
+
+((ruleid "bilaterallowerlobes-5") 
+ (concept ":BILATERAL-LOWER-LOBES:")
+ (words 
+    (":BILATERAL:") (":LUNG:")  (":BASE:")))
+
+((ruleid "bilaterallowerlobes-6") 
+  (words 
+    (":BILATERAL:") (":LOWER:") (":LOBE:" ":LUNG:") ) 
+  (concept ":BILATERAL-LOWER-LOBES:"))
+  
+((ruleid "bilaterallowerlobes-7") 
+  (words 
+     (":LOWER:") ("lobes" "lung lobes"))
+  (concept ":BILATERAL-LOWER-LOBES:"))
+
+((ruleid "bilaterallung-1") 
+  (words 
+    (":LATERAL:") ("lungs")) 
+  (concept ":BILATERAL-LUNG:"))
+
+((ruleid "bilaterallung-2") 
+  (words 
+    ("pulmonary") (":BILATERAL:")) 
+  (concept ":BILATERAL-LUNG:"))
+
+((ruleid "bilateralperihilarregion-1") 
+  (words 
+    (":PERIHILAR:") (":BILATERAL:")) 
+  (concept ":BILATERAL-PERIHILAR-REGION:"))
+
+;;;;;;;;
+
+((ruleid "bilateralupperlobes-1") 
+  (words ("apices")) 
+  (concept ":BILATERAL-UPPER-LOBES:"))
+  
+((ruleid "bilateralupperlobes-2") 
+  (words (":BILATERAL:") (":UPPER:") (":LOBE:" ":LUNG:"))
+  (concept ":BILATERAL-UPPER-LOBES:"))
+  
+((ruleid "onyx-16816-0") 
+  (concept ":BILATERAL-UPPER-LOBES:") 
+  (words 
+    ("lung fields") 
+    (":UPPER:")))
+
+((ruleid "chestwall-1") 
+  (words ("chest wall")) 
+  (concept ":CHEST-WALL:"))
+
+((ruleid "chestwall-2") 
+  (words 
+    (":POSITIONAL-MODIFIER:") (":CHEST-WALL:")) 
+  (concept ":CHEST-WALL:"))
+
+((ruleid "chestwall-2") 
+  (words (":POSITIONAL-MODIFIER:") ("chest wall")) 
+  (concept ":CHEST-WALL:"))
+
+((ruleid "chestwall-3") 
+  (words 
+    (":POSITIONAL-MODIFIER:") (":CHEST:") ) 
+  (concept ":CHEST-WALL:"))
+
+;;;;
+
+((ruleid "allthoraciclocations-1") 
+  (words 
+    (":CHEST:")) 
+  (concept ":ALL-THORACIC-LOCATIONS:"))
+
+((ruleid "allthoraciclocations-2") 
+  (words 
+    (":CHEST:") (":BILATERAL:")) 
+  (concept ":ALL-THORACIC-LOCATIONS:"))
+  
+((ruleid "diaphragm-1") 
+  (words 
+    ("diaphragm")) 
+  (concept ":DIAPHRAGM:"))
+
+((ruleid "diaphragm-3") 
+  (words (":DIAPHRAGM:") (":BASE:")) 
+  (concept ":DIAPHRAGM:"))
+  
+((ruleid "heart-1") 
+  (words 
+    ("heart" "cardiac")) 
+  (concept ":HEART:"))
+
+((ruleid "heart-2") 
+  (words 
+    ("silhouette") ("cardiac")) 
+  (concept ":HEART:"))
+  
+((ruleid "mediastilal-silhouette-rule") 
+  (words 
+    (":SILHOUETTE:") (":MEDIASTINUM:")) 
+  (concept ":MEDIASTINUM:"))
+
+((ruleid "heart-3") 
+  (words 
+    ("central") ("heart")) 
+  (concept ":HEART:"))
+  
+((ruleid "left-ventricle-rule") 
+  (words 
+    (":LEFT:") ("ventricle")) 
+  (concept ":HEART:"))
+  
+((ruleid "mediastinum-1") 
+  (words 
+    ("mediastinum" "mediastinal")) 
+  (concept ":MEDIASTINUM:"))
+  
+((ruleid "onyx-17024-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    (":SUPRA-AORTIC:" "para aortic") 
+    (":MEDIASTINUM:")))
+
+((ruleid paritracheal-area-word-rule) 
+  (concept ":PERITRACHEAL-AREA:") 
+  (words 
+    ("peritracheal area")))
+
+((ruleid pleura-1) 
+  (words 
+    (":POSITIONAL-MODIFIER:") (":PLEURA:")) 
+  (concept ":PLEURA:"))
+
+((ruleid pleura-2) 
+  (words 
+    (":POSITIONAL-MODIFIER:") ("costophrenic") (":PLEURA:")) 
+  (concept ":PLEURA:"))
+
+((ruleid pleura-3) 
+  (words 
+    ("pleura" "pleural")) 
+  (concept ":PLEURA:"))
+  
+((ruleid vessel-word-rule)
+ (concept ":VESSEL:")
+ (words ("vessel" "vessels" "vascular" "vascular structures" "vasculature" 
+ 			"vascularity")))
+  
+((ruleid pulmonary-vessel-1)
+ (concept ":PULMONARY-VESSELS:")
+ (words (":PULMONARY:") (":VESSEL:" ":ARTERY:" ":VEIN:")))
+ 
+((ruleid pulmonary-vessel-2)
+ (concept ":PULMONARY-VESSELS:")
+ (words (":POSITIONAL-MODIFIER:" ":PERIHILAR:") (":PULMONARY-VESSELS:")))
+  
+((ruleid "rib-1") 
+  (words 
+    ("rib" "ribs"))
+  (concept ":RIB:"))
+
+((ruleid "rib-2") 
+  (words 
+    (":RIGHT:" ":LEFT:") (":RIB:"))
+  (concept ":RIB:"))
+
+((ruleid "skeletonnos-1") 
+  (words 
+    ("bony" "spine")) 
+  (concept ":SKELETON-NOS:"))
+  
+((ruleid "arthritis-word-rule") 
+  (concept ":ARTHRITIS:")
+  (words 
+    ("osteoarthritic" "osteoarthritis" "arthritic" "arthritis")))
+
+((ruleid "softtissues-1") 
+  (words 
+    ("soft tissues" "soft tissue"))
+  (concept ":SOFT-TISSUES:"))
+
+((ruleid vertebra-1) 
+  (words 
+    ("vertebra" "vertebrae" "vertebral body")) 
+  (concept ":VERTEBRAE:"))
+
+;;;;;;
+((ruleid "pleura-word-rule") 
+  (concept ":PLEURA:") 
+  (words 
+    ("pleural" "pleura")))
+    
+((ruleid "hemidiaphragm-word-rule") 
+  (concept ":HEMIDIAPHRAGM:") 
+  (words 
+    ("hemidiaphragm")))
+
+((ruleid "airspace-word-rule") 
+  (concept ":AIRSPACE:") 
+  (words 
+    ("airspace" "air space" "air-space")))
+
+((ruleid azygous-vein-word-rule) 
+  (concept ":AZYGOUS-VEIN:") 
+  (words 
+    ("azygous vein")))
+
+((ruleid "rib-0") 
+  (concept ":RIB:") 
+  (words 
+    ("ribs") 
+    (":RIGHT:")))
+
+((ruleid "rib-1") 
+  (concept ":RIB:") 
+  (words 
+    ("rib")))
+
+((ruleid "right-diaphragm-rule-0") 
+  (concept ":RIGHT-DIAPHRAGM:") 
+  (words 
+    (":RIGHT:") 
+    (":DIAPHRAGM:")))
+    
+((ruleid "left-diaphragm-rule-0") 
+  (concept ":LEFT-DIAPHRAGM:") 
+  (words 
+    (":LEFT:") 
+    (":DIAPHRAGM:")))
+    
+((ruleid "left-right-diaphragm-is-diaphragm-rule") 
+  (concept ":DIAPHRAGM:") 
+  (words 
+    (":RIGHT-DIAPHRAGM:" ":LEFT-DIAPHRAGM:")))
+    
+((ruleid "pleural-spaces-are-all-pleural-spaces-rule") 
+  (concept ":PLEURAL-SPACE:") 
+  (words 
+    (":UNILATERAL-INTERPLEURAL-SPACE:" ":INTERPLEURAL-SPACE-NS:")))
+
+((ruleid "rightinterpleuralspace-1") 
+  (concept ":UNILATERAL-INTERPLEURAL-SPACE:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:" ":LEFT-INTERPLEURAL-SPACE:")))
+
+((ruleid "rightinterpleuralspace-2") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightinterpleuralspace-3") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":HEMITHORAX:") 
+    (":RIGHT:")))
+
+((ruleid "rightinterpleuralspace-4") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":RIGHT:")))
+
+((ruleid "rightinterpleuralspace-5") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightinterpleuralspace-6") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":LEFT:")))
+
+
+
+((ruleid "rightlowerlobe-10") 
+  (concept ":BILATERAL-LOWER-LOBES:") 
+  (words 
+    (":BILATERAL:") 
+    (":BASE:")))
+
+((ruleid "rightlung-0") 
+  (concept ":RIGHT-LUNG:") 
+  (words 
+    (":LUNG:") 
+    (":RIGHT:")))
+
+((ruleid "rightlung-1") 
+  (concept ":RIGHT-LUNG:") 
+  (words 
+    (":MIDDLE:") 
+    (":LUNG:") 
+    ("both")))
+
+((ruleid "rightlung-2") 
+  (concept ":RIGHT-LUNG:") 
+  (words 
+    (":MIDDLE:") 
+    (":RIGHT:")))
+
+((ruleid "rightmiddlelobe-0") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightmiddlelobe-1") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    ("aspect of") 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightmiddlelobe-2") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightmiddlelobe-3") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":LATERAL:") 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightmiddlelobe-4") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightmiddlelobe-5") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":LATERAL:") 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":BASE:")))
+
+((ruleid "rightupperlobe-0") 
+  (concept ":RIGHT-UPPER-LOBE:") 
+  (words 
+    (":LOBE:") 
+    (":RIGHT:")))
+
+((ruleid "rightupperlobe-1") 
+  (concept ":RIGHT-UPPER-LOBE:") 
+  (words 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":UPPER:")))
+
+((ruleid "rightupperlobe-2") 
+  (concept ":RIGHT-UPPER-LOBE:") 
+  (words 
+    (":RIGHT:") 
+    (":UPPER:")))
+
+((ruleid "rightupperlobe-3") 
+  (concept ":RIGHT-UPPER-LOBE:") 
+  (words 
+    (":RIGHT:") 
+    (":APEX:")))
+
+((ruleid "rightupperlobe-4") 
+  (concept ":RIGHT-UPPER-LOBE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":LOBE:") 
+    (":RIGHT:") 
+    (":UPPER:")))
+
+((ruleid "rightupperlobe-5") 
+  (concept ":RIGHT-MIDDLE-LOBE:") 
+  (words 
+    (":LOBE:" ":LUNG:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "single-lung-rule-0") 
+  (concept ":SINGLE-LUNG:") 
+  (words 
+    (":RIGHT-LUNG:" ":LEFT-LUNG:")))
+
+((ruleid "skeletonnos-0") 
+  (concept ":SKELETON-NOS:") 
+  (words 
+    ("bony")))
+
+((ruleid "heart-1") 
+  (concept ":HEART:") 
+  (words 
+    (":SILHOUETTE:") 
+    (":HEART:")))
+
+((ruleid "heart-3") 
+  (concept ":HEART:") 
+  (words 
+    (":MIDDLE:") 
+    (":HEART:")))
+
+((ruleid "interlobularfissure-0") 
+  (concept ":INTERLOBULAR-FISSURE:") 
+  (words 
+    (":FISSURE:")))
+
+((ruleid "interpleuralspacens-0") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":LATERAL:") 
+    (":COSTOPHRENIC-ANGLE:") 
+    (":RIGHT:")))
+
+((ruleid "interpleuralspacens-1") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":LATERAL:")))
+
+((ruleid "interpleuralspacens-2") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":POSTERIOR:") 
+    (":COSTOPHRENIC:") 
+    (":PLEURA:")))
+
+((ruleid "interpleuralspacens-4") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":POSTERIOR:") 
+    (":COSTOPHRENIC:")))
+
+((ruleid "interpleuralspacens-5") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":POSTERIOR:") 
+    ("aspect of") 
+    (":RIGHT:")))
+
+((ruleid "interpleuralspacens-6") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":LATERAL:") 
+    (":COSTOPHRENIC-ANGLE:") 
+    (":LEFT:")))
+
+((ruleid "left-diaphragm-rule-0") 
+  (concept ":LEFT-DIAPHRAGM:") 
+  (words 
+    (":LEFT:") 
+    (":DIAPHRAGM:")))
+
+((ruleid "right-diaphragm-rule-0") 
+  (concept ":RIGHT-DIAPHRAGM:") 
+  (words 
+    (":RIGHT:") 
+    (":DIAPHRAGM:")))
+    
+((ruleid "leftcostophrenicsulcus-0") 
+  (concept ":LEFT-COSTOPHRENIC-SULCUS:") 
+  (words 
+    (":COSTOPHRENIC-ANGLE:") 
+    (":LEFT:")))
+
+((ruleid "rightcostophrenicsulcus-2") 
+  (concept ":RIGHT-COSTOPHRENIC-SULCUS:") 
+  (words 
+    (":COSTOPHRENIC-ANGLE:") 
+    (":RIGHT:")))
+
+((ruleid "lefthemidiaphragm-1") 
+  (concept ":LEFT-HEMIDIAPHRAGM:") 
+  (words 
+    (":MIDDLE:") 
+    ("aspect of") 
+    (":LUNG:") 
+    (":LEFT:") 
+    (":BASE:")))
+
+((ruleid "lefthemidiaphragm-2-0") 
+  (concept ":LEFT-HEMIDIAPHRAGM:") 
+  (words 
+    (":LEFT:") 
+    (":HEMIDIAPHRAGM:")))
+
+((ruleid "leftinterpleuralspace-1") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":LEFT:")))
+
+((ruleid "leftperihilarregion-0") 
+  (concept ":LEFT-PERIHILAR-REGION:") 
+  (words 
+    (":PERIHILAR:") 
+    (":LEFT:")))
+
+((ruleid "rightperihilarregion-1") 
+  (concept ":RIGHT-PERIHILAR-REGION:") 
+  (words 
+    (":PERIHILAR:") 
+    (":RIGHT:")))
+
+((ruleid "leftthorax-0") 
+  (concept ":LEFT-THORAX:") 
+  (words 
+    (":CHEST:") 
+    (":LEFT:")))
+
+((ruleid "onyx-16520-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":ANTERIOR:") 
+    (":SOFT-TISSUES:")))
+
+((ruleid "onyx-16549-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":STRUCTURE:") 
+    (":CHEST-WALL:")))
+
+((ruleid "general-bony-structures-rule") 
+  (concept ":BONY-STRUCTURES:") 
+  (words 
+    (":RIB:" ":SKELETON-NOS:" ":OTHER-BONY-STRUCTURES:" ":BONY:" ":VERTEBRAE:")))
+
+((ruleid "onyx-16616-0") 
+  (concept ":LEFT-ATRIAL-APPENDAGE:") 
+  (words 
+    ("atrial appendage") 
+    (":LEFT:")))
+
+((ruleid "pulmonary-artery-rule-1") 
+  (concept ":PULMONARY-ARTERY:") 
+  (words 
+    (":PULMONARY:") 
+    (":ARTERY:")))
+
+((ruleid "onyx-16639-0") 
+  (concept ":PULMONARY-ARTERY:") 
+  (words 
+    (":MIDDLE:") 
+    (":PULMONARY-ARTERY:")))
+
+((ruleid "pulmonaryvessels-0") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY:" ":BILATERAL:")
+    (":VESSELS:" ":VESSEL:")))
+
+((ruleid "pulmonaryvessels-6") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PERIHILAR:") 
+    (":PULMONARY:")))
+
+((ruleid "pulmonaryvessels-7") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":MIDDLE:") 
+    (":PULMONARY:")))
+
+((ruleid "pulmonaryvessels-8") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":STRUCTURE:") 
+    (":VESSEL:")))
+
+((ruleid "pulmonaryvessels-10") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":MIDDLE:") 
+    (":VESSEL:") 
+    (":UPPER:")))
+
+((ruleid "onyx-16651-0") 
+  (concept ":RIB:") 
+  (words 
+    (":RIB-CAGE:") 
+    (":LEFT:" ":RIGHT:")))
+    
+((ruleid "allthoraciclocations-0") 
+  (concept ":ALL-THORACIC-LOCATIONS:") 
+  (words 
+    (":CHEST:")))
+
+((ruleid "allthoraciclocations-1") 
+  (concept ":ALL-THORACIC-LOCATIONS:") 
+  (words 
+    (":CHEST:") 
+    (":BILATERAL:")))
+
+((ruleid "onyx-16996-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":MEDIASTINAL-LYMPH-NODE:") 
+    (":CALCIFICATION:")))
+
+((ruleid "onyx-16997-0") 
+  (concept ":MEDIASTINAL-LYMPH-NODE:") 
+  (words 
+    (":ANTERIOR:") 
+    (":LYMPH-NODE:")))
+
+((ruleid "onyx-17031-0") 
+  (concept ":PLEURA:") 
+  (words 
+    (":LATERAL:") 
+    ("paraspinal pleura") 
+    (":LOWER:")))
+
+((ruleid "onyx-17076-0") 
+  (concept ":BILATERAL-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural spaces" "pleural space")))
+
+((ruleid "pleural-space-rule") 
+  (concept ":PLEURAL-SPACE:") 
+  (words 
+    ("pleural space")))
+    
+((ruleid "onyx-17077-0") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural space") 
+    (":LEFT:")))
+    
+((ruleid "onyx-17077-1") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural space") 
+    (":RIGHT:")))
+
+((ruleid "onyx-17103-0") 
+  (concept ":INTERPLEURAL-SPACE:") 
+  (words 
+    (":LATERAL:") 
+    ("pleural space")))
+    
+((ruleid "onyx-17256-0") 
+  (concept ":SOFT-TISSUES:") 
+  (words 
+    (":GENERALIZED:") 
+    (":SOFT-TISSUES:")))
+    
+((ruleid "onyx-17270-0") 
+  (concept ":PERICARDIAL-SPACE:") 
+  (words 
+    ("pericardial space")))
+
+((ruleid "onyx-17275-0") 
+  (concept ":ABDOMEN-NS:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":RIGHT:") 
+    (":UPPER:")))
+    
+((ruleid "onyx-17278-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":LATERAL:") 
+    (":CHEST-WALL:") 
+    (":RIGHT:" ":LEFT:")))
+    
+((ruleid "onyx-17287-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":LEFT:" ":RIGHT:")))
+    
+((ruleid "onyx-17288-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":ANTERIOR:" ":POSTERIOR:") 
+    (":CHEST-WALL:") 
+    (":RIGHT:" ":LEFT:") 
+    (":UPPER:" ":LOWER:")))
+    
+((ruleid "onyx-17325-0") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural space") 
+    (":RIGHT:")))
+
+((ruleid "onyx-17326-0") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":RIGHT:")))
+    
+    ((ruleid "pulmonaryvessels-10") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":MIDDLE:") 
+    (":VESSELS:") 
+    (":UPPER:")))
+
+((ruleid "rib-0") 
+  (concept ":RIB:") 
+  (words 
+    (":RIB:") 
+    (":RIGHT:")))
+
+((ruleid "rib-1") 
+  (concept ":RIB:") 
+  (words 
+    (":RIB:")))
+
+((ruleid "right-diaphragm-rule-0") 
+  (concept ":RIGHT-DIAPHRAGM:") 
+  (words 
+    (":RIGHT:") 
+    (":DIAPHRAGM:")))
+
+((ruleid "rightinterpleuralspace-1") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":RIGHT:")))
+
+((ruleid "rightinterpleuralspace-2") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "rightinterpleuralspace-3") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":POSTERIOR:") 
+    (":HEMITHORAX:") 
+    (":RIGHT:")))
+
+((ruleid "rightinterpleuralspace-4") 
+  (concept ":RIGHT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":RIGHT:")))
+    
+((ruleid "rightinterpleuralspace-5") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":LEFT:")))
+
+((ruleid "skeletonnos-0") 
+  (concept ":SKELETON-NOS:") 
+  (words 
+    ("bony" "bony structures")))
+
+((ruleid "softtissueabnormality-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":INTERLOBULAR-FISSURE:") 
+    (":SOFT-TISSUES:")))
+    
+((ruleid "pleura-0") 
+  (concept ":BILATERAL-PLEURA:") 
+  (words 
+    (":PLEURA:") 
+    (":BILATERAL:")))
+
+((ruleid "pleura-1") 
+  (concept ":PLEURA:") 
+  (words 
+    (":LATERAL:") 
+    (":COSTOPHRENIC:") 
+    (":PLEURA:")))
+
+((ruleid "pleura-3") 
+  (concept ":PLEURA:") 
+  (words 
+    ("anteriorly") 
+    (":LATERAL:") 
+    (":PLEURA:") 
+    (":RIGHT:") 
+    (":MIDDLE:")))
+
+((ruleid "pleura-4") 
+  (concept ":PLEURA:") 
+  (words 
+    (":COSTOPHRENIC:") 
+    (":PLEURA:") 
+    ("both")))
+
+((ruleid "pleura-5") 
+  (concept ":PLEURA:") 
+  (words 
+    (":PLEURA:") 
+    ("bilaterally")))
+
+((ruleid "pleura-6") 
+  (concept ":PLEURA:") 
+  (words 
+    (":LATERAL:") 
+    (":PLEURA:")))
+
+
+    
+)
+

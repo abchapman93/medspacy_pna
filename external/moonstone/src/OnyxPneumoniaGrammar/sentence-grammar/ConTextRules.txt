@@ -1,0 +1,108 @@
+'(
+tagrule
+
+((ruleid pre-negation-context-rule-file)
+  (concept ?1)
+  (stype ?1)
+  (ordered true)
+  (window 16)
+  (words (":PRE-NEGATION-WORD:") 
+		("<DISEASE-THING>" "<EXAM-FINDING-THING>" "<EXISTENCE>" "<CHANGE-OF-STATE>"))
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_"))
+  (properties (child ?1) (directionality negated))
+  (tests (not ("firstWordBeginsWithUppercase" ?1))))
+		 
+((ruleid pre-negation-disease-rule-file)
+  (ordered true)
+  (window 64)
+  (concept ?1)
+  ;; Added "instead-of" 2/17/2019
+  (words (":PRE-NEGATION-WORD:" ":INSTEAD-OF:") 
+  		("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_"))
+  (actions ("applyModifierProperties" ?rule ?1))
+  (properties (directionality negated))
+  (tests (notneg ?1)))
+	
+((ruleid pre-negation-word-rule)
+ (concept ":PRE-NEGATION-WORD:")
+ (words ("denies" "denied" "never" "no" "not" "without" "w/o" "can't" "never" 
+ 			"don't" "doesn't" "no longer" "negative for" "no evidence"
+ 			"no evidence of" "no sign of" "no signs of"
+ 			;; "hardly"
+ 		;; ?filestring  -- 11/13/2017.  Multi-word phrases interfere with parse tree construction
+ 		))
+ (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward")))
+    
+    
+((ruleid rule-out-disease-rule)
+ (concept ?1)
+ (words ("rule out" "r/o") ("<DISEASE-THING>"))
+ (properties (directionality possible)))
+
+((ruleid question-answer-negation-rule)
+  (concept ?0)
+  (ordered true)
+  (words 
+	("<PREDICATE>" "<THING>" "<SENTENCE>")  ;; 11/13/2017
+	;; (?interpreted) 
+	("no" "false" "unknown" 
+	;; "0"  -- Removed 6/26/2018
+	)) 
+  (actions ("applyModifierProperties" ?rule ?0))
+  (properties (directionality negated))
+  (tests ("usesCombinedHeaderSentence" ?sentence)))
+	
+((ruleid post-affirmation-context-rule) 
+  (concept ?0)
+  (ordered true)
+  (words 
+	("<PREDICATE>" "<THING>" "<SENTENCE>") 
+	;; (?interpreted) 
+	("yes" "true")) 
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "affirmed")))
+    
+((ruleid post-disease-context-rule) 
+  (concept ?0)
+  (ordered true)
+  (words 
+	("<DISEASE-THING>" "<EXAM-FINDING-THING>" ) 
+	("resolved"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "negated")))
+    
+    
+((ruleid post-disease-context-possibility-rule-0) 
+  (concept ?0)
+  (ordered true)
+  (words 
+	("<DISEASE-THING>" "<EXAM-FINDING-THING>" ) 
+	("cannot be excluded" "can't be ruled out" "cannot be ruled out" "possible" "perhaps" 
+		"possibly" "likely" "is likely" "may be present" "likely represents" 
+		"possibly represents" "probably represents" "could represent" 
+		"must be considered" "consideration"))
+		
+  ;; 2/28/2019
+  ;; (actions ("applyModifierProperties" ?rule ?0))
+  
+  (properties 
+    (directionality possible)))
+
+((ruleid "possibility-word-rule") 
+  (concept ":POSSIBILITY:") 
+  (words ("possible" "possibility" "probable" "probability" "suspicious for" "suspect" 		
+  			"likely represents" "most likely represents" "probable for" 
+  			"most likely this represents" )))
+	
+
+)

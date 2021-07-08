@@ -1,0 +1,46 @@
+'(
+wordrule
+
+;; 3/1/2019: Why would I need target concepts at document grammar level?
+((ruleid document-target-concept-list-rule)
+ (concept ?0)
+  (words (
+  			":LOCALIZED-INFILTRATE:"
+  			":INFILTRATE:" 	
+  			
+			":LOCALIZED-CONSOLIDATION:" 
+			":GENERALIZED-CONSOLIDATION:" 
+			":CONSOLIDATION:"
+		
+			":ASPIRATION-PNEUMONIA:" 
+			":ATYPICAL-PNEUMONIA:" 
+			":PNEUMONIA:" 
+			":PNEUMONITIS:"
+			":ATELECTASIS:" 
+			":INFILTRATE-OR-ATELECTASIS:"
+			":SCAR:"
+			":PARENCHYMAL-SCARRING:"
+			
+			;;":GENERALIZED-INTERSTITIAL-INFILTRATE:"
+			;;":INTERSTITIAL-INFILTRATE:"
+			;;":PERIHILAR-INFILTRATE:"
+			;; ":GENERALIZED-INFILTRATE:"
+  			;; ":GENERIC-INFILTRATE-NOS:" 
+			;; ":PLEURAL-SCARRING:"
+			;;":LOCALIZED-PARENCHYMAL-ABNORMALITY:"
+			;;":PARENCHYMAL-ABNORMALITY:" 
+			;;":PARENCHYMAL-ABNORMALITY-NS:"
+			))
+ ;; (actions ("applyModifierProperties" ?rule ?0))
+ (properties (contains-target true)))
+ 
+ 
+ 
+ ;; 3/1/2017
+ ((ruleid infiltrate-local-infiltrate-equivalence-rule)
+  (concept ":INFILTRATE:")
+  (words (":LOCALIZED-INFILTRATE:" ":INFILTRATE:"))
+  (properties (contains-target true)))
+
+
+)

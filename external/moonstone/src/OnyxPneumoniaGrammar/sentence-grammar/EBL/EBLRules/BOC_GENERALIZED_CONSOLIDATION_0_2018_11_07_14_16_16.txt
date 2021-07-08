@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:GENERALIZED-CONSOLIDATION:-0-2018/11/07 14:16:16") 
+  (specialized) 
+  (example-snippet "is patchy diffuse consolidation throughout the entireleft lun") 
+  (ordered true) 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (stype "<GENERAL-CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":GENERALIZED-CONSOLIDATION::PREP::LUNG-AREA:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

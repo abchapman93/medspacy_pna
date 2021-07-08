@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:MEDIASTINAL-ABNORMALITY:-2-2018/11/14 22:37:45") 
+  (specialized) 
+  (example-snippet "mediastinal silhouette upper limits of normal") 
+  (ordered true) 
+  (concept ":MEDIASTINAL-ABNORMALITY:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":MEDIASTINUM::NORMAL:")) 
+  (properties (directionality negated))
+  (tests 
+    ("notneg" ?0)))
+
+)

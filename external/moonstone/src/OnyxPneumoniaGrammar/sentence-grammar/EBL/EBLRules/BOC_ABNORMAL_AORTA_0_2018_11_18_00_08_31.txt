@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:ABNORMAL-AORTA:-0-2018/11/18 00:08:31") 
+  (specialized) 
+  (example-snippet "Aorta is dilated") 
+  (ordered true) 
+  (concept ":ABNORMAL-AORTA:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":AORTA::DILATED:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

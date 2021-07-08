@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:ENLARGEMENT-OF-THE-HEART:-2-2018/11/08 14:58:51") 
+  (specialized) 
+  (example-snippet "mild to moderateprominence of the left ventricle") 
+  (ordered true) 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":MODERATE::ENLARGEMENT-OF-THE-HEART:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

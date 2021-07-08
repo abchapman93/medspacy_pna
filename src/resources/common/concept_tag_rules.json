@@ -1,0 +1,1352 @@
+{
+    "target_rules": [
+        {
+            "literal": "pneumonia",
+            "category": "PNEUMONIA",
+            "pattern": "pneumonias?|pna"
+        },
+        {
+            "literal": "consolidation",
+            "category": "CONSOLIDATION",
+            "pattern": "consolidat(e|ions?|ive)"
+        },
+        {
+            "literal": "infiltrate",
+            "category": "INFILTRATE",
+            "pattern": "infiltrat(e|es|ion|ive)"
+        },
+        {
+            "literal": "opacity",
+            "category": "OPACITY",
+            "pattern": "opacit(y|ies)"
+        },
+        {
+            "literal": "opacification",
+            "category": "OPACITY",
+            "pattern": "opacifi(cation|ed)"
+        },
+        {
+            "literal": "density",
+            "category": "DENSITY",
+            "pattern": "densit(y|ies)"
+        },
+        {
+            "literal": "streaky",
+            "category": "STREAKY",
+            "pattern": "streak(y|ing)"
+        },
+        {
+            "literal": "calcification",
+            "category": "CALCIFICATION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "calcification",
+                            "calcifications",
+                            "calcified"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "illdefined",
+            "category": "ILLDEFINED",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "hazy",
+                            "vague",
+                            "indistinct"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "focal",
+            "category": "FOCAL",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "focal",
+                            "local",
+                            "localized"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "ill(\\s*|-)defined",
+            "category": "ILLDEFINED",
+            "pattern": "ill(\\s*|-)defined"
+        },
+        {
+            "literal": "poorly(\\s*|-)marginated",
+            "category": "ILLDEFINED",
+            "pattern": "poorly(\\s*|-)marginated"
+        },
+        {
+            "literal": "compressive",
+            "category": "COMPRESSIVE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "compressive"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "linear",
+            "category": "LINEAR"
+        },
+        {
+            "literal": "some linear features",
+            "category": "LINEAR"
+        },
+        {
+            "literal": "strandy linear",
+            "category": "LINEAR"
+        },
+        {
+            "literal": "linear(\\s*|-)features",
+            "category": "LINEAR",
+            "pattern": "linear(\\s*|-)features"
+        },
+        {
+            "literal": "streaky",
+            "category": "LINEAR"
+        },
+        {
+            "literal": "strandy",
+            "category": "STRANDY",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "stranding",
+                            "strandy"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "strandy(\\s*|-)linear",
+            "category": "LINEAR",
+            "pattern": "strandy(\\s*|-)linear"
+        },
+        {
+            "literal": "diffuse",
+            "category": "DIFFUSE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "diffuse"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "localized",
+            "category": "LOCALIZED",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "local",
+                            "localized"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "metastatic",
+            "category": "METASTATIC",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "metastatic"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "abnormality",
+            "category": "ABNORMALITY",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "abnormality",
+                            "abnormalities"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "obscuration",
+            "category": "OBSCURATION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "obscuration",
+                            "obscure",
+                            "obscured"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "silhouette",
+            "category": "SILHOUETTE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "silhouette",
+                            "silhouetted",
+                            "silhouetting",
+                            "silhouettting"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "rounded",
+            "category": "ROUNDED",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "round",
+                            "rounded"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "minimal",
+            "category": "MINIMAL",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "mild",
+                            "minimal"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "moderate",
+            "category": "MODERATE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "medium",
+                            "moderate"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "maximal",
+            "category": "MAXIMAL",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "severe",
+                            "maximal"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "acute",
+            "category": "ACUTE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "acute"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "chronic",
+            "category": "CHRONIC",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "chronic",
+                            "persists"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "active",
+            "category": "ACTIVE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "active"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "dense",
+            "category": "DENSE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "dense"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "calcification",
+            "category": "CALCIFICATION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "calcification",
+                            "calcifications",
+                            "calcified"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "atelectasis",
+            "category": "ATELECTASIS",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "atelectasis",
+                            "atelectatic"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "atherosclerosis",
+            "category": "ATHEROSCLEROSIS",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "atherosclerotic",
+                            "atherosclerosis"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "tortuous",
+            "category": "TORTUOUS",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "tortuous"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "blunting",
+            "category": "BLUNTING",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "blunting"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "infection",
+            "category": "INFECTION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "infection",
+                            "infections"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "effusion",
+            "category": "EFFUSION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "effusion",
+                            "effusions"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "osteoarthritic",
+            "category": "ARTHRITIS",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "osteoarthritic",
+                            "osteoarthritis",
+                            "arthritic",
+                            "arthritis"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "descriptor",
+            "category": "DESCRIPTOR",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+
+                            "bibasilar",
+                            "aspiration",
+                            "focal"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "bilateral",
+            "category": "LOCATION",
+            "pattern": "bilat(eral)?"
+        },
+        {
+            "literal": "PNA",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "HCAP",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "bronchopneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pleuropneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "legionellosis",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "legionnaire",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonias",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniae",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "neumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "peumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnemonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumona",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoni ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "ppneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneeumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneummonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniaa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "npeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "penumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnuemonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnemuonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuomnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumnoia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoina",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonai",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "oneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "0neumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "lneumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pbeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pheumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pjeumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pmeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnwumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pn3umonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pn4umonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnrumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnfumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pndumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnsumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneymonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne7monia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne8monia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneimonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnekmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnejmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnehmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneunonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneujonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneukonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuminia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneum9nia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneum0nia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumpnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumlnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumknia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumobia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumohia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumojia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumomia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonua ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumon8a",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumon9a",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonoa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonla",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonka",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonja",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniq",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniw ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonis",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonix",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniz ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "opneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "poneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "0pneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "p0neumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "lpneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "plneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pbneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnbeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "phneumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnheumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pjneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnjeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pmneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnmeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnweumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnewumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pn3eumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne3umonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pn4eumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne4umonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnreumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnerumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnfeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnefumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pndeumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnedumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnseumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnesumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneyumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuymonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne7umonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneu7monia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pne8umonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneu8monia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneiumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuimonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnekumonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneukmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnejumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneujmonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pnehumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneuhmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneunmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumnonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneujmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumjonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneukmonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumkonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumionia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoinia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneum9onia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumo9nia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneum0onia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumo0nia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumponia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumopnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumlonia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumolnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumkonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoknia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumobnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonbia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumohnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonhia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumojnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonjia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumomnia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonmia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonuia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniua",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumon8ia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoni8a",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumon9ia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoni9a",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonoia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonioa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonlia ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonila",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonkia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonika ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonjia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonija",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniqa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniaq",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniwa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniaw",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonisa",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonias",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonixa ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniax",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniza",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumoniaz ",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "valley fever",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonia",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneum\\(cap\\)",
+            "category": "PNEUMONIA",
+            "pattern": "pneum\\(cap\\)"
+        },
+        {
+            "literal": "cap-RML",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "legioner'?s\\s*disease",
+            "category": "PNEUMONIA",
+            "pattern": "legioner'?s\\s*disease"
+        },
+        {
+            "literal": "bronchopneumonia",
+            "category": "PNEUMONIA",
+            "pattern": "broncho-?pneumonia"
+        },
+        {
+            "literal": "infectious/inflammatory process",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "infectious/inflammatory process",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER": {"IN":  ["infectious", "inflammatory"]}},
+                {"LOWER":  "process"}
+            ]
+        },
+        {
+            "literal": "bkp",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonitis",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "interstitial lung markings",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "airspace disease",
+            "category": "PNEUMONIA",
+            "pattern": "air( )?space disease"
+        },
+        {
+            "literal": "aspiration",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "compatible",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "associated",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "superimposed",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "bilateral",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "atypical",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "uti",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "bacterial",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "viral",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "healthcare associated",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "community(\\s*|-)acquired",
+            "category": "DESCRIPTOR",
+            "pattern": "community(\\s*|-)acquired"
+        },
+        {
+            "literal": "multilobar",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "blossoming",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "underlying",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "streaky",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "literal": "gross",
+            "category": "DESCRIPTOR"
+        },
+        {
+            "category":  "TREATMENT",
+            "literal": "treatment",
+            "pattern": [
+                {
+                    "LOWER":  {
+                        "IN": [
+                            "tx",
+                            "treatment",
+                            "treated"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "category":  "TREATMENT",
+            "literal": "treatment",
+            "pattern": [
+                {
+                    "LOWER":  {
+                        "IN": [
+                            "empiric",
+                    "empirical"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "category":  "TREATMENT",
+            "literal": "treatment",
+            "pattern": [
+                {
+                    "LOWER":  {
+                        "IN": [
+                            "antibiotics",
+                    "abx"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "category": "AERATION",
+            "literal": "aeration"
+        },
+        {
+            "category": "COVID",
+            "literal": "COVID-19",
+            "pattern": "covid[ -]?(19)?"
+        },
+        {
+            "category": "PATCHY",
+            "literal": "patchy"
+        },
+        {
+            "category": "DESCRIPTOR",
+            "literal": "ground glass"
+        },
+        {
+            "category": "DESCRIPTOR",
+            "literal": "fluffy"
+        }
+    ]
+}

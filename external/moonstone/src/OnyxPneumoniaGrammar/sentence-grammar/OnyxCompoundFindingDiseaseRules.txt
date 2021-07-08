@@ -1,0 +1,5389 @@
+'(
+wordrules
+
+;;;;;;;; LEE ADDED RULES ;;;;;;;;;;;;
+
+;; 4/16/2019
+;; "infiltrate is unchanged" -> infiltrate=present
+((ruleid unchanged-disease-or-finding-is-affirmed-rule)
+ (concept ?0)
+ (words ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+ (tests (and (notneg ?0) ("hasPropertyValue" ?0 "change" ":UNCHANGED:")))
+ (properties (directionality affirmed))
+ (removeproperties change))
+
+;; 2/27/2019:  Convert existence probability into directionality
+((ruleid finding-or-disease-with-possible-existence-is-possible-rule) 
+  (concept ?0) 
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (tests (and (notneg ?0) (hpvl ?0 "existence" (list ":PROBABILITY:" ":POSSIBILITY:"))))
+  (properties (directionality possible)))
+  
+((ruleid finding-or-disease-with-affirmed-existence-is-affirmed-rule) 
+  (concept ?0) 
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (tests (and (notneg ?0) (hpv ?0 "existence" ":PRESENT:")))
+  (properties (directionality affirmed)))
+  
+((ruleid finding-or-disease-with-improved-existence-is-improved-rule) 
+  (concept ?0) 
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (tests (and (notneg ?0) (hpv ?0 "change" ":IMPROVING:")))
+  (properties (directionality improved)))
+  
+((ruleid finding-or-disease-with-resolved-existence-is-absent-rule) 
+  (concept ?0) 
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (tests (and (notneg ?0) (hpv ?0 "change" ":RESOLVED:")))
+  (properties (directionality negated)))
+  
+((ruleid spatial-extent-finding-rule) 
+  (concept ?1) 
+  (words 
+    ("<SPATIAL-EXTENT-PROPERTY>" ) 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (relations (extent-of ?1 ?0)))
+  
+((ruleid quality-of-finding-rule) 
+  (complex-concept) 
+  (words 
+    ("<QUALITY-PROPERTY>" "<DEGREE-PROPERTY>") 
+    ("<EXAM-FINDING-THING>"))
+  (relations (quality-of ?1 ?0)))
+  
+((ruleid there-is-finding-rule) 
+  (concept ?1) 
+  (ordered true)
+  (words 
+    ("there is" "there are" "i see") 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>")))
+    
+((ruleid this-is-finding-rule) 
+  (concept ?2) 
+  (words 
+    ("this")
+    (":IS:")
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>")))
+    
+((ruleid this-may-be-finding-rule) 
+  (concept ?2) 
+  (words 
+    ("this")
+    (":MAY_BE:")
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>"))
+  (properties (directionality possible)))
+    
+((ruleid finding-is-seen-rule) 
+  (concept ?0) 
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>")
+    ("is seen" "are seen" "are visualized")))
+  
+((ruleid existence-finding-rule) 
+  (concept ?0) 
+  (words 
+     ("<DISEASE-THING>" "<EXAM-FINDING-THING>")
+     ("<EXISTENCE>" "<TEMPORAL-DURATION-PROPERTY>"))
+  (properties (existence ?1)))
+  
+((ruleid existence-finding-rule-2) 
+  (concept ?0) 
+  (ordered true)
+  (words 
+     ("<DISEASE-THING>" "<EXAM-FINDING-THING>")
+     (":IS:")
+     ("<EXISTENCE>" "<TEMPORAL-DURATION-PROPERTY>"))
+  (properties (existence ?2)))
+    
+((ruleid change-of-state-of-finding-rule) 
+  (concept ?0) 
+  (words 
+     ("<DISEASE-THING>" "<EXAM-FINDING-THING>")
+     ("<CHANGE-OF-STATE>"))
+  (properties (change ?1)))
+  
+((ruleid change-of-state-of-finding-rule-2) 
+  (concept ?0) 
+  (ordered true)
+  (words 
+     ("<DISEASE-THING>" "<EXAM-FINDING-THING>")
+     (":IS:")
+     ("<CHANGE-OF-STATE>"))
+  (properties (change ?2)))
+  
+((ruleid change-of-state-of-anatomic-location-rule) 
+  (complex-concept) 
+  (words 
+     ("<PULMONARY-LOCATION>")
+     ("<CHANGE-OF-STATE>"))
+  (properties (change ?1)))
+  
+((ruleid anatomic-location-modifies-finding-rule-2) 
+  (complex-concept) 
+  (ordered true)
+  (words 
+    ("<ANATOMIC-LOCATION>" "<ANATOMIC-LOCATION-MODIFIER>" ;; "<PULMONARY-LOCATION>" 
+    	"<CHEST-XRAY-FINDING-MODIFIER>" "<CHEST-XRAY-FINDING-PROPERTY>") 
+    (":IS:")
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>" 
+    	"<QUALITY-PROPERTY>")))
+  
+((ruleid anatomic-location-modifies-finding-rule-3) 
+  (complex-concept) 
+  (stype ?1)
+  (words 
+    ("<ANATOMIC-LOCATION-MODIFIER>" "<PULMONARY-LOCATION>" 
+    	"<PULMONARY-LOCATION-MODIFIER-SIDE>")
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>")))
+    
+;; 4/16/2019, e.g. "bilateral pneumonitis"
+((ruleid anatomic-location-modifies-finding-rule-4) 
+  (concept ?1) 
+  (words 
+    ("<PULMONARY-LOCATION-MODIFIER-SIDE>") 
+    ("<DISEASE-THING>")))
+    
+((ruleid anatomic-location-modifies-finding-rule-5) 
+  (complex-concept) 
+ ;; (ordered true)
+  (words 
+    ("<ANATOMIC-LOCATION-MODIFIER>" "<PULMONARY-LOCATION>" 
+    	"<CHEST-XRAY-FINDING-MODIFIER>" "<CHEST-XRAY-FINDING-PROPERTY>") 
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>" 
+    	"<QUALITY-PROPERTY>")))
+    	
+;; 11/15/2018
+((ruleidXXX finding-or-disease-on-right-or-left-rule) 
+  (concept ?0) 
+  (ordered true)
+  (words 
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>")
+    ("in" "at" "on")
+    ("the")
+    (":RIGHT:" ":LEFT:"))
+  (properties (location-of ?0 ?3)))
+
+((ruleid finding-consistent-with-disease-rule) 
+  (concept ?2) 
+  (ordered true)
+  (words 
+    ("<EXAM-FINDING-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>" 
+    	":SYMPTOM:") 
+    (":CONSISTENT-WITH:")
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>"))
+  (properties (directionality possible)))
+  
+((ruleid disease-instead-of-disease-rule) 
+  (concept ?0) 
+  (ordered true)
+  (words 
+    ("<DISEASE-THING>" "<EXAM-FINDING-THING>" 
+    	"<CHEST-XRAY-FINDING-THING>") 
+    (":INSTEAD-OF:")
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>"))
+    
+    ;; (actions ("applyModifierProperties" ?rule ?1))
+    
+  (properties (negated-conjunct ?2)))
+   		
+    
+((ruleid negated-finding-consistent-with-disease-rule) 
+  (concept ?2) 
+  (ordered true)
+  (words 
+    ("<EXAM-FINDING-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>" 	
+    	":SYMPTOM:") 
+    (":CONSISTENT-WITH:")
+    ("<DISEASE-THING>" "<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>"))
+  (properties (directionality negated))
+  (tests (neg ?0)))
+
+((ruleid anatomic-location-is-property-rule) 
+  (complex-concept) 
+  (ordered true)
+  (words 
+    ("<ANATOMIC-LOCATION>" "<PULMONARY-LOCATION-MODIFIER>") 
+    ;; ("_IS_")
+    ("<CHEST-XRAY-FINDING-THING>" "<CHEST-XRAY-FINDING-TERM>" 
+    	"<CHEST-XRAY-FINDING-MODIFIER>" "<CHEST-XRAY-FINDING-PROPERTY>")))
+    
+((ruleid parenchymal-changes-rule) 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":PARENCHYMAL:") (":CHANGES:" ":ABNORMALITY:")))
+    
+((ruleid lung-area-parenchymal-changes-rule) 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LUNG-AREA:") (":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:")))
+    
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+((ruleid "abnormalaorta-0") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":ROUNDED:") 
+    (":CALCIFICATION:")))
+
+((ruleidXXX "abnormalaorta-1") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":AORTA:") 
+    (":ATHEROSCLEROSIS:" "osteoarthritic" "osteoarthritis" "arthritic" "arthritis") 
+    (":CALCIFICATION:")))
+
+((ruleid "abnormalaorta-2") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":AORTA:" ":ABNORMAL-AORTA:") 
+    (":TORTUOUS:" ":ATHEROSCLEROSIS:" ":CALCIFICATION:")))
+
+((ruleid "abnormalaorta-3") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":DIAPHRAGM:" ":AORTA:") 
+    (":CALCIFICATION:")))
+
+((ruleid "abnormalaorta-7") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":ATHEROSCLEROSIS:") 
+    (":CALCIFICATION:")))
+
+((ruleid "abnormality-1") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":ABNORMALITY:" ":BONY-ABNORMALITY:")))
+    
+((ruleid atherosclerotic-bony-changes-rule)
+ (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":ARTHRITIS:") 
+    (":CHANGES:")))
+;;;;;;;;;;
+
+;; "abnormalities"?  There is a potentially complex concept named :ABNORMALITY:...
+
+((ruleid "anyacutedisease-0") 
+  (concept ":ANY-ACUTE-DISEASE:") 
+  (words 
+    (":ACUTE:") 
+    (":INFECTION:")))
+
+((ruleid "anyacutedisease-2") 
+  (concept ":ANY-ACUTE-DISEASE:") 
+  (words 
+    (":INFECTION:")))
+
+((ruleid "artifact-0") 
+  (concept ":ARTIFACT:") 
+  (words 
+    (":LEFT-HEMIDIAPHRAGM:") 
+    (":SILHOUETTE:")))
+    
+((ruleid "artifact-1") 
+  (concept ":ARTIFACT:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":ARTIFACT:")))
+
+((ruleid "artifact-2") 
+  (concept ":ARTIFACT:") 
+  (words 
+    (":OVERLAYING:") 
+    (":SHADOW:")))
+
+((ruleid "atelectasis-8") 
+  (concept ?1) 
+  (words 
+    (":PRIOR:") 
+    ("<DISEASE> <FINDING>"))
+  (properties (temporality historical)))
+
+((ruleid "located-atelectasis-rule") 
+  (concept ":ATELECTASIS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ATELECTASIS:")))
+    
+((ruleid "located-modified-atelectasis-rule") 
+  (concept ":ATELECTASIS:") 
+  (words 
+    ("<PULMONARY-LOCATION>") 
+    (":FOCAL:" ":COMPRESSIVE:" ":LINEAR:" ":LOCALIZED:") 
+    (":ATELECTASIS:")))
+    
+((ruleid "modified-atelectasis-rule") 
+  (concept ":ATELECTASIS:") 
+  (words 
+    (":METASTATIC:") 
+    (":ATELECTASIS:")))
+
+((ruleid "atherosclerosis-0") 
+  (concept ":ATHEROSCLEROSIS:") 
+  (words 
+    (":AORTA:") 
+    (":ATHEROSCLEROSIS:") 
+    (":DISEASE:")))
+
+((ruleid "atypicalpneumonia-0") 
+  (concept ":ATYPICAL-PNEUMONIA:") 
+  (words 
+    (":ATYPICAL:") 
+    (":PNEUMONIA:")))
+
+((ruleid "bilateralpleuraleffusion-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:") 
+    (":EFFUSION:")))
+
+((ruleid "bilateralpleuraleffusion-1") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:")))
+
+((ruleid "bilateralupperlobes-0") 
+  (concept ":BILATERAL-UPPER-LOBES:") 
+  (words 
+    (":PERIHILAR:") 
+    (":LUNG:") 
+    (":LOWER:")))
+
+;;;;;;;
+((ruleid "bluntingofcpangle-0") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:" ":PLEURA:" 
+    ":RIGHT-INTERPLEURAL-SPACE:" ":COSTOPHRENIC-ANGLE:") 
+    (":BLUNTING:")))
+
+((ruleid "bluntingofcpangle-7") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    ("<DEGREE-PROPERTY>") 
+    (":BLUNTING-OF-CP-ANGLE:" ":BLUNTING:")))
+
+((ruleid "bluntingofcpangle-8") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":BLUNTING:")))
+
+((ruleid "bronchialwallthickening-0") 
+  (concept ":BRONCHIAL-WALL-THICKENING:") 
+  (words 
+    (":BRONCHIAL-WALL:") 
+    (":CUFFING:" ":THICKENING:")))
+
+((ruleid "bronchiectasis-1") 
+  (concept ":BRONCHIECTASIS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":BRONCHIECTASIS:")))
+
+((ruleid "bronchiectasis-3") 
+  (concept ":BRONCHIECTASIS:") 
+  (words 
+    (":DIFFUSE:") 
+    (":BRONCHIECTASIS:")))
+
+((ruleid "chest-wall-generalized-infiltrate-rule-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":CHEST-WALL:" ":PULMONARY:") 
+    (":INFILTRATE:")))
+    
+((ruleid "lung wall free of infiltrate rule") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("free of")
+    (":INFILTRATE:"))
+  (properties (directionality negated)))
+
+((ruleid "chf-1") 
+  (concept ":CHF:") 
+  (words 
+    (":HEART:" ":PULMONARY-VESSELS:") 
+    (":CONGESTIVE:") 
+    (":FAILURE:")))
+
+((ruleid "chf-5") 
+  (concept ":CHF:") 
+  (words 
+    (":ACUTE:") 
+    (":CHF:")))
+
+((ruleid "chf-6") 
+  (concept ":CHF:") 
+  (words 
+    (":BLOOD:" ":HEART:") 
+    (":FAILURE:")))
+    
+((ruleid "heart-contours-0") 
+  (concept ":HEART-SIZE:") 
+  (words 
+    (":HEART:" "cardiomediastinal" "cardiac") 
+    (":SILHOUETTE:" "size" "shape")))
+
+((ruleid "chronicobstructivepulmonarydisease-0") 
+  (concept ":CHRONIC-OBSTRUCTIVE-PULMONARY-DISEASE:") 
+  (words 
+    (":OBSTRUCTIVE:") 
+    (":DISEASE:")))
+    
+((ruleid "chronicobstructivepulmonarydisease-1") 
+  (concept ":CHRONIC-OBSTRUCTIVE-PULMONARY-DISEASE:") 
+  (words 
+    ("copd" "chronic obstructive disease")))
+
+((ruleid "density-0") 
+  (concept ":DENSITY:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":INTERSTITIAL:") 
+    (":INCREASED:") 
+    (":MARKING:")))
+
+((ruleid "density-12") 
+  (concept ":DENSITY:") 
+  (words 
+    (":LEFT-HEMIDIAPHRAGM:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "density-13") 
+  (concept ":DENSITY:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":FOCAL:") 
+    (":DENSITY:")))
+
+((ruleid "density-15") 
+  (concept ":DENSITY:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":DENSITY:")))
+
+((ruleid "density-16") 
+  (concept ":DENSITY:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":SOFT-TISSUES:") 
+    (":DENSITY:")))
+
+((ruleid "density-17") 
+  (concept ":DENSITY:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "density-18") 
+  (concept ":DENSITY:") 
+  (words 
+    (":INCREASED:") 
+    (":DENSITY:")))
+
+((ruleid "density-19") 
+  (concept ":DENSITY:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":DENSITY:")))
+
+((ruleid "diaphragm-1") 
+  (concept ":DIAPHRAGM:") 
+  (words 
+    (":DIAPHRAGM:") 
+    (":RIGHT:") 
+    (":BASE:")))
+
+((ruleid "diffuseidiopathicpulmonaryfibrosis-0") 
+  (concept ":DIFFUSE-IDIOPATHIC-PULMONARY-FIBROSIS:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":DIFFUSE:") 
+    (":FIBROSIS:")))
+
+((ruleid "diffuseidiopathicpulmonaryfibrosis-1") 
+  (concept ":DIFFUSE-IDIOPATHIC-PULMONARY-FIBROSIS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":FIBROSIS:")))
+
+((ruleid "diffuseidiopathicpulmonaryfibrosis-3") 
+  (concept ":DIFFUSE-IDIOPATHIC-PULMONARY-FIBROSIS:") 
+  (words 
+    (":FIBROSIS:")))
+
+((ruleid "diffuseidiopathicpulmonaryfibrosis-4") 
+  (concept ":DIFFUSE-IDIOPATHIC-PULMONARY-FIBROSIS:") 
+  (words 
+    (":DIFFUSE:")))
+
+((ruleid "diseasenos-1") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":ACTIVE:") 
+    (":DISEASE:")))
+    
+((ruleid "diseasenos-2") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":ACTIVE:") 
+    (":DISEASE:")))
+
+((ruleid "diseasenos-2") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":CARDIOPULMONARY:") 
+    (":ACUTE:") 
+    (":DISEASE:")))
+
+((ruleid "diseasenos-3") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":CARDIOPULMONARY:") 
+    (":ACTIVE:") 
+    (":DISEASE:")))
+
+((ruleid "diseasenos-4") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":ACTIVE:") 
+    (":DISEASE:")))
+
+((ruleid "diseasenos-6") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    (":DISEASE:")))
+
+((ruleid "enlargementoftheheart-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":ENLARGED:")))
+    
+((ruleid "enlargementoftheheart-0-1") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:" ":HEART-SIZE:") 
+    (":NORMAL:" ":STABLE:"))
+  (properties (directionality negated)))
+
+((ruleid "enlargementoftheheart-1") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":ABNORMALITY:")))
+
+((ruleid "enlargementoftheheart-2") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":CONTOUR:")))
+
+((ruleid "enlargementoftheheart-3") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    ("cardiomegaly")))
+
+((ruleid "enlargementoftheheart-4") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":CONTOUR:")))
+
+((ruleid "enlargementofthepulmonaryvessels-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":INTERSTITIAL:") 
+    (":PROMINENCE:")))
+
+((ruleid "enlargementofthepulmonaryvessels-1") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":INTERSTITIAL:" ":MEDIASTINUM:" ":PULMONARY-VESSELS:" ":SOFT-TISSUES:" 
+    	":SINGLE-LUNG:") 
+    (":PROMINENCE:")))
+
+
+((ruleid "enlargementofthepulmonaryvessels-6") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":SINGLE-LUNG:") 
+    (":MILD:") 
+    (":PROMINENCE:")))
+
+((ruleid "enlargementofthepulmonaryvessels-8") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":LOWER-LOBE:") 
+    (":LINEAR:") 
+    (":PROMINENCE:")))
+
+((ruleid "enlargementofthepulmonaryvessels-9") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PERIHILAR-REGION:") 
+    (":PROMINENCE:")))
+
+((ruleid "enlargementofthepulmonaryvessels-10") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":BILATERAL-HILUM:") 
+    (":PROMINENCE:")))
+
+((ruleid "fluidoverload-0") 
+  (concept ":FLUID-OVERLOAD:") 
+  (words 
+    (":FLUID:")))
+
+((ruleid "fracturedrib-0") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":RIB:" ":VERTEBRAE:" ":COMPRESSION:") 
+    (":FRACTURE:")))
+
+((ruleid "fracturedrib-3") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":RIB:") 
+    (":HEALED:") 
+    (":FRACTURE:")))
+
+((ruleid "fracturedrib-4") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":HEALED:") 
+    (":FRACTURE:")))
+
+((ruleid "fracturedrib-5") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":FRACTURE:")))
+
+((ruleid "fracturedrib-6") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":FRACTURE:")))
+    
+((ruleid "onyx-18821-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:" ":BILATERAL:") 
+    (":INTERSTITIAL:") 
+    (":PATCHY:" ":DIFFUSE:" ":NODE:" ":FLUFFY:" ":ILL-DEFINED:")
+    (":ABNORMALITY:")))
+
+((ruleid "generalizedinfiltrate-recursive-modifier-rule")
+  (concept ":GENERALIZED-INFILTRATE-MODIFIERS:")
+  (pattern
+    (":PATCHY:" ":DIFFUSE:" ":NODE:" ":FLUFFY:" ":ILL-DEFINED:"
+    	":GENERALIZED-INFILTRATE-MODIFIERS:")))
+   
+((ruleid "generalizedinfiltrate-with-modifiers-rule") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (pattern 
+	(":GENERAL-LUNG-AREA:" ":PULMONARY-VESSELS:" ":INTERPLEURAL-SPACE:" ":BILATERAL:")
+    (":GENERALIZED-INFILTRATE-MODIFIERS:")
+    (":INFILTRATE:" ":DENSITY:" "OPACITY:" ":ABNORMALITY:" ":LOCALIZED-INFILTRATE:" 
+       		":GENERALIZED-INFILTRATE:")))
+
+((ruleid "generalizedinfiltrate-without-modifiers-rule") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (pattern 
+	(":GENERAL-LUNG-AREA:" ":PULMONARY-VESSELS:" ":INTERPLEURAL-SPACE:" ":BILATERAL:")
+    (":INFILTRATE:" ":DENSITY:" "OPACITY:" ":ABNORMALITY:" ":LOCALIZED-INFILTRATE:" 
+       		":GENERALIZED-INFILTRATE:")))
+
+((ruleid "generalizedinfiltrate-with-extra-modifiers-rule") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (pattern 
+	(":GENERALIZED-INFILTRATE-MODIFIERS:")
+    (":GENERALIZED-INFILTRATE:")))
+
+((ruleid "generalizedinfiltrate-17") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LOCAL-LUNG-AREA:" ":RIGHT:" ":LEFT:" ":SINGLE-LUNG:") 
+    (":PATCHY:") 
+    (":OPACITY:" ":INFILTRATE:" ":LOCALIZED-INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "generalizedinfiltrate-18") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":OPACITY:" ":INFILTRATE:" ":LOCALIZED-INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "generalizedinfiltrate-23") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:") 
+    (":LINEAR:") 
+    (":OPACITY:" ":INFILTRATE:" ":GENERALIZED-INFILTRATE:")))
+    
+((ruleid "generalizedinfiltrate-19") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:") 
+    (":OPACITY:" ":INFILTRATE:" ":GENERALIZED-INFILTRATE:")))
+
+((ruleid "generalizedinfiltrate-21") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":MILD:") 
+    (":INTERSTITIAL:") 
+    (":OPACITY:")))
+
+((ruleid "generalizedinfiltrate-22") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":HEMIDIAPHRAGM:") 
+    (":OPACITY:" ":INFILTRATE:")))
+
+((ruleid "generalizedvolumeincrease-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":HYPERINFLATION:")))
+
+((ruleid "generalizedvolumereduction-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "generalizedvolumereduction-1") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":AERATION:")))
+    
+((ruleid "acute-infiltrate-rule-1") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":ACUTE:" ":CHRONIC:") 
+    (":INFILTRATE:" )))
+
+((ruleid "focal-pulmonary-opacities-rule-1") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LUNG-LOBE:" ":PULMONARY:" ) 
+    (":FOCAL:" ":ROUNDED:") 
+    (":INFILTRATE:" ":OPACITY:" )))
+
+((ruleid "genericinfiltratenos-3") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":FOCAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-4") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-5") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":PLEURA:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-6") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-7") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":FOCAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-8") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":MILD:") 
+    (":INFILTRATE:")))
+
+((ruleid "genericinfiltratenos-9") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":INTERSTITIAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "heart-1") 
+  (concept ":HEART:") 
+  (words 
+    (":SILHOUETTE:" "size") 
+    (":HEART:" "cardiomediastinal")))
+
+((ruleid "heart-3") 
+  (concept ":HEART:") 
+  (words 
+    (":MIDDLE:") 
+    (":HEART:")))
+
+((ruleid "hemorrhage-0") 
+  (concept ":HEMORRHAGE:") 
+  (words 
+    (":BLOOD:")))
+
+((ruleid "hilarabnormality-0") 
+  (concept ":HILAR-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-HILUM:") 
+    (":STRUCTURE:")))
+
+((ruleid "hilaradenopathy-0") 
+  (concept ":HILAR-ADENOPATHY:") 
+  (words 
+    (":ADENOPATHY:")))
+
+((ruleid "improving-0") 
+  (concept ":IMPROVING:") 
+  (words 
+    (":CLEARING:")))
+    
+((ruleid "lungs-are-clear-rule") 
+  (concept ":PARENCHYMAL-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-LUNG:" ":LUNG:" ":LUNG-AREA:")
+    (":CLEAR:"))
+  (tests (notneg ?1))
+  (properties (directionality negated)))
+
+((ruleid "insterstitialabnormality-0") 
+  (concept ":INSTERSTITIAL-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:") 
+    (":CHRONIC:") 
+    (":DISEASE:")))
+
+((ruleid "insterstitialabnormality-1") 
+  (concept ":INSTERSTITIAL-ABNORMALITY:") 
+  (words 
+    (":MILD:" ) 
+    (":INTERSTITIAL:") 
+    (":CHRONIC:")))
+
+((ruleid "lll-ill-defined-opacity-rule-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "focal-infiltrate-rule-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-LOBE:") 
+    (":INFILTRATE:"))
+  (properties (location ?0)))
+    
+((ruleid "focal-infiltrate-rule-0-1") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-LOBE:" ":FOCAL:") 
+    (":INFILTRATE:" ":LOCALIZED-INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "localizedconsolidation1-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":PULMONARY-VESSELS:" ":LOCAL-LUNG-AREA:" ":LEFT-HEMIDIAPHRAGM:" 
+    	":RIGHT-HEMIDIAPHRAGM:" ":FOCAL:") 
+    (":CONSOLIDATION:" ":LOCALIZED-CONSOLIDATION:"))
+  (properties (location ?0)))
+
+((ruleid "localizedconsolidation11-0") 
+  (concept ?1) 
+  (words 
+    (":DENSE:" ":PATCHY:") 
+    (":CONSOLIDATION:" ":LOCALIZED-CONSOLIDATION:")))
+
+((ruleid "localizedconsolidation14-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":NODE:" ":LUNG-LOBE:") 
+    (":CONSOLIDATION:"))
+  (properties (location ?0)))
+
+((ruleid "localizedconsolidation2-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":UPPER-LOBE-VESSELS:") 
+    (":AIRSPACE:") 
+    (":CONSOLIDATION:"))
+ (properties (location ?0)))
+
+((ruleidXXX "localizedconsolidation7-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":DIFFUSE:") 
+    (":PATCHY:") 
+    (":CONSOLIDATION:"))
+  (properties (location ?0)))
+
+((ruleid "localizedconsolidation8-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":MID-REGION-LEFT-LUNG:" ":LOCAL-LUNG-AREA:") 
+    (":PATCHY:") 
+    (":CONSOLIDATION:"))
+  (properties (location ?0)))
+
+((ruleid "localizedinfiltrate-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    ("<BILATERALPULMLOC>" "<LOCALPULMLOC>" ":LOCALIZED:") 
+    (":INFILTRATE:" ":INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "localizedinfiltrate-2") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:" "<LOCALPULMLOC>") 
+    (":OPACITY:"))
+  (properties (location ?0)))
+
+((ruleid "localizedinfiltrate-3") 
+  (concept ":LOCALIZED-INFILTRATE:" "<LOCALPULMLOC>") 
+  (words 
+    (":LOWER-LUNG-REGIONS:" ":PULMONARY-VESSELS:" "<LOCALPULMLOC>") 
+    (":PATCHY:" ":CONFLUENT:" ":LUNG-LOBE:") 
+    (":INFILTRATE:" ":OPACITY:" ":LOCALIZED-INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "localizedinfiltrate-13") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    ("<LOCALPULMLOC>") 
+    (":LINEAR:") 
+    (":INFILTRATE:"))
+ (properties (location ?0)))
+
+((ruleid "localizedinfiltrate-14") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":CONFLUENT:") 
+    (":INFILTRATE:")))
+
+((ruleid "localizedinfiltrate-15") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":PATCHY:") 
+    (":INFILTRATE:")))
+
+((ruleid "localizedinfiltrate-16") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":CONFLUENT:") 
+    (":INFILTRATE:")))
+
+((ruleidXXX "localizedinfiltrate-17") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":DENSE:")))
+
+;;;;;;;;;
+((ruleid "onyx-16486-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-16493-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":OTHER-PARTS-OF-LUNGS:") 
+    (":LESION:")))
+
+((ruleid "onyx-16500-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16502-0") 
+  (concept ":LEFT-HEMITHORAX:") 
+  (words 
+    (":HEMITHORAX:") 
+    (":LEFT:")))
+
+((ruleid "onyx-16506-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":HEMIDIAPHRAGM:") 
+    (":OBSCURATION:" ":LOSS:")))
+
+((ruleid "onyx-16510-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":OBSCURATION:")))
+
+
+
+((ruleid "onyx-16520-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":ANTERIOR:") 
+    (":SOFT-TISSUES:")))
+
+;;;;
+((ruleid "onyx-16526-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-16528-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":ACCUMULATION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-16529-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":FLUID:")))
+
+((ruleid "onyx-16530-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-16531-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":COLLECTION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-16532-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-INTERPLEURAL-SPACE:") 
+    (":AIR:")))
+
+;;;;;
+((ruleid "onyx-16539-0") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-16541-0") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":BLUNTED:")))
+
+((ruleid "onyx-16546-0") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":BLUNTING:")))
+
+((ruleid "onyx-16548-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":OSSEOUS:") 
+    (":STRUCTURE:")))
+
+((ruleid "onyx-16549-0") 
+  (concept ":CHEST-WALL:") 
+  (words 
+    (":STRUCTURE:") 
+    (":CHEST-WALL:")))
+
+((ruleid "onyx-16551-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":FRACTURE:")))
+
+((ruleid "onyx-16552-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":OTHER-BONY-STRUCTURES:") 
+    (":STRUCTURE:")))
+
+((ruleid "onyx-16553-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":OTHER-THORACIC-LOCATIONS:") 
+    (":STRUCTURE:")))
+
+((ruleid "onyx-16555-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":RIB:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-16557-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":RIB:") 
+    (":LOBULATED:") 
+    (":MASS:")))
+
+((ruleid "onyx-16560-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":MINERALIZATION:")))
+
+;;;;;;
+((ruleid "onyx-16562-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":SPONDYLOSIS:")))
+
+((ruleid "onyx-16564-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":VERTEBRAE:" ":THORACIC:") 
+    (":KYPHOSIS:")))
+
+((ruleid "onyx-16565-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":SCOLIOSIS:")))
+
+((ruleid "onyx-16575-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":COMPRESSION:" ":DEFORMITY:" ":WEDGING:")))
+
+
+((ruleid "onyx-16580-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":OSTEOPENIA:")))
+
+((ruleid "onyx-16581-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":MARGINAL:") 
+    (":OSTEOPHYTES:")))
+
+((ruleid "onyx-16583-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":MINERALIZATION:")))
+
+((ruleid "onyx-16585-0") 
+  (concept ":BONY-EROSION:") 
+  (words 
+    (":RIB:" ":BONY:") 
+    (":EROSION:")))
+
+;;;;;;
+((ruleid "onyx-16591-0") 
+  (concept ":BRONCHIAL-WALL-THICKENING:") 
+  (words 
+    (":BRONCHIAL-WALL:") 
+    (":CUFFING:") 
+    (":FLUID:")))
+
+((ruleid "onyx-16592-0") 
+  (concept ":BRONCHIAL-WALL:") 
+  (words 
+    (":MIDDLE:") 
+    (":BRONCHIAL-WALL:")))
+
+((ruleid "onyx-16593-0") 
+  (concept ":BRONCHIAL-WALL:") 
+  (words 
+    (":MIDDLE:") 
+    (":BRONCHIAL-WALL:")))
+
+((ruleid "onyx-16594-0") 
+  (concept ":CALCIFIED-NODULE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-16595-0") 
+  (concept ":CARDIAL-PERICARDIAL-ABNORMALITY:") 
+  (words 
+    (":HEART:") 
+    (":SILHOUETTE:")))
+
+((ruleid "onyx-16598-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":ENLARGEMENT:")))
+
+((ruleid "onyx-16603-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":SHADOW:")))
+
+((ruleid "onyx-16611-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":LEFT-VENTRICLE:" ":HEART:") 
+    (":ENLARGEMENT:" ":ENLARGED:" ":PROMINENCE:")))  ;; Lee added prominence
+
+((ruleid "onyx-16615-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":LEFT-VENTRICLE:" ":HEART:") 
+    (":MODERATELY:" ":MODERATE:") 
+    (":ENLARGEMENT:" ":ENLARGED:")))
+
+((ruleid "onyx-16616-0") 
+  (concept ":LEFT-ATRIAL-APPENDAGE:") 
+  (words 
+    ("atrial appendage") 
+    (":LEFT:")))
+
+
+((ruleid "onyx-16620-0") 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (words 
+    (":HEART:") 
+    (":WIDENING:")))
+
+((ruleid "onyx-16624-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":SHADOW:")))
+
+((ruleid "onyx-16632-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY-VEINS:") 
+    (":DISTENDED:")))
+
+((ruleid "onyx-16633-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":DISTENDED:")))
+
+((ruleid "onyx-16634-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":ENLARGEMENT:")))
+
+((ruleid "onyx-16635-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    ("fullness")))
+
+((ruleid "onyx-16638-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY-ARTERY:") 
+    (":PROMINENCE:")))
+
+((ruleid "onyx-16639-0") 
+  (concept ":PULMONARY-ARTERY:") 
+  (words 
+    (":MIDDLE:") 
+    (":PULMONARY-ARTERY:")))
+
+;;;;;;
+((ruleid "onyx-16643-0") 
+  (concept ":FRACTURE-NOS:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":FRACTURE:")))
+
+((ruleid "onyx-16651-0") 
+  (concept ":RIB:") 
+  (words 
+    (":RIB-CAGE:") 
+    (":LEFT:")))
+
+((ruleid "onyx-16652-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16654-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16655-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16657-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16658-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PATCHY:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16660-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":ALVEOLII:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16662-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16664-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16665-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16667-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":ALVEOLII:") 
+    (":PATCHY:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16668-0") 
+  (concept ":BILATERAL-LUNG:") 
+  (words 
+    ("widely scattered") 
+    (":LUNG:") 
+    ("both")))
+;;;;
+((ruleid "onyx-16669-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PATCHY:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16670-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":RETICULONODULAR:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16672-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16673-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16674-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":FIBROSIS:")))
+
+((ruleid "onyx-16675-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":RETICULAR:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16676-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("alveolar parenchymal") 
+    (":DENSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16677-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":DENSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16678-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DENSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16679-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("alveolar parenchymal") 
+    (":ILL-DEFINED:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16680-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16681-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16682-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16683-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16684-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("parenchymal interstitial") 
+    (":DENSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16685-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("mixed interstitial alveolar") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16687-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":ALVEOLII:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16690-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":ALVEOLII:") 
+    (":PATCHY:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16691-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":ILL-DEFINED:")))
+
+((ruleid "onyx-16692-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16693-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":CONFLUENT:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16694-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    ("ill defined fluffy") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16695-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    ("patchy diffuse") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16696-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":PATCHY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16697-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16698-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+;;;;;;
+
+((ruleid "general-interstitial-changes-rule") ;; Lee
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:" ":LUNG:") 
+    (":INTERSTITIAL:")
+    (":CHANGES:")))
+    
+((ruleid "pulmonary-interstitial-infiltrates-rule")
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:" ":LUNG:" ":PULMONARY:") 
+    (":INTERSTITIAL:")
+    (":INFILTRATE:")))
+    
+((ruleid "onyx-16702-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":GENERAL-LUNG-AREA:") 
+    (":EDEMA:")))
+
+((ruleid "onyx-16704-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:") 
+    (":MIXED-PATTERN:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16705-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":RETICULONODULAR:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16706-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":INTERSTITIAL:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16707-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":SEPTAL-LINES:")))
+
+((ruleid "onyx-16708-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    ("reticular nodular")))
+
+((ruleid "onyx-16711-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":FLATTENED:")))
+
+((ruleid "onyx-16713-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":AIR-TRAPPING:")))
+
+((ruleid "onyx-16715-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":FLATTENED:")))
+
+((ruleid "onyx-16718-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":HYPERINFLATION:")))
+
+((ruleid "onyx-16719-0") 
+  (concept ":GENERALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("over expansion")))
+
+((ruleid "onyx-16720-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16721-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":VENTILATION:")))
+
+((ruleid "onyx-16724-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":OTHER-PULMONARY-LOCATIONS:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16725-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":LOW:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16726-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":EXPANSION:")))
+
+((ruleid "onyx-16727-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":POOR:") 
+    (":EXPANSION:")))
+
+((ruleid "onyx-16728-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":HYPOVENTILATION:")))
+
+((ruleid "onyx-16729-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DEPRESSED:")))
+
+((ruleid "onyx-16730-0") 
+  (concept ":GENERALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":LOW:")))
+
+((ruleid "onyx-16737-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":EITHER-LUNG:") 
+    (":INFILTRATE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16740-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":AIRSPACE:") 
+    (":MIXED-PATTERN:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16748-0") 
+  (concept ":HILAR-ADENOPATHY:") 
+  (words 
+    (":HILUM:") 
+    (":LYMPH-NODE:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-16750-0") 
+  (concept ":HILAR-ADENOPATHY:") 
+  (words 
+    (":HILUM:") 
+    (":ADENOPATHY:")))
+
+((ruleid "onyx-16751-0") 
+  (concept ":HILUM:") 
+  (words 
+    (":LYMPH-NODE:") 
+    (":BILATERAL:")))
+
+((ruleid "onyx-16752-0") 
+  (concept ":HILAR-ADENOPATHY:") 
+  (words 
+    (":RIGHT-HILUM:") 
+    (":ADENOPATHY:")))
+
+((ruleid "onyx-16754-0") 
+  (concept ":HILAR-ADENOPATHY:") 
+  (words 
+    (":LEFT-HILUM:") 
+    ("fullness")))
+
+((ruleid "onyx-16755-0") 
+  (concept ":HILAR-MASS:") 
+  (words 
+    (":BILATERAL-HILUM:") 
+    (":MASS:")))
+
+((ruleid "onyx-16756-0") 
+  (concept ":HILAR-MASS:") 
+  (words 
+    (":RIGHT-HILUM:") 
+    ("fullness")))
+
+((ruleid "onyx-16757-0") 
+  (concept ":INCREASED-LUCENCY:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":LUCENCY:")))
+
+((ruleid "onyx-16758-0") 
+  (concept ":INCREASED-LUCENCY:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":RADIOLUCENT:")))
+
+((ruleid "onyx-16759-0") 
+  (concept ":INTERSTITIAL-EMPHYSEMA:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-16760-0") 
+  (concept ":INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":FIBRONODULAR:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16761-0") 
+  (concept ":INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":NONSEGMENTAL:") 
+    ("reticular opacities")))
+
+((ruleid "onyx-16763-0") 
+  (concept ":INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":HONEYCOMBING:")))
+
+((ruleid "onyx-16765-0") 
+  (concept ":INTRA-ABDOMENAL-ABNORMALITY:") 
+  (words 
+    (":INTRA-ABDOMENAL:") 
+    (":FREE:") 
+    (":AIR:")))
+
+((ruleid "onyx-16790-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16797-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":GENERAL-LUNG-AREA:") 
+    (":ALVEOLII:") 
+    (":DENSE:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16798-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":DENSE:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16799-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":FOCAL:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16801-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":FOCAL:" ":PARENCHYMAL:" ":DIFFUSE:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16805-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:"  ":BILATERAL-UPPER-LOBES:" ":BILATERAL-PERIHILAR-REGION:") 
+    (":CONSOLIDATION:")))
+
+
+((ruleid "onyx-16808-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16810-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16812-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":RETICULAR:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-16814-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16815-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":FOCAL:") 
+    (":INFILTRATE:")))
+
+;;;;;
+((ruleid "onyx-16822-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":SINGLE-LOBE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16823-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":DENSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16826-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":SEPTAL-LINES:")))
+
+((ruleid "onyx-16827-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":SEPTAL-LINES:")))
+
+((ruleid "onyx-16829-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":NODE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16830-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":DIFFUSE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16831-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16835-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16836-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":CONFLUENT:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16837-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":ALVEOLII:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16838-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16839-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16842-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16843-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":ALVEOLII:") 
+    (":PATCHY:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16844-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    ("inflammatory") 
+    (":LESION:")))
+
+((ruleid "onyx-16845-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16846-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16847-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LOWER-LUNG-REGIONS:") 
+    (":PATCHY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16850-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16851-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16852-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":PATCHY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16853-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":POORLY-MARGINATED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16854-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16855-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":FOCAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16857-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16859-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIR-BRONCHOGRAM:")))
+
+((ruleid "onyx-16862-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+    
+;;;;;;;;;
+((ruleid "onyx-16864-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":ALVEOLII:") 
+    (":PATCHY:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16865-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":FLUFFY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16866-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":POORLY-MARGINATED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16867-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIRSPACE:") 
+    (":FLUFFY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16868-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIRSPACE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16869-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16870-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16871-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16873-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16874-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":FOCAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16876-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16877-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LOWER-LUNG-REGIONS:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16878-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16879-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16881-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16883-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16884-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIR-BRONCHOGRAM:") 
+    (":AIR:")))
+
+((ruleid "onyx-16887-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":FOCAL:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16888-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16889-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":DIFFUSE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16892-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-THORAX:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16897-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16898-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16899-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16900-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":SOFT-TISSUES:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16901-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16902-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-16903-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":AIRSPACE:") 
+    (":PATCHY:")))
+
+((ruleid "onyx-16907-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16908-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16909-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":DENSE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16910-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16911-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":NONSEGMENTAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16912-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16913-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LOWER-LUNG-REGIONS:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16915-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-PERIHILAR-REGION:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16917-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16918-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16921-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16922-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16923-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16925-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":FOCAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16926-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":FOCAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16927-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":FOCAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16928-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":LOCALIZED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16929-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16931-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16932-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":MID-REGIONS-BILATERAL-LUNGS:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16934-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16935-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16936-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16940-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LEFT-THORAX:") 
+    (":OPACITY:")))
+
+;;;;;;;;
+((ruleid "onyx-16949-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":IRREGULAR:") 
+    (":SHADOW:")))
+
+((ruleid "onyx-16951-0") 
+  (concept ":LOCALIZED-PULMONARY-OLIGEMIA:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":REDUCED:") 
+    (":VASCULAR-MARKINGS:")))
+
+((ruleid "onyx-16952-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":AIRSPACE:") 
+    (":FLUFFY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16954-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":AIRSPACE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16955-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16956-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16957-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":NODE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16958-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":PARENCHYMAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-16961-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":POORLY-MARGINATED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16962-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16963-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-16966-0") 
+  (concept ":LOCALIZED-VOLUME-INCREASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16967-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16968-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":COLLAPSE:")))
+
+((ruleid "onyx-16969-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16970-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16971-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16972-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16973-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16974-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16975-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":AERATION:")))
+
+((ruleid "onyx-16977-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":COLLAPSE:")))
+
+((ruleid "onyx-16978-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":COLLAPSE:")))
+
+((ruleid "onyx-16980-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":COLLAPSE:")))
+
+((ruleid "onyx-16982-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":COMPRESSIVE:")))
+
+((ruleid "onyx-16983-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":LOCALIZED:")))
+
+((ruleid "onyx-16984-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":LOSS:")))
+
+((ruleid "onyx-16987-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":VENTILATION:")))
+
+((ruleid "onyx-16988-0") 
+  (concept ":LOCULATED-PLEURAL-EFFUSION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    ("nodular fluid") 
+    (":DENSITY:")))
+
+((ruleid "onyx-16989-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":LYMPH-NODE:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-16991-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":ALL-THORACIC-LOCATIONS:") 
+    (":ADENOPATHY:")))
+
+((ruleid "onyx-16992-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":BILATERAL-HILUM:") 
+    (":ADENOPATHY:")))
+
+((ruleid "onyx-16993-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":INTRATHORACIC:") 
+    (":ADENOPATHY:")))
+
+((ruleid "onyx-16995-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":INTRATHORACIC:") 
+    (":LYMPH-NODE:") 
+    (":ENLARGED:")))
+
+((ruleid "onyx-16996-0") 
+  (concept ":LYMPHADENOPATHY:") 
+  (words 
+    (":MEDIASTINAL-LYMPH-NODE:") 
+    (":CALCIFICATION:")))
+
+((ruleid "onyx-16997-0") 
+  (concept ":MEDIASTINAL-LYMPH-NODE:") 
+  (words 
+    (":ANTERIOR:") 
+    (":LYMPH-NODE:")))
+
+((ruleid "onyx-16999-0") 
+  (concept ":MALIGNANT-EFFUSION:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    ("malignant") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-17001-0") 
+  (concept ":MEDIASTINAL-ABNORMALITY:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17003-0") 
+  (concept ":MEDIASTINAL-ABNORMALITY:") 
+  (words 
+    (":ANTERIOR-MEDIASTINUM:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17007-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    (":CONTOUR:") 
+    (":LYMPH-NODE:")))
+
+((ruleid "onyx-17008-0") 
+  (concept ":MEDIASTINAL-ADENOPATHY:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":NODE:") 
+    (":ENLARGED:")))
+
+((ruleid "onyx-17009-0") 
+  (concept ":MEDIASTINAL-ADENOPATHY:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":LYMPH-NODE:") 
+    (":ENLARGED:")))
+
+((ruleid "onyx-17010-0") 
+  (concept ":MEDIASTINAL-MASS:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":MASS:")))
+
+((ruleid "onyx-17011-0") 
+  (concept ":MEDIASTINAL-MASS:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":LOBULATED:") 
+    (":MASS:")))
+
+((ruleid "onyx-17012-0") 
+  (concept ":MEDIASTINAL-MASS:") 
+  (words 
+    (":ANTERIOR-MEDIASTINUM:") 
+    (":TUMOR:")))
+
+((ruleid "onyx-17014-0") 
+  (concept ":MEDIASTINAL-SHIFT:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":MIDLINE:")))
+
+((ruleid "onyx-17015-0") 
+  (concept ":MEDIASTINAL-SHIFT:") 
+  (words 
+    (":MEDIASTINUM:") 
+    ("shift")))
+
+((ruleid "onyx-17018-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    ("supra aortic") 
+    ("mediastinum") 
+    (":LEFT:")))
+
+((ruleid "onyx-17020-0") 
+  (concept ":MEDIASTINAL-WIDENING:") 
+  (words 
+    (":ANTERIOR-MEDIASTINUM:") 
+    (":THICKENING:")))
+
+((ruleid "onyx-17022-0") 
+  (concept ":MEDIASTINAL-WIDENING:") 
+  (words 
+    (":MEDIASTINUM:") 
+    ("fullness")))
+
+((ruleid "onyx-17023-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    ("mediastinum") 
+    ("right sided") 
+    ("superior")))
+
+((ruleid "onyx-17024-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    ("supra aortic") 
+    ("mediastinum")))
+
+((ruleid "onyx-17025-0") 
+  (concept ":MEDIASTINAL-WIDENING:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":WIDENING:")))
+
+((ruleid "onyx-17026-0") 
+  (concept ":MEDIASTINUM:") 
+  (words 
+    ("para aortic") 
+    ("mediastinum")))
+
+((ruleid "onyx-17030-0") 
+  (concept ":OTHER-RADIOGRAPHIC-ABNORMALITY:") 
+  (words 
+    (":PLEURA:") 
+    ("displacement")))
+
+((ruleid "onyx-17031-0") 
+  (concept ":PLEURA:") 
+  (words 
+    (":LATERAL:") 
+    ("paraspinal pleura") 
+    (":LOWER:")))
+
+((ruleid "onyx-17033-0") 
+  (concept ":OTHER-RADIOGRAPHIC-ABNORMALITY:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":ACCUMULATION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17034-0") 
+  (concept ":OTHER-RADIOGRAPHIC-ABNORMALITY:") 
+  (words 
+    (":PARASPINAL-SHADOW:") 
+    (":WIDENING:")))
+
+((ruleid "onyx-17037-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17042-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17043-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17045-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":LOSS:")))
+
+((ruleid "onyx-17047-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17048-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DIFFUSE:") 
+    (":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17051-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17052-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-MID-LUNGS:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17053-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":ALVEOLII:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17056-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17058-0") 
+  (concept ":PARENCHYMAL-CALCIFICATION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":PARENCHYMAL:") 
+    ("calcifications")))
+
+((ruleid "onyx-17061-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("indistinctness")))
+
+((ruleid "onyx-17063-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:" ":PERIHILAR:") 
+    (":INTERSTITIAL:" ":PARENCHYMAL:") 
+    (":INFILTRATE:" ":MARKING:")))
+
+((ruleid "onyx-17066-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ALVEOLII:" ":PARENCHYMAL:") 
+    (":PATCHY:" ":ILL-DEFINED:") 
+    (":INFILTRATE:")))
+
+;;;;;;;
+((ruleid "onyx-17071-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:" ":PERIHILAR:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-17072-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:" ":PERIHILAR:") 
+    (":ILL-DEFINED:" ":PATCHY:") 
+    (":MARKING:" ":INFILTRATE:")))
+
+((ruleid "onyx-17073-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":CONFLUENT:" ":AIRSPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17076-0") 
+  (concept ":BILATERAL-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural spaces")))
+
+((ruleid "onyx-17077-0") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural space") 
+    (":LEFT:")))
+
+((ruleid "onyx-17078-0") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-17079-0") 
+  (concept ":BILATERAL-INTERPLEURAL-SPACE:") 
+  (words 
+    ("pleural space")))
+
+((ruleid "onyx-17085-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-17087-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17089-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-17091-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":ACCUMULATION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17096-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":COLLECTION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17098-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":FREE:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17099-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":LOCALIZED:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17100-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    ("loculated") 
+    (":FLUID:")))
+
+((ruleid "onyx-17101-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":INTERLOBULAR-FISSURE:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17103-0") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":LATERAL:") 
+    ("pleural space")))
+
+((ruleid "onyx-17105-0") 
+  (concept ":PLEURAL-PLAQUE:") 
+  (words 
+    (":PLEURA:") 
+    (":CALCIFICATION:") 
+    ("plaque")))
+
+((ruleid "onyx-17106-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    (":THICKENING:")))
+
+((ruleid "onyx-17107-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17109-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17110-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    ("caps")))
+
+((ruleid "onyx-17113-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    ("cap")))
+
+((ruleid "onyx-17118-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17119-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    (":FOCAL:") 
+    (":THICKENING:")))
+
+((ruleid "onyx-17120-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":PLEURA:") 
+    (":IRREGULAR:") 
+    (":THICKENING:")))
+
+;;;;;;;;
+((ruleid "onyx-17123-0") 
+  (concept ":PNEUMATOCELES:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("pneumatoceles")))
+
+((ruleid "onyx-17124-0") 
+  (concept ":PNEUMOMEDIASTINUM:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":AIR:")))
+
+((ruleid "onyx-17125-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":AIR:")))
+
+((ruleid "onyx-17126-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    ("gas")))
+
+((ruleid "onyx-17129-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":ACCUMULATION:") 
+    (":AIR:")))
+
+((ruleid "onyx-17130-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":HEART:") 
+    (":AIR:")))
+
+((ruleid "onyx-17132-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17134-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17137-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":COSTOPHRENIC-ANGLE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17139-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    ("cavity") 
+    (":AIR:")))
+
+((ruleid "onyx-17141-0") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    (":LATERAL:") 
+    (":COSTOPHRENIC-ANGLE:")))
+
+((ruleid "onyx-17142-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    ("loculated") 
+    ("air pockets")))
+
+((ruleid "onyx-17143-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":COLLECTION:") 
+    (":AIR:")))
+
+((ruleid "onyx-17145-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":COLLECTION:") 
+    (":AIR:")))
+
+((ruleid "onyx-17147-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":FREE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17148-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":FREE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17153-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    ("loculated") 
+    (":AIR:")))
+
+((ruleid "onyx-17154-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    ("loculated") 
+    (":AIR:")))
+
+((ruleid "onyx-17161-0") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    ("interpleural") 
+    (":LEFT:")))
+
+((ruleid "onyx-17163-0") 
+  (concept ":LEFT-INTERPLEURAL-SPACE:") 
+  (words 
+    (":PLEURA:") 
+    (":LEFT:")))
+
+((ruleid "onyx-17167-0") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    ("visceral") 
+    ("pleural layers") 
+    ("apex")))
+
+((ruleid "onyx-17168-0") 
+  (concept ":INTERPLEURAL-SPACE-NS:") 
+  (words 
+    ("pleural layers") 
+    ("basal")))
+
+((ruleid "onyx-17169-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("oblique linear") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17170-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("vertical fine linear") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17171-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("vertical linear") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17172-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("vertical") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17173-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("very fine vertical") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17174-0") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("very fine vertical linear") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17180-0") 
+  (concept ":PULMONARY-CAVITATION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:") 
+    ("cavitation")))
+
+((ruleid "onyx-17184-0") 
+  (concept ":PULMONARY-CAVITATION:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    ("cavitary") 
+    (":LESION:")))
+
+((ruleid "onyx-17185-0") 
+  (concept ":PULMONARY-CAVITATION:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    ("cavitary") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17186-0") 
+  (concept ":PULMONARY-CAVITATION:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    ("cavitary") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17187-0") 
+  (concept ":PULMONARY-CAVITATION:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    ("cystic")))
+
+((ruleid "onyx-17189-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":MASS:")))
+
+((ruleid "onyx-17191-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":CALCIFICATION:") 
+    (":MASS:")))
+
+((ruleid "onyx-17193-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    ("bony") 
+    (":MASS:")))
+
+((ruleid "onyx-17195-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":CHEST-WALL:") 
+    ("metastatic") 
+    (":LESION:")))
+;;;;;
+((ruleid "onyx-17197-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":MASS:")))
+
+((ruleid "onyx-17198-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":MASS:")))
+
+((ruleid "onyx-17199-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":MASS:")))
+
+((ruleid "onyx-17200-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":MASS:")))
+
+((ruleid "onyx-17201-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":MASS:")))
+
+((ruleid "onyx-17202-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":MASS:")))
+
+((ruleid "onyx-17203-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":MASS:")))
+
+((ruleid "onyx-17204-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17205-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17206-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17207-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17208-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17209-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":NODE:" "ill defined nodular") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17210-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:" "inflammatory" ) 
+    (":NODULE:")))
+
+((ruleid "onyx-17211-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17214-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("inflammatory") 
+    (":NODULE:")))
+
+((ruleid "onyx-17215-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("nodular irregular" "nodular" "ill defined nodular") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17216-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":NODE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17219-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("some nodular features") 
+    (":LESION:")))
+
+((ruleid "onyx-17220-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17222-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17223-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17224-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":CALCIFICATION:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17234-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":PARENCHYMAL:" ":DIFFUSE:") 
+    (":NODULE:")))
+
+((ruleid "onyx-17235-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:" ":PULMONARY:") 
+    (":NODULE:" ":PULMONARY-NODULAR-LESION:")))
+
+((ruleid "onyx-17238-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":NODE:" "circumscribed nodular") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17244-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIB:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17245-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("ill defined nodular") 
+    (":SHADOW:")))
+
+((ruleid "onyx-17246-0") 
+  (concept ":PULMONARY-VASCULAR-REDISTRIBUTION:") 
+  (words 
+    (":PULMONARY-VESSELS:" ":UPPER-LOBE-VESSELS:") 
+    (":REDISTRIBUTION:" ":PULMONARY-VASCULAR-REDISTRIBUTION:")))
+
+((ruleid "onyx-17252-0") 
+  (concept ":ROUND-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ROUND:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-17255-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":STRUCTURE:")))
+
+((ruleid "onyx-17256-0") 
+  (concept ":SOFT-TISSUES:") 
+  (words 
+    (":GENERALIZED:") 
+    (":SOFT-TISSUES:")))
+
+((ruleid "onyx-17257-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-17258-0") 
+  (concept ":SOFT-TISSUES:") 
+  (words 
+    (":GENERALIZED:") 
+    (":SOFT-TISSUES:")))
+
+((ruleid "onyx-17260-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    ("atrophy")))
+
+((ruleid "onyx-17261-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":ALL-THORACIC-LOCATIONS:") 
+    (":SOFT-TISSUES:") 
+    ("atrophy")))
+
+((ruleid "onyx-17263-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":SOFT-TISSUES:") 
+    (":EDEMA:")))
+
+((ruleid "onyx-17264-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":EDEMA:")))
+
+((ruleid "onyx-17265-0") 
+  (concept ":SUB-DIAPHRAGMATIC-ABNORMALITY:") 
+  (words 
+    (":DIAPHRAGM:") 
+    (":FREE:") 
+    (":AIR:")))
+
+((ruleid "onyx-17267-0") 
+  (concept ":SUB-DIAPHRAGMATIC-ABNORMALITY:") 
+  (words 
+    (":STOMACH:") 
+    (":DISTENTION:")))
+
+((ruleid "onyx-17270-0") 
+  (concept ":PERICARDIAL-SPACE:") 
+  (words 
+    ("pericardial space")))
+
+((ruleid "onyx-17271-0") 
+  (concept ":SUB-DIAPHRAGMATIC-ABNORMALITY:") 
+  (words 
+    (":GASTRIC-FUNDUS:") 
+    (":DILATION:")))
+
+((ruleid "onyx-17274-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":ABDOMEN-NS:") 
+    (":SUBCUTANEOUS:") 
+    (":AIR:")))
+
+
+((ruleid "onyx-17276-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":SUBCUTANEOUS:") 
+    (":AIR:")))
+
+((ruleid "onyx-17281-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":NECK:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-17285-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":SUBCUTANEOUS:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-17290-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":NECK:") 
+    (":SUBCUTANEOUS:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-17291-0") 
+  (concept ":SUBCUTANEOUS-EMPHYSEMA:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":DIFFUSE:") 
+    (":SUBCUTANEOUS:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-17293-0") 
+  (concept ":SYSTEMIC-ARTERIAL-ABNORMALITY:") 
+  (words 
+    (":CAROTID-ARTERY:") 
+    (":CALCIFICATION:")))
+
+((ruleid "onyx-17294-0") 
+  (concept ":SYSTEMIC-VENOUS-ENLARGMENT:") 
+  (words 
+    (":AZYGOUS-VEIN:") 
+    (":DISTENDED:")))
+
+((ruleid "onyx-17298-0") 
+  (concept ":SYSTEMIC-VENOUS-ENLARGMENT:") 
+  (words 
+    (":AZYGOUS-VEIN:") 
+    (":DISTENTION:")))
+
+((ruleid "onyx-17299-0") 
+  (concept ":TRACHEA-DEVIATION:") 
+  (words 
+    (":TRACHEA:") 
+    (":MIDLINE:")))
+
+((ruleid "onyx-17304-0") 
+  (concept ":UNILATERAL-DIAPHRAGMATIC-ELEVATION:") 
+  (words 
+    (":LEFT-DIAPHRAGM:" ":LEFT-DIAPHRAGM:" ":LEFT-HEMIDIAPHRAGM:" ":RIGHT-HEMIDIAPHRAGM:") 
+    (":ELEVATED:" ":ELEVATION:")))
+
+((ruleid "bilateral-pleural-effusion-1") 
+  (concept ":BILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":BILATERAL:" ":BILATERAL-PLEURA:") 
+    (":EFFUSION:" ":PLEURAL-EFFUSION:" ":UNILATERAL-PLEURAL-EFFUSION:")))
+    
+((ruleid "onyx-17315-0") 
+  (concept ":UNILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:" ":RIGHT-INTERPLEURAL-SPACE:" ":LEFT:" ":RIGHT:") 
+    (":EFFUSION:" ":FLUID:" ":UNILATERAL-PLEURAL-EFFUSION:")))
+
+((ruleid "onyx-17328-0") 
+  (concept ":UNILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":UNILATERAL-INTERPLEURAL-SPACE:") 
+    (":ACCUMULATION:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17331-0") 
+  (concept ":UNILATERAL-PLEURAL-EFFUSION:") 
+  (words 
+    (":THORACIC-CAVITY:") 
+    (":FLUID:")))
+
+((ruleid "onyx-17333-0") 
+  (concept ":UPPER-LOBE-MASS:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":LOBULATED:") 
+    (":MASS:")))
+
+((ruleid "onyx-17336-0") 
+  (concept ":UPPER-LOBE-MASS:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":NODE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17339-0") 
+  (concept ":UPPER-LOBE-NODULE:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":NODE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17340-0") 
+  (concept ":UPPER-LOBE-NODULE:") 
+  (words 
+    (":UPPER-LOBE:") 
+    (":ROUNDED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-17344-0") 
+  (concept ":UPPER-LOBE-NODULE:") 
+  (words 
+    (":UPPER-LOBE:") 
+    ("circumscribed nodular") 
+    (":OPACITY:")))
+
+((ruleid "onyx-17350-0") 
+  (concept ":ACUTE-LUNG-INJURY:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("injury")))
+
+((ruleid "onyx-17352-0") 
+  (concept ":ALVEOLAR-EDEMA:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ALVEOLII:") 
+    (":EDEMA:")))
+
+((ruleid "onyx-17353-0") 
+  (concept ":AORTIC-ANEURYSM:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    ("aneurysmal") 
+    (":DILATION:")))
+
+((ruleid "onyx-17359-0") 
+  (concept ":ARDS:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("ards")))
+
+((ruleid "onyx-17360-0") 
+  (concept ":ASPIRATION-PNEUMONIA:") 
+  (words 
+    (":EITHER-LUNG:") 
+    (":ASPIRATION:")))
+
+((ruleid "onyx-17365-0") 
+  (concept ":ASPIRATION-PNEUMONIA:") 
+  (words 
+    ("aspiration pneumonitis")))
+
+((ruleid "onyx-17369-0") 
+  (concept ":ASPIRATION-PNEUMONIA:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ASPIRATION:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-17400-0") 
+  (concept ":BAROTRAUMA:") 
+  (words 
+    ("baro trauma" "barotrauma")))
+
+
+((ruleid "onyx-17406-0") 
+  (concept ":BRONCHIOLITIS-OBLITERANS:") 
+  (words 
+    ("bronchiolitis obliterans")))
+
+((ruleid "onyx-17407-0") 
+  (concept ":BRONCHOGENIC-CYST:") 
+  (words 
+    ("bronchogenic cyst")))
+
+((ruleid "onyx-17412-0") 
+  (concept ":BULLOUS-DISEASE:") 
+  (words 
+    ("underlying bullous") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17413-0") 
+  (concept ":CARDIAC-DISEASE-NOS:") 
+  (words 
+    (":HEART:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17414-0") 
+  (concept ":CHEST-WALL-EDEMA:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":FLUID:") 
+    (":ACCUMULATION:")))
+
+((ruleid "onyx-17418-0") 
+  (concept ":CHF:") 
+  (words 
+    (":LEFT-HEART:") 
+    (":CONGESTIVE:") 
+    (":FAILURE:")))
+
+((ruleid "onyx-17421-0") 
+  (concept ":CHRONIC-OBSTRUCTIVE-PULMONARY-DISEASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":OBSTRUCTIVE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17425-0") 
+  (concept ":CYSTIC-DISEASE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("cystic") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17431-0") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    ("collagen vascular disease") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17433-0") 
+  (concept ":DISEASE-NOS:") 
+  (words 
+    ("wegener s granulomatosis")))
+
+((ruleid "onyx-17435-0") 
+  (concept ":EMPHYSEMA:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":EMPHYSEMA:")))
+
+((ruleid "onyx-17437-0") 
+  (concept ":FLUID-OVERLOAD:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":FLUID:") 
+    (":OVERLOAD:")))
+
+((ruleid "onyx-17439-0") 
+  (concept ":GERM-CELL-TUMOR:") 
+  (words 
+    ("germ cell")))
+
+((ruleid "onyx-17446-0") 
+  (concept ":HEMORRHAGE:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":HEMORRHAGE:")))
+
+((ruleid "onyx-17447-0") 
+  (concept ":HEMORRHAGE:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":BLOOD:") 
+    (":ACCUMULATION:")))
+
+((ruleid "onyx-17452-0") 
+  (concept ":HEMOTHORAX:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:" ":LUNG-AREA:") 
+    (":HEMORRHAGE:" ":LACERATION:")))
+
+((ruleid "onyx-17454-0") 
+  (concept ":HODGKIN-S-DISEASE:") 
+  (words 
+    ("hodgkin s lymphoma" "hodgkin s disease")))
+
+((ruleid "onyx-17460-0") 
+  (concept ":INTERSTITIAL-EDEMA:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":INTERSTITIAL:") 
+    (":EDEMA:")))
+
+((ruleid "onyx-17465-0") 
+  (concept ":LEFT-VENTRICULAR-FAILURE:") 
+  (words 
+    (":LEFT-HEART:") 
+    (":FAILURE:")))
+
+((ruleid "onyx-17466-0") 
+  (concept ":LUPUS-ERYTHEMATOSIS:") 
+  (words 
+    (":WHOLE-BODY:") 
+    ("lupus")))
+
+((ruleid "onyx-17467-0") 
+  (concept ":MEDIASTINAL-SCARRING:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":SCAR:")))
+
+((ruleid "onyx-17471-0") 
+  (concept ":MORBID-OBESITY:") 
+  (words 
+    (":WHOLE-BODY:") 
+    ("obese")))
+
+((ruleid "onyx-17472-0") 
+  (concept ":MUCOUS-PLUG:") 
+  (words 
+    ("retained") 
+    ("mucous plugs")))
+
+((ruleid "onyx-17473-0") 
+  (concept ":MUCOUS-PLUG:") 
+  (words 
+    ("retained") 
+    ("mucous secretions")))
+
+((ruleid "onyx-17474-0") 
+  (concept ":MUCOUS-PLUG:") 
+  (words 
+    ("mucous plug")))
+
+((ruleid "onyx-17475-0") 
+  (concept ":MUCOUS-PLUG:") 
+  (words 
+    ("mucous plugs")))
+
+((ruleid "onyx-17483-0") 
+  (concept ":OSTEOPENIA:") 
+  (words 
+    (":SPINAL-COLUMN:") 
+    ("osteoporosis")))
+
+((ruleid "onyx-17484-0") 
+  (concept ":PARENCHYMAL-SCARRING:") 
+  (words 
+    (":LUNG-AREA:" ":PULMONARY:") 
+    (":SCAR:")))
+
+((ruleidXXX "onyx-17495-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":LUNG-AREA:" ":FOCAL:" ":INFILTRATE:" ":BASE:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-17512-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    ("pneumonia" "pneumonitis" "pneumonic consolidation" 
+    	"pneumocystis carinii")))
+
+((ruleid "onyx-17513-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    ("pneumonic consolidation")))
+
+((ruleid "onyx-17514-0") 
+  (concept ":PNEUMONITIS:") 
+  (words 
+    (":EITHER-LUNG:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-17516-0") 
+  (concept ":PNEUMONITIS:") 
+  (words 
+    ("exudative") 
+    ("air space filling")))
+
+((ruleid "onyx-17518-0") 
+  (concept ":POOR-INSPIRATORY-EFFORT:") 
+  (words 
+    (":POOR:") 
+    ("inspiratory effort")))
+
+((ruleid "onyx-17521-0") 
+  (concept ":PULMONARY-DISEASE-NOS:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-17522-0") 
+  (concept ":PULMONARY-EDEMA-NS:") 
+  (words 
+    (":DIFFUSE:" "hydrostatic") 
+    (":EDEMA:" ":PULMONARY-EDEMA-NS:")))
+
+((ruleid "onyx-17527-0") 
+  (concept ":PULMONARY-EDEMA-NS:") 
+  (words 
+    (":LUNG-AREA:" ":PULMONARY:") 
+    (":EDEMA:" ":PULMONARY-EDEMA-NS:")))
+
+((ruleid "onyx-17534-0") 
+  (concept ":PULMONARY-METASTASES:") 
+  (words 
+    (":EITHER-LUNG:") 
+    ("metastatic") 
+    (":LESION:")))
+
+((ruleid "onyx-17536-0") 
+  (concept ":RESPIRATORY-FAILURE:") 
+  (words 
+    ("respiratory failure")))
+
+((ruleid "onyx-17539-0") 
+  (concept ":SOFT-TISSUE-EDEMA:") 
+  (words 
+    (":MEDIASTINUM:") 
+    (":FLUID:") 
+    (":ACCUMULATION:")))
+
+((ruleid "onyx-17542-0") 
+  (concept ":TUBERCULOSIS:") 
+  (words 
+    (":EITHER-LUNG:") 
+    ("tb")))
+
+((ruleid "onyx-17695-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LUNG-NOS:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-17706-0") 
+  (concept ":GENERIC-DATE:") 
+  (words 
+    ("generic date state")))
+
+((ruleid "onyx-17707-0") 
+  (concept ":GENERIC-REPORT:") 
+  (words 
+    ("generic report")))
+
+((ruleid "onyx-17746-0") 
+  (concept ":UNILATERAL-DIAPHRAGMATIC-ELEVATION:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:" ":HEMIDIAPHRAGM:" ":DIAPHRAGM:") 
+    (":ELEVATED:")))
+
+((ruleid "onyx-17751-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":MULTI-FOCAL:") 
+    (":PNEUMONIA:")))
+    
+((ruleid "onyx-17751-1") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":MULTI-FOCAL:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-17768-0") 
+  (concept ":CARDIOMEGALY:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    ("cardiomegaly")))
+
+((ruleid "onyx-17770-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PATCHY:") 
+    ("involvement")))
+
+((ruleid "onyx-17776-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":LUNG-AREA:") 
+    ("patchy diffuse") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-17786-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PLEURA:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-17794-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    ("patchy area")))
+
+((ruleid "onyx-17796-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    ("volume loss")))
+
+((ruleid "onyx-17806-0") 
+  (concept ":LOCALIZED-UPPER-LOBE-INFILTRATE:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:" ":LEFT-UPPER-LOBE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-17811-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LOCAL-LUNG-AREA:" ":LUNG-LOBE:" "<PULMONARY-LOCATION-MODIFIER-SIDE>") 
+    (":INFILTRATE:"))
+  (properties (location ?0)))
+
+((ruleid "onyx-18005-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    ("patchy diffuse") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-18037-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":DIFFUSE:") 
+    ("reticular nodular") 
+    (":INFILTRATE:")))
+
+;;;;;;;;
+((ruleid "onyx-18175-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    ("patchy area")))
+
+((ruleid "onyx-18176-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    ("volume loss")))
+
+((ruleid "onyx-18199-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":AIRSPACE:") 
+    (":FREE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18281-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-18440-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    ("bony structures") 
+    (":OSTEOPENIA:")))
+
+((ruleid "onyx-18567-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":AIRSPACE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18619-0") 
+  (concept ":LOCALIZED-PULMONARY-OLIGEMIA:") 
+  (words 
+    (":VASCULAR-MARKINGS:")))
+
+((ruleid "onyx-18620-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":AIRSPACE:") 
+    (":DISEASE:")))
+
+((ruleid "onyx-18688-0") 
+  (concept ":LOCALIZED-LOWER-LOBE-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PARENCHYMAL:")))
+
+((ruleid "onyx-18691-0") 
+  (concept ":PNEUMONITIS:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    ("inflammation")))
+
+((ruleid "onyx-18695-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":PARENCHYMAL:") 
+    ("indistinctness")))
+
+((ruleid "onyx-18711-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":ALL-THORACIC-LOCATIONS:") 
+    (":PARENCHYMAL:")))
+
+((ruleid "onyx-18740-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":MARKING:")))
+
+((ruleid "onyx-18745-0") 
+  (concept ":CARDIOMEGALY:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    ("cardiomegaly")))
+
+((ruleid "onyx-18756-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":DIFFUSE:") 
+    ("reticular nodular") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18763-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":DIFFUSE:") 
+    (":RETICULONODULAR:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18778-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":SCAR:")))
+
+((ruleid "onyx-18779-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":PARENCHYMAL:")))
+
+((ruleid "onyx-18794-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-18832-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":SCAR:")))
+
+((ruleid "onyx-18843-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":SCAR:")))
+
+((ruleid "linear-streaky-opacity-1") 
+  (concept ":LINEAR-STREAKY-OPACITY:") 
+  (words 
+    (":OPACITY:" ":DENSITY:") 
+    (":LINEAR-STREAKY-OPACITY:")))
+    
+((ruleid "linear-streaky-opacity-2") 
+  (concept ":LINEAR-STREAKY-OPACITY:") 
+  (words 
+    (":LUNG-AREA:" ":HILUM:" ":PARENCHYMAL:") 
+    (":LSO-MODIFIER:")
+    (":LESION:" ":SHADOW:" ":OPACITY:" ":LUCENCY:" ":DENSITY:")))
+    	
+((ruleid "linear-streaky-opacity-modifiers-1")
+ (concept ":LSO-MODIFIER:")
+ (words (":STRANDING:" ":LINEAR:" ":STREAKY:")))
+ 
+((ruleid "linear-streaky-opacity-modifiers-2")
+ (concept ":LSO-MODIFIER:")
+ (words (":LSO-MODIFIER:")
+ 		(":LSO-MODIFIER:")))
+    	
+((ruleid "onyx-18891-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":INTERPLEURAL-SPACE:" ":PLEURAL-SPACE:") 
+    (":THICKENING:")))
+
+((ruleid "onyx-18901-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-18907-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NS:" ) 
+  (words 
+    (":LOCAL-LUNG-AREA:" ":PLEURA:") 
+    (":PARENCHYMAL:" ":PARENCHYMA:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-18921-0") 
+  (concept ":BRONCHIAL-WALL-THICKENING:") 
+  (words 
+    (":MID-REGIONS-BILATERAL-LUNGS:") 
+    (":CUFFING:")))
+
+((ruleid "onyx-18948-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    ("patchy area")))
+
+((ruleid "onyx-18950-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":INTERPLEURAL-SPACE:" ":LUNG-AREA:") 
+    ("volume loss")))
+
+((ruleid "onyx-18981-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18985-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":PLEURA:") 
+    (":AIRSPACE:") 
+    (":FREE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-18995-0") 
+  (concept ":UPPER-LOBE-NODULE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":ROUNDED:") 
+    (":DENSITY:")))
+
+;;;;;;;;
+((ruleid "onyx-19010-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-19012-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":LINEAR:") 
+    (":PROMINENCE:")))
+
+((ruleid "onyx-19016-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:" ":PERIHILAR-REGION:"":PULMONARY-VESSELS:") 
+    (":PROMINENCE:")))
+
+((ruleid "onyx-19058-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":PLEURA:") 
+    (":SCAR:")))
+
+((ruleid "onyx-19074-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":PARENCHYMAL:")))
+
+((ruleid "onyx-19093-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":SOFT-TISSUES:") 
+    (":ILL-DEFINED:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-19105-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-19109-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PLEURA:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-19130-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":WEDGING:")))
+
+((ruleid "onyx-19132-0") 
+  (concept ":BONY-ABNORMALITY:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":OSTEOPHYTES:")))
+
+((ruleid "onyx-19186-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":PARENCHYMAL:")))
+
+((ruleid "onyx-19192-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":SHADOW:")))
+
+((ruleid "onyx-19212-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":DIFFUSE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19221-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":DIFFUSE:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-19227-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":FOCAL:") 
+    (":SCAR:")))
+
+((ruleid "onyx-19238-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":NODE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-19256-0") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":INTERPLEURAL-SPACE:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-19268-0") 
+  (concept ":ENLARGEMENT-OF-THE-PULMONARY-VESSELS:") 
+  (words 
+    (":RIGHT-HILUM:") 
+    (":PROMINENCE:")))
+
+((ruleid "onyx-19274-0") 
+  (concept ":LOCALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":FOCAL:") 
+    (":CONSOLIDATION:")))
+
+((ruleid "onyx-19276-0") 
+  (concept ":GENERALIZED-CONSOLIDATION:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":NODE:") 
+    (":CONSOLIDATION:")))
+
+;;;;;;;;;;
+((ruleid "onyx-19278-0") 
+  (concept ":DIFFUSE-IDIOPATHIC-PULMONARY-FIBROSIS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":FIBROSIS:")))
+
+((ruleid "onyx-19284-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    ("this")))
+
+((ruleid "onyx-19286-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":LEFT-LUNG:") 
+    ("this")))
+
+((ruleid "onyx-19291-0") 
+  (concept ":GENERALIZED-INTERSTITIAL-INFILTRATE:") 
+  (words 
+    (":BILATERAL-LUNG:" ":GENERAL-LUNG-AREA:") 
+    (":INTERSTITIAL:") 
+    (":PATCHY:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-19297-0") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":THICKENING:")))
+
+((ruleid "onyx-19302-0") 
+  (concept ":CARDIOMEGALY:") 
+  (words 
+    (":LEFT-LUNG:") 
+    ("cardiomegaly")))
+
+((ruleid "onyx-19305-0") 
+  (concept ":PULMONARY-VASCULAR-REDISTRIBUTION:") 
+  (words 
+    (":LEFT-UPPER-LOBE:") 
+    (":REDISTRIBUTION:")))
+
+((ruleid "onyx-19337-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":INTERSTITIAL:") 
+    (":OPACITY:")))
+    
+((ruleid "interstitial-abnormality-rule") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":INTERSTITIAL:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-19363-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":HILUM:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19366-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":INTERSTITIAL:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-19393-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-19396-0") 
+  (concept ":CHF:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":FAILURE:")))
+
+((ruleid "onyx-19416-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":SCAR:")))
+
+((ruleid "onyx-19450-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":ABNORMALITY:")))
+
+((ruleid "onyx-19459-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":SCAR:")))
+
+((ruleid "onyx-19460-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":DIFFUSE:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "onyx-19466-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LEFT-PERIHILAR-REGION:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19480-0") 
+  (concept ":LOCALIZED-VOLUME-REDUCTION:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":AERATION:")))
+
+((ruleid "onyx-19504-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    (":EFFUSION:")))
+
+((ruleid "onyx-19534-0") 
+  (concept ":FRACTURED-RIB:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":FRACTURE:")))
+
+((ruleid "onyx-19558-0") 
+  (concept ":LOCALIZED-PARENCHYMAL-ABNORMALITY-NS:") 
+  (words 
+    (":LOCAL-LUNG-AREA:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-19568-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":SEE-PREVIOUS-EVENT:") 
+    ("this")))
+
+((ruleid "onyx-19571-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19584-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":INTERSTITIAL:") 
+    ("this")))
+
+((ruleid "onyx-19586-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":INTERSTITIAL:") 
+    ("this")))
+
+((ruleid "onyx-19592-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":INTERSTITIAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19606-0") 
+  (concept ":ATYPICAL-PNEUMONIA:") 
+  (words 
+    (":ATYPICAL:") 
+    (":PNEUMONIA:")))
+
+((ruleid "onyx-19624-0") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":ROUNDED:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-19629-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":PATCHY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-19631-0") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":RIGHT-MIDDLE-LOBE:") 
+    (":PATCHY:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-19649-0") 
+  (concept ":GENERALIZED-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":DIFFUSE:") 
+    (":OPACITY:")))
+
+((ruleid "onyx-19651-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":BILATERAL-LUNG:") 
+    (":MASS:")))
+
+((ruleid "onyx-19653-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":MASS:")))
+
+((ruleid "onyx-19659-0") 
+  (concept ":ABNORMAL-AORTA:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":CALCIFICATION:")))
+
+((ruleid "onyx-19661-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-19996-0") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":SOFT-TISSUES:")))
+
+((ruleid "onyx-20197-0") 
+  (concept ":UNILATERAL-DIAPHRAGMATIC-ELEVATION:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":ELEVATED:")))
+
+((ruleid "onyx-20237-0") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":DENSITY:")))
+
+((ruleid "onyx-20266-0") 
+  (concept ":SEE-PREVIOUS-EVENT:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":NODE:") 
+    ("this")))
+
+((ruleid "onyx-20299-0") 
+  (concept ":BLUNTING-OF-CP-ANGLE:") 
+  (words 
+    (":BILATERAL-LUNG:" ":DIAPHRAGM:" ":COSTOPHRENIC-SULCUS:" ":COSTOPHRENIC-ANGLE:") 
+    (":BLUNTING:")))
+
+((ruleid "onyx-20328-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":SEE-PREVIOUS-EVENT:") 
+    (":FOCAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-20485-0") 
+  (concept ":GENERIC-INFILTRATE-NOS:") 
+  (words 
+    (":SEE-PREVIOUS-EVENT:") 
+    (":INTERSTITIAL:") 
+    (":INFILTRATE:")))
+
+((ruleid "onyx-20491-0") 
+  (concept ":INTERSTITIAL-EMPHYSEMA:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":INTERSTITIAL:")))
+
+((ruleid "onyx-20525-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PLEURA:") 
+    (":FLUID:")))
+
+((ruleid "parenchymalabnormalityno-4") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":LOSS:")))
+
+((ruleid "parenchymalabnormalityno-5") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":INCREASED:") 
+    (":DENSITY:")))
+
+((ruleid "parenchymalabnormalityno-8") 
+  (concept ":PARENCHYMAL-ABNORMALITY-NO:") 
+  (words 
+    (":LEFT-PERIHILAR-REGION:") 
+    (":DIFFUSE:")))
+
+((ruleid "paritracheal-area-word-rule-0") 
+  (concept ":PERITRACHEAL-AREA:") 
+  (words 
+    ("peritracheal area")))
+
+((ruleid "partial-0") 
+  (concept ":PARTIAL:") 
+  (words 
+    ("partial")))
+
+((ruleid "perihilarinfiltrate-0") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":BILATERAL-PERIHILAR-REGION:") 
+    (":MILD:") 
+    ("infiltration")))
+
+((ruleid "perihilarinfiltrate-1") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":LEFT-PERIHILAR-REGION:") 
+    (":ILL-DEFINED:") 
+    (":INFILTRATE:")))
+
+((ruleid "perihilarinfiltrate-2") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":HEART:") 
+    (":MILD:")))
+
+((ruleidXXX "perihilarinfiltrate-3") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    ("infiltration")))
+
+((ruleid "perihilarinfiltrate-4") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":MILD:")))
+
+((ruleid "perihilarinfiltrate-5") 
+  (concept ":LOCALIZED-INFILTRATE:") 
+  (words 
+    (":LUNG-LOBE:") 
+    (":ILL-DEFINED:") 
+    (":INFILTRATE:")))
+
+((ruleid "perihilarinfiltrate-6") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":MILD:")))
+
+((ruleid "perihilarinfiltrate-7") 
+  (concept ":PERIHILAR-INFILTRATE:") 
+  (words 
+    (":DIFFUSE:") 
+    (":ILL-DEFINED:") 
+    (":INFILTRATE:")))
+
+((ruleid "pleuralabnormality-0") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-1") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-2") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-3") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-5") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-7") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":SKELETON-NOS:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-8") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":VERTEBRAE:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-9") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":MILD:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-10") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":INTERSTITIAL:")))
+
+((ruleid "pleuralabnormality-12") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuralabnormality-13") 
+  (concept ":PLEURAL-ABNORMALITY:") 
+  (words 
+    (":DIFFUSE:") 
+    (":INTERSTITIAL:") 
+    (":MARKING:")))
+
+((ruleid "pleuraleffusion-0") 
+  (concept ":PLEURAL-EFFUSION:") 
+  (words 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusion-2") 
+  (concept ":PLEURAL-EFFUSION:") 
+  (words 
+    (":LEFT-LUNG:") 
+    (":DIFFUSE:") 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-0") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    ("pleural effusion")))
+
+((ruleid "pleuraleffusionns-1") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-6") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":ALL-THORACIC-LOCATIONS:") 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-7") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":HEART:") 
+    (":FLUID:")))
+
+((ruleid "pleuraleffusionns-11") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":DIFFUSE:") 
+    (":ALVEOLII:") 
+    (":FLUID:")))
+
+((ruleid "pleuraleffusionns-12") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":DIFFUSE:") 
+    (":INTERSTITIAL:") 
+    (":FLUID:")))
+
+((ruleid "pleuraleffusionns-14") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LEFT-COSTOPHRENIC-SULCUS:") 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-17") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    ("pleural effusion")))
+
+((ruleid "pleuraleffusionns-18") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    ("pleural effusion")))
+
+((ruleid "pleuraleffusionns-19") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":MILD:") 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-20") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":MILD:") 
+    (":FLUID:")))
+
+((ruleid "pleuraleffusionns-21") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LEFT-LUNG:") 
+    ("pleural effusion")))
+
+((ruleid "pleuraleffusionns-22") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":INTERSTITIAL:")))
+
+((ruleid "pleuraleffusionns-23") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":LEFT-INTERPLEURAL-SPACE:") 
+    (":EFFUSION:")))
+
+((ruleid "pleuraleffusionns-24") 
+  (concept ":PLEURAL-EFFUSION-NS:") 
+  (words 
+    (":RIGHT-LUNG:") 
+    ("pleural effusion")))
+
+((ruleid "pleuralscarring-0") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-1") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-2") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-4") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":LUNG-LOBE:") 
+    (":ACUTE:") 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-7") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-9") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":PRIOR:") 
+    (":SCAR:")))
+
+((ruleid "pleuralscarring-10") 
+  (concept ":PLEURAL-SCARRING:") 
+  (words 
+    (":INTERPLEURAL-SPACE-NS:") 
+    (":FOCAL:") 
+    (":SCAR:")))
+
+((ruleid "pleuralthickening-1") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":LOWER-LUNG-REGIONS:") 
+    (":THICKENING:")))
+
+((ruleid "pleuralthickening-2") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":THICKENING:")))
+
+((ruleid "pleuralthickening-3") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":THICKENING:")))
+
+((ruleid "pleuralthickening-4") 
+  (concept ":PLEURAL-THICKENING:") 
+  (words 
+    (":CHRONIC:") 
+    (":THICKENING:")))
+
+((ruleid "pneumonia-1") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":ACUTE:" ":PRIOR:" ":ATYPICAL:" ":FOCAL:" ":MULTI-FOCAL:") 
+    (":PNEUMONIA:")))
+
+((ruleid "pneumonia-4") 
+  (concept ":PNEUMONIA:") 
+  (words 
+    (":BRONCHIAL-WALL:" ":LUNG-AREA:") 
+    (":PNEUMONIA:"))
+  (relations (located-at ?1 ?0)))
+
+((ruleid "pneumothorax-2") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":AIR:")))
+
+((ruleid "pneumothorax-3") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":RIGHT-UPPER-LOBE:") 
+    (":COLLECTION:") 
+    (":AIR:")))
+
+((ruleid "pneumothorax-4") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":MILD:") 
+    (":AIR:")))
+
+((ruleid "pneumothorax-5") 
+  (concept ":PNEUMOTHORAX:") 
+  (words 
+    (":PATCHY:") 
+    (":AIR:")))
+
+((ruleid "primarylungcancer-0") 
+  (concept ":PRIMARY-LUNG-CANCER:") 
+  (words 
+    ("metastatic") 
+    ("carcinoma")))
+
+((ruleid "pulmonaryedemans-0") 
+  (concept ":PULMONARY-EDEMA-NS:") 
+  (words 
+    ("water")))
+
+((ruleid "pulmonarymasslesion-0") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-1") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-2") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":LEFT-THORAX:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-3") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-4") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-5") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":PULMONARY-VESSELS:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-6") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":CHEST-WALL:") 
+    (":CALCIFICATION:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-7") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":RIGHT-INTERPLEURAL-SPACE:") 
+    (":MASS:")))
+
+((ruleid "pulmonarymasslesion-8") 
+  (concept ":PULMONARY-MASS-LESION:") 
+  (words 
+    (":PLEURA:") 
+    (":MASS:")))
+
+((ruleid "pulmonarynodularlesion-2") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":PARENCHYMAL:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-4") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":PLEURA:") 
+    (":NODE:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-5") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":CALCIFICATION:")))
+
+((ruleid "pulmonarynodularlesion-6") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":NODE:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-7") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-8") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":BILATERAL-LOWER-LOBES:") 
+    (":LINEAR:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-13") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":INTERSTITIAL:") 
+    (":PATCHY:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonarynodularlesion-14") 
+  (concept ":PULMONARY-NODULAR-LESION:") 
+  (words 
+    (":RIGHT-LOWER-LOBE:") 
+    (":INTERSTITIAL:") 
+    (":DENSITY:")))
+
+((ruleid "pulmonaryscarring-0") 
+  (concept ":PULMONARY-SCARRING:") 
+  (words 
+    (":LEFT-LOWER-LOBE:") 
+    (":CHRONIC:") 
+    (":SCAR:")))
+
+((ruleid "pulmonaryscarring-1") 
+  (concept ":PULMONARY-SCARRING:") 
+  (words 
+    (":INTERSTITIAL:") 
+    (":CHRONIC:") 
+    (":SCAR:")))
+
+((ruleid "pulmonaryvascularredistribution-0") 
+  (concept ":PULMONARY-VASCULAR-REDISTRIBUTION:") 
+  (words 
+    (":BILATERAL-UPPER-LOBES:") 
+    (":REDISTRIBUTION:")))
+
+((ruleid "pulmonaryvascularredistribution-1") 
+  (concept ":PULMONARY-VASCULAR-REDISTRIBUTION:") 
+  (words 
+    (":REDISTRIBUTION:")))
+
+((ruleid "pulmonaryvascularredistribution-2") 
+  (concept ":PULMONARY-VASCULAR-REDISTRIBUTION:") 
+  (words 
+    (":MILD:") 
+    (":REDISTRIBUTION:")))
+
+((ruleidXXX "pulmonaryvessels-0") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY:")))
+
+((ruleid "pulmonaryvessels-1") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY:") 
+    ("bilaterally")))
+
+((ruleid "pulmonaryvessels-2") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":VASCULAR:") 
+    (":BILATERAL:")))
+
+((ruleid "pulmonaryvessels-3") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":VESSELS:")))
+
+((ruleid "pulmonaryvessels-4") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PULMONARY:") 
+    (":RIGHT:")))
+
+((ruleid "pulmonaryvessels-5") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":VASCULAR:")))
+
+((ruleid "pulmonaryvessels-6") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":PERIHILAR:") 
+    (":PULMONARY:")))
+
+((ruleid "pulmonaryvessels-7") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":MIDDLE:") 
+    (":PULMONARY:")))
+
+((ruleid "pulmonaryvessels-8") 
+  (concept ":PULMONARY-VESSELS:") 
+  (words 
+    (":STRUCTURE:") 
+    (":VASCULAR:")))
+
+((ruleid "softtissueabnormality-2") 
+  (concept ":SOFT-TISSUE-ABNORMALITY:") 
+  (words 
+    (":LUNG-AREA:") 
+    (":SOFT-TISSUES:")))
+
+((ruleid "softtissues-0") 
+  (concept ":SOFT-TISSUES:") 
+  (words 
+    (":SOFT-TISSUES:") 
+    ("both")))
+
+((ruleid "unilateraldiaphragmaticelevation-0") 
+  (concept ":BILATERAL-DIAPHRAGMATIC-ELEVATION:") 
+  (words 
+    (":DIAPHRAGM:") 
+    (":ELEVATED:")))
+
+((ruleid "unilateraldiaphragmaticelevation-1-0") 
+  (concept ":UNILATERAL-DIAPHRAGMATIC-ELEVATION:") 
+  (words 
+    (":LUNG-AREA:" ":COSTOPHRENIC-SULCUS:") 
+    (":ELEVATED:")))
+
+((ruleid "upperlobenodule-2") 
+  (concept ":UPPER-LOBE-NODULE:") 
+  (words 
+    (":MID-REGION-LEFT-LUNG:") 
+    (":ROUNDED:") 
+    (":DENSITY:")))
+
+
+
+
+
+
+
+
+
+
+)

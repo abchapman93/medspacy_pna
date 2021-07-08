@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:CONSOLIDATION:-0-2018/10/31 14:39:29") 
+  (specialized) 
+  (example-snippet "patchy consolidation") 
+  (ordered true) 
+  (concept ":CONSOLIDATION:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":PATCHY::CONSOLIDATION:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

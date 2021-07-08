@@ -1,0 +1,20 @@
+'(
+PneumoniaOntology
+
+(deftype root (isroot))
+(deftype owl (isa root ))
+(deftype lexicon (isa owl ))
+(deftype modifier (isa lexicon ))
+(deftype semanticmodifier (isa modifier ))
+(deftype severity (isa semanticmodifier ))
+
+(deftype anchor (isa lexicon ))
+(deftype thing (isa owl ))
+(deftype annotation (isa thing ))
+(deftype event (isa annotation ))
+(deftype condition (isa event ))
+(deftype bodysite (isa semanticmodifier ))
+
+
+)
+

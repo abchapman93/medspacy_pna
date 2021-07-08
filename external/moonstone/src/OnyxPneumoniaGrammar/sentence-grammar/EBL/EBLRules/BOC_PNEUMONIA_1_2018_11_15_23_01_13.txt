@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:PNEUMONIA:-1-2018/11/15 23:01:13") 
+  (specialized) 
+  (example-snippet "Patchy by basilar pneumonia") 
+  (ordered true) 
+  (concept ":PNEUMONIA:") 
+  (stype "<PULMONARY-DISEASE-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":PATCHY::PNEUMONIA:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

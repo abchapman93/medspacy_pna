@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:ATELECTASIS:-0-2018/11/15 19:33:52") 
+  (specialized) 
+  (example-snippet "dense right middle lobe atelectasis") 
+  (ordered true) 
+  (concept ":ATELECTASIS:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":DENSE::ATELECTASIS:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

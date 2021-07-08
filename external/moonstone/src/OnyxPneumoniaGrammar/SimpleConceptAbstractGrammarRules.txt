@@ -1,0 +1,111 @@
+'(
+wordrules
+
+((ruleid hypothetical-predicate-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("might" "would" "could" "may" "most likely" "likely") ("<PREDICATE>"))
+ (properties (predicate ?1) (directionality hypothetical)))
+ 
+((ruleid property-predicate-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_IS_" "_WAS_") ("<PROPERTY>"))
+ (properties (property ?1)))
+ 
+((ruleid simple-action-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?0)
+ (words ("<UNDERSTAND-ACTION>"))  ;; Other types of intransitive actions here...
+ (properties (action ?0)))
+ 
+((ruleid infinitive-phrase-predicate-rule)
+ (stype "<GRAMMAR-INFINITIVE-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("to") ("<PREDICATE>"))
+ ;; (tests ("isRootForm" ("getWord" (action ?1))))
+ (properties (predicate ?1)))
+ 
+ ;; 10/13/2017 (Needs expansion into more rules)
+((ruleid passive-action-state-predicate-rule)
+ (stype "<GRAMMAR-PASSIVE-PREDICATE>")
+;; (complex-concept)
+ (concept ?1)  ;; 3/13/2018 -- Too permissive?
+ (ordered true)
+ (window 32)
+ (words ("_IS_" ) 
+ 		("<ACTION>" "<STATE>" "<PREDICATE>" "<PROPERTY>"))
+ (tests ("hasNestedFirstEDFormActionWord" ?1))
+ (properties (predicate ?1) (verb-form passive)))
+ 
+((ruleid is-thing-predicate-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_IS_" "_WAS_") ("<THING>"))
+ (tests (notneg ?1))
+ (properties (thing ?1)))
+ 
+((ruleid isnt-thing-predicate-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_ISNT_" "_WASNT_") ("<THING>"))
+ (tests (notneg ?1))
+ (properties (thing ?1) (directionality negated)))
+ 
+;; 11/17/2017
+ ;; e.g. "is happy" "is depressed"
+((ruleid predicate-state-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_IS_" "_WAS_") ("<STATE>" "<PROPERTY>" "<PREDICATE>"))
+ (tests (notneg ?1))
+ (properties (property ?1)))
+ 
+((ruleid predicate-not-state-rule)
+ (stype "<GRAMMAR-PREDICATE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_ISNT_" "_WASNT_") ("<STATE>" "<PROPERTY>" "<PREDICATE>"))
+ (properties (directionality negated)))
+ 
+ ;; "unclear if they will be immediately moving back in together"
+((ruleid unclear-if-sentence-rule)
+ (stype "<GRAMMAR-SENTENCE>")
+ (concept ?1)  
+ (ordered true)
+ (window 32)
+ (words ("unclear" "uncertain") ("@if-hypothetical-sentence-rule@"))
+ (properties (directionality hypothetical)))
+
+((ruleid if-hypothetical-sentence-rule)
+ (stype "<GRAMMAR-SENTENCE>")
+ (concept ?1)  
+ (ordered true)
+ (window 32)
+ (words ("if" "whether") ("<SENTENCE>"))
+ (properties (sentence-nature if)))
+ 
+ 
+ ;; Removed 3/8/2018.  Time should modify predicate...
+((ruleid sentence-plus-time-rule)
+ (stype ?0)
+ (concept ?0)
+ (window 32)
+ (words ("<SENTENCE>") ("<TIME-EXPRESSION>"))
+ (properties (sentence ?0) (time ?1)))
+ 
+ )
+ 

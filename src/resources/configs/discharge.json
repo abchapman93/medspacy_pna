@@ -1,0 +1,21 @@
+{
+  "domain": "discharge",
+  "resources": [
+    {
+      "concept_tagger": [
+        "common/anatomy_concept_tag_rules.json",
+        "common/concept_tag_rules.json"
+      ],
+      "target_matcher": [
+        "common/target_rules.json"
+      ],
+      "context": [
+        "common/context_rules.json",
+        "common/anatomy_descriptor_modifier_rules.json"
+      ],
+      "sectionizer": [
+        "discharge/discharge_section_rules.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+name: moore-pna
+channels:
+    - default
+    - anaconda
+    - conda-forge
+dependencies:
+
+    - python=3.8
+    - spacy=2
+    - spacy-model-en_core_web_sm
+    - pytest
+    - pip
+    #- pip:
+    #  - medspacy
+ 

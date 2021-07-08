@@ -1,0 +1,33 @@
+'(onyx-pneumonia
+
+(deftype root (isroot))
+(deftype thing (isa root))
+(deftype state (isa root))
+(deftype statechange (isa root))
+(deftype linguistic (isa root))
+(deftype modifier (isa root))
+
+(deftype disease (isa thing))
+(deftype finding (isa thing))
+(deftype location (isa thing))
+(deftype location-modifier (isa modifier))
+
+(deftype pulmdisease (isa disease))
+(deftype pulmfinding (isa finding))
+(deftype pulmloc (isa location))
+(deftype localpulmloc (isa pulmloc))
+(deftype bilateralpulmloc (isa pulmloc))
+(deftype generalpulmloc (isa pulmloc))
+
+(deftype pulmlocmod (isa location-modifier))
+(deftype pulmlocmodside (isa pulmlocmod))
+(deftype pulmlocupperlower (isa pulmlocmod))
+
+(deftype elaboration (isa linguistic))
+(deftype reference (isa linguistic))
+
+(deftype possibility (isa modifier))
+
+
+)
+

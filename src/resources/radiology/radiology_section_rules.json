@@ -1,0 +1,316 @@
+{
+    "section_rules": [
+        {
+            "parents": [],
+            "literal": "DATE:",
+            "parent_required": false,
+            "category": "date"
+        },
+        {
+            "parents": [],
+            "literal": "Reason:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "UNDERLYING MEDICAL CONDITION:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "REASON FOR THIS EXAMINATION:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "IMPRESSION:",
+            "parent_required": false,
+            "category": "impression"
+        },
+        {
+            "parents": [],
+            "literal": "Admitting Diagnosis:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "INDICATION:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "Amt:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "Contrast:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "FINDINGS:",
+            "parent_required": false,
+            "category": "impression"
+        },
+        {
+            "parents": [],
+            "literal": "TECHNIQUE:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "HISTORY:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "COMPARISON:",
+            "parent_required": false,
+            "category": "comparison"
+        },
+        {
+            "parents": [],
+            "literal": "COMPARISONS:",
+            "parent_required": false,
+            "category": "comparison"
+        },
+        {
+            "parents": [],
+            "literal": "COMPLICATIONS:",
+            "parent_required": false,
+            "category": "complications"
+        },
+        {
+            "parents": [],
+            "literal": "CLINICAL INDICATION:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "BONE WINDOWS:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "CONSENT:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "RADIOLOGISTS:",
+            "parent_required": false,
+            "category": "procedure"
+        },
+        {
+            "parents": [],
+            "literal": "WET READ:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "INDICATIONS:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "PREOPERATIVE DIAGNOSIS:",
+            "parent_required": false,
+            "category": "preoperative_diagnosis"
+        },
+        {
+            "parents": [],
+            "literal": "POSTOPERATIVE DIAGNOSIS:",
+            "parent_required": false,
+            "category": "postoperative_diagnosis"
+        },
+        {
+            "parents": [],
+            "literal": "ANESTHESIA:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "INDICATION FOR PROCEDURE:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "PROCEDURE IN DETAIL:",
+            "parent_required": false,
+            "category": "procedure"
+        },
+        {
+            "parents": [],
+            "literal": "CLINICAL HISTORY:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "PROCEDURE AND FINDINGS:",
+            "parent_required": false,
+            "category": "procedure"
+        },
+        {
+            "parents": [],
+            "literal": "CONTRAST:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "CT OF THE ABDOMEN WITH IV CONTRAST:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "PORTABLE AP CHEST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "QUESTIONS TO BE ANSWERED:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "PORTABLE CHEST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "CT OF THE CHEST WITH IV CONTRAST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "CT RECONSTRUCTIONS:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "CONCLUSION:",
+            "parent_required": false,
+            "category": "findings"
+        },
+        {
+            "parents": [],
+            "literal": "CT OF THE PELVIS WITH IV CONTRAST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "RADIOLOGIST:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "IV CONTRAST:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "PROCEDURE:",
+            "parent_required": false,
+            "category": "procedure"
+        },
+        {
+            "parents": [],
+            "literal": "MEDICATIONS:",
+            "parent_required": false,
+            "category": "medications"
+        },
+        {
+            "parents": [],
+            "literal": "REASON:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "CLINICAL INFORMATION:",
+            "parent_required": false,
+            "category": "indication"
+        },
+        {
+            "parents": [],
+            "literal": "Approved:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "Date Mailed:",
+            "parent_required": false,
+            "category": "other"
+        },
+        {
+            "parents": [],
+            "literal": "RESULTS:",
+            "parent_required": false,
+            "category": "findings"
+        },
+        {
+            "parents": [],
+            "literal": "MODALITIES:",
+            "parent_required": false,
+            "category": "technique"
+        },
+        {
+            "parents": [],
+            "literal": "INTERPRETATION:",
+            "parent_required": false,
+            "category": "impression"
+        },
+        {
+            "parents": [],
+            "literal": "CHEST CT WITH IV CONTRAST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "CHEST:",
+            "parent_required": false,
+            "category": "chest"
+        },
+        {
+            "parents": [],
+            "literal": "TECHNIQUE AND FINDINGS:",
+            "parent_required": false,
+            "category": "findings"
+        },
+        {
+            "parents": [],
+            "literal": "REASON FOR STUDY:",
+            "parent_required": false,
+            "category": "indication"
+        }
+    ]
+}

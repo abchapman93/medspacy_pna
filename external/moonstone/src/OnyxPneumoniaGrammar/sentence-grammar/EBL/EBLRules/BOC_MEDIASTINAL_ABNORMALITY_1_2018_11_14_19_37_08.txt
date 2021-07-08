@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:MEDIASTINAL-ABNORMALITY:-1-2018/11/14 19:37:08") 
+  (specialized) 
+  (example-snippet "mediastinum isunremarkable") 
+  (ordered true) 
+  (concept ":MEDIASTINAL-ABNORMALITY:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":MEDIASTINUM::IS::NORMAL:")) 
+  (properties (directionality absent))
+  (tests 
+    ("notneg" ?0)))
+
+)

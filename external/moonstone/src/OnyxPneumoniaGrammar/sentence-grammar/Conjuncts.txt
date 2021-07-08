@@ -1,0 +1,149 @@
+'(
+wordrule
+
+;; LOUSY CONJUNCTION PLANNING:  NEED TO HANDLE DIFFERENCES BETWEEN 
+;; "and" and "or"
+((ruleid general-recursive-conjunct-rule) 
+  ;; (complex-concept)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (window 32)
+  (words ("<EXAM-FINDING-THING>" "<DISEASE-THING>") 
+  		("and" "or" "and/or" "and or" "as well as" "&" "but" ","
+ 		"as well as" ", and" "including" "with" "accompanying") 
+  		("@general-thing-conjunct-rule@"
+  		"@general-recursive-conjunct-rule@"))
+  (output-format (* # formatted))
+  (tests (not ("containsConjunct" ?0))
+ 		 ("coveredTextPercentGreaterThan" ?0 0.5)
+  		 ;; ("formattedTypesAreUnifiable" ?*)
+  		 ))
+  		 
+((ruleid general-recursive-disjunct-rule) 
+  ;; (complex-concept)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (window 32)
+  (words ("<EXAM-FINDING-THING>" "<DISEASE-THING>") 
+  		("or" "and/or" "and or" "versus" "vs" "verses") 
+  		("@general-thing-conjunct-rule@"
+  		"@general-recursive-conjunct-rule@"))
+  (output-format (* # formatted))
+  (properties (directionality possible) (directionality ?0 possible) 
+  				(directionality ?2 possible))
+  (tests (not ("containsConjunct" ?0))
+ 		 ("coveredTextPercentGreaterThan" ?0 0.50)
+  		 ;; ("formattedTypesAreUnifiable" ?*)
+  		 ))
+  
+((ruleid general-finding-conjunct-rule) 
+  (stype ?0)
+  ;; (complex-concept)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<EXAM-FINDING-THING>" "<DISEASE-THING>") 
+  		 ("and" "as well as" "&" "but" ","
+ 		"as well as" ", and" "including" "with" "accompanying") 
+ 		("<EXAM-FINDING-THING>" "<DISEASE-THING>"))
+  (output-format (* # *))
+  (tests 
+  		;; 3/7/2018:  Could not create conjunct for "no sign or symptom",
+  		;; because sign and symptom both get negated via ConText...
+  		;; (notneg ?0) 
+  		;; (notneg ?2) 
+  		(not ("containsConjunct" ?0))
+  		(not ("containsConjunct" ?2))
+  		("coveredTextPercentGreaterThan" ?0 0.5)
+ 		("coveredTextPercentGreaterThan" ?2 0.5)
+  		;; ("formattedTypesAreUnifiable" ?*)
+  		))
+  		
+((ruleid general-finding-disjunct-rule) 
+  (stype ?0)
+  ;; (complex-concept)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<EXAM-FINDING-THING>" "<DISEASE-THING>") 
+  		 ("or" "and/or" "and or" "versus" "vs" "verses")  
+ 		("<EXAM-FINDING-THING>" "<DISEASE-THING>"))
+  (output-format (* # *))
+  (properties (directionality possible))
+  
+  ;; 11/15/2018 TEST:  Apply possibility to each element
+  ;; (actions ("applyModifierProperties" ?rule ?*))
+  
+  (tests 
+  		;; 3/7/2018:  Could not create conjunct for "no sign or symptom",
+  		;; because sign and symptom both get negated via ConText...
+  		;; (notneg ?0) 
+  		;; (notneg ?2) 
+  		(not ("containsConjunct" ?0))
+  		(not ("containsConjunct" ?2))
+  		("coveredTextPercentGreaterThan" ?0 0.5)
+ 		("coveredTextPercentGreaterThan" ?2 0.5)
+  		;; ("formattedTypesAreUnifiable" ?*)
+  		))
+  		
+((ruleid general-location-conjunct-rule) 
+  (stype ?0)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<PULMONARY-LOCATION>") 
+  		 ("and" "or" "and/or" "and or" "as well as" "&" "but" ","
+ 		"as well as" ", and") 
+ 		("<PULMONARY-LOCATION>"))
+  (output-format (* # *))
+  (tests 
+  		;; 3/7/2018:  Could not create conjunct for "no sign or symptom",
+  		;; because sign and symptom both get negated via ConText...
+  		;; (notneg ?0) 
+  		;; (notneg ?2) 
+  		(not ("containsConjunct" ?0))
+  		(not ("containsConjunct" ?2))
+  		("coveredTextPercentGreaterThan" ?0 0.5)
+ 		("coveredTextPercentGreaterThan" ?2 0.5)
+  		;; ("formattedTypesAreUnifiable" ?*)
+  		))
+  		
+((ruleid pulmonary-location-modifier-conjunct-rule) 
+  (stype ?0)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<PULMONARY-LOCATION-MODIFIER>") 
+  		 ("and" "or" "and/or" "and or" "as well as" "&" "but" ","
+ 		"as well as" ", and") 
+ 		("<PULMONARY-LOCATION-MODIFIER>"))
+  (output-format (* # *))
+  (tests 
+  		(not ("containsConjunct" ?0))
+  		(not ("containsConjunct" ?2))
+  		))
+  		
+((ruleid xray-finding-property-conjunct-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<CHEST-XRAY-FINDING-PROPERTY>") 
+  		 ("and" "or" "and/or" "and or" "as well as" "&" "but" ","
+ 		"as well as" ", and") 
+ 		("<CHEST-XRAY-FINDING-PROPERTY>"))
+  (output-format (* # *)))
+  		
+((ruleid finding-or-disease-without-finding-or-disease-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<EXAM-FINDING-THING>" "<DISEASE-THING>") 
+  		 ("without") 
+ 		("<EXAM-FINDING-THING>" "<DISEASE-THING>"))
+  (removeproperties directionality))
+
+
+)
+

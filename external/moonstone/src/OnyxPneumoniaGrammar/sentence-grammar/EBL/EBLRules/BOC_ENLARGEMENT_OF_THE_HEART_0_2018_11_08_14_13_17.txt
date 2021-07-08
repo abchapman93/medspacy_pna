@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:ENLARGEMENT-OF-THE-HEART:-0-2018/11/08 14:13:17") 
+  (specialized) 
+  (example-snippet "Heart size is normal") 
+  (ordered true) 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":HEART::NORMAL:")) 
+  (properties (directionality negated))
+  (tests 
+    ("notneg" ?0)))
+
+)

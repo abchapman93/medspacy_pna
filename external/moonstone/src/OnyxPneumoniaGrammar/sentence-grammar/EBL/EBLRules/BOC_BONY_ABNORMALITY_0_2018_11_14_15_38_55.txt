@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:BONY-ABNORMALITY:-0-2018/11/14 15:38:55") 
+  (specialized) 
+  (example-snippet "bony structuresare normal") 
+  (ordered true) 
+  (concept ":BONY-ABNORMALITY:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":BONY-STRUCTURES::NORMAL:" ":BONY-STRUCTURES::IS::NORMAL:")) 
+  (properties (directionality negated))
+  (tests 
+    ("notneg" ?0)))
+
+)

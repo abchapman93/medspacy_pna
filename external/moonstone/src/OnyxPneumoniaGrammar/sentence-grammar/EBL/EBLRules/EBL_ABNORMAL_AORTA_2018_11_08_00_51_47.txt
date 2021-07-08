@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "EBL::ABNORMAL-AORTA::2018/11/08 00:51:47") 
+  (specialized) 
+  (example-snippet "Aorta is ectatic") 
+  (ordered true) 
+  (sourceid "anatomic-location-is-property-rule") 
+  (concept ":ABNORMAL-AORTA:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (window 16.0) 
+  (words 
+    (":AORTA:") 
+    (":ECTATIC:")) 
+  (tests 
+    ("notneg" ?0) 
+    ("notneg" ?1)))
+
+)

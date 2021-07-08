@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:INTERSTITIAL-EDEMA:-3-2018/11/15 23:18:04") 
+  (specialized) 
+  (example-snippet "interstitial edema") 
+  (ordered true) 
+  (concept ":INTERSTITIAL-EDEMA:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":INTERSTITIAL::EDEMA:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

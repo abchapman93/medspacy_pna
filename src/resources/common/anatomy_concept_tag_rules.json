@@ -1,0 +1,272 @@
+{
+    "target_rules": [
+        {
+            "literal": "location",
+            "category": "LOCATION",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "left",
+                            "right",
+                            "bilateral",
+                            "bilaterally",
+                            "middle",
+                            "mid",
+                            "central",
+                            "medial",
+                            "medially",
+                            "upper",
+                            "lower",
+                            "leftsided",
+                            "rightsided",
+                            "pulmonary",
+                            "interstitial",
+                            "posterior",
+                            "posteriorly",
+                            "back",
+                            "anterior",
+                            "bilateral",
+                            "bilaterally",
+                            "both",
+                            "hilar",
+                            "perihilar",
+                            "infrahilar",
+                            "mediastinum",
+                            "mediastinal",
+                            "costophrenic",
+                            "paraspinal",
+                            "parenchymal",
+                            "subcutaneous",
+                            "thoracic",
+                            "pneumonic",
+                            "bronchogenic",
+                            "cavitary",
+                            "cardiopulmonary",
+                            "atrial",
+                            "atrium"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "left - sided",
+            "category": "LOCATION",
+            "pattern": "left-?sided?"
+        },
+        {
+            "literal": "right - sided",
+            "category": "LOCATION",
+            "pattern": "right-?sided?"
+        },
+        {
+            "literal": "super - aortic",
+            "category": "LOCATION",
+            "pattern": "super[ -]?aortic"
+        },
+        {
+            "literal": "lobe",
+            "category": "ANATOMY",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "lobe",
+                            "lobes",
+                            "lobular",
+                            "aorta",
+                            "aortic",
+                            "base",
+                            "bases",
+                            "basal",
+                            "basilar",
+                            "bibasilar",
+                            "hemithorax",
+                            "peribronchial",
+                            "cardiopulmonary",
+                            "abdomen",
+                            "abdominal",
+                            "structure",
+                            "structures",
+                            "apices",
+                            "diaphragm",
+                            "heart",
+                            "cardiac",
+                            "pleura",
+                            "pleural",
+                            "vein",
+                            "veins",
+                            "vessel",
+                            "vessels",
+                            "vascular",
+                            "vasculature",
+ 			                "vascularity",
+                            "rib",
+                            "ribs",
+                            "bone",
+                            "bony",
+                            "spine",
+                            "vertebra",
+                            "vertebrae",
+                            "hemidiaphragm",
+                            "fibronodular",
+                            "apex",
+                            "artery",
+                            "arteries",
+                            "alveolus",
+                            "alveolii",
+                            "alveolar",
+                            "hemidiaphragm"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "literal": "bronchial wall",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "bronchial"},
+                {"LOWER": "wall", "OP":  "?"}
+            ]
+        },
+        {
+            "literal": "lung area",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": {"IN": ["lung", "lungs"]}},
+                {"LOWER": {"IN":  ["area", "areas", "field", "fields"]}, "OP":  "?"}
+            ]
+        },
+        {
+            "literal": "bibasilar",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "by"},
+                {"LOWER": "basilar"}
+            ]
+        },
+        {
+            "literal": "cardiac silhouette",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": {"IN": ["cardiac", "cardial"]}},
+                {"LOWER": "silhouette"}
+            ]
+        },
+        {
+            "literal": "cardiac silhouette",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "silhouette"},
+                {"LOWER": {"IN": ["cardiac", "cardial"]}}
+            ]
+        },
+        {
+            "literal": "apical zone",
+            "category": "ANATOMY"
+        },
+        {
+            "literal": "chest wall",
+            "category": "ANATOMY"
+        },
+        {
+            "literal": "para aortic",
+            "category": "ANATOMY"
+        },
+        {
+            "literal": "peritracheal area",
+            "category": "ANATOMY"
+        },
+        {
+            "literal": "vascular structures",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "vascular"},
+                {"LOWER": {"IN": ["structures", "structure"]}, "OP":  "?"}
+            ]
+        },
+        {
+            "literal": "bony structures",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "bony"},
+                {"LOWER": "structures", "OP": "?"}
+            ]
+        },
+        {
+            "literal": "soft tissue",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER": "soft"},
+                {"LOWER": {"IN": ["tissues", "tissue"]}}
+            ]
+        },
+        {
+            "literal":  "vertebral body",
+            "category": "ANATOMY"
+        },
+        {
+            "literal":  "airspace",
+            "category": "ANATOMY",
+            "pattern": "air[ -]?space"
+        },
+        {
+            "literal":  "azygous vein",
+            "category": "ANATOMY"
+        },
+        {
+            "literal":  "pleural space",
+            "category": "ANATOMY",
+            "pattern": [
+                {"LOWER":  "pleural"},
+                {"LOWER": {"IN": ["space", "spaces"]}}
+            ]
+        },
+        {
+            "literal": "pericardial space",
+            "category": "ANATOMY"
+        },
+        {
+            "literal":  "airspace",
+            "category": "ANATOMY",
+            "pattern": "air[ -]?space"
+        },
+        {
+            "literal":  "ribcage",
+            "category": "ANATOMY",
+            "pattern": "rib[ -]?cage"
+        },
+        {
+            "literal":  "costophrenicsulcus",
+            "category": "ANATOMY",
+            "pattern": "costophrenic[ -]?sulcus"
+        },
+        {
+            "literal":  "costophrenicangle",
+            "category": "ANATOMY",
+            "pattern": "(costophrenic|cp)[ -]?angle"
+        },
+        {
+            "literal":  "pericardialspace",
+            "category": "ANATOMY",
+            "pattern": "pericardial[ -]?space"
+        },
+        {
+            "literal":  "pleurallayers",
+            "category": "ANATOMY",
+            "pattern": "pleural[ -]?layers?"
+        },
+        {
+            "literal":  "pulmonaryartery",
+            "category": "ANATOMY",
+            "pattern": "pulmonary[ -]?arter(y|ies)"
+        },
+        {
+            "literal":  "lymphnodes",
+            "category": "ANATOMY",
+            "pattern": "lymph[ -]?nodes?"
+        }
+    ]
+}

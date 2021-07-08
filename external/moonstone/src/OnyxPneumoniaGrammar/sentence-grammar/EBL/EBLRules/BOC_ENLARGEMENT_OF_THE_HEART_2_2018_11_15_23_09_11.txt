@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "BOC-:ENLARGEMENT-OF-THE-HEART:-2-2018/11/15 23:09:11") 
+  (specialized) 
+  (example-snippet "Cardiac and mediastinal shadows are normal") 
+  (ordered true) 
+  (concept ":ENLARGEMENT-OF-THE-HEART:") 
+  (stype "<CHEST-XRAY-FINDING-THING>") 
+  (bagofconcepts true) 
+  (words 
+    (":ENLARGEMENT-OF-THE-HEART::NORMAL:")) 
+  (tests 
+    ("notneg" ?0)))
+
+)

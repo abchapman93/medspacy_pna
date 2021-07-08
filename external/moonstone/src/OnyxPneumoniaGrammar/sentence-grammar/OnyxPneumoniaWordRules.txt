@@ -1,0 +1,133 @@
+'(
+wordrules
+
+;; DISEASES/ FINDINGS
+((ruleid "calcification-1") 
+  (concept ":CALCIFICATION:") 
+  (words ("calcification" "calcifications" "calcified")))
+    
+((ruleid "atelectasis-word-rule") 
+  (concept ":ATELECTASIS:") 
+  (words ("atelectasis" "atelectatic")))
+    
+((ruleid "atherosclerosis-word-rule") 
+  (concept ":ATHEROSCLEROSIS:") 
+  (words ("atherosclerotic" "atherosclerosis")))
+  
+((ruleid "consolidation-word-rule") 
+  (concept ":CONSOLIDATION:") 
+  (words ("consolidative" "consolidation" "consolidated")))
+  
+((ruleid "pneumonia-word-rule") 
+  (concept ":PNEUMONIA:") 
+  (words ("pneumonia" "pneumonias" "pneumonitis")))
+  
+((ruleid "tortuous-word-rule") 
+  (concept ":TORTUOUS:") 
+  (words ("tortuous")))
+  
+((ruleid "blunting-word-rule") 
+  (concept ":BLUNTING:") 
+  (words ("blunting")))
+  
+((ruleid "infection-word-rule") 
+  (concept ":INFECTION:") 
+  (words ("infection" "infections")))
+  
+((ruleid "effusion-word-rule") 
+  (concept ":EFFUSION:") 
+  (words ("effusion" "effusions")))
+  
+((ruleid infiltrate-word-rule) 
+  (concept ":INFILTRATE:") 
+  (words ("infiltrate" "infiltrates" "infiltrative" "infiltration")))
+  
+((ruleid opacity-word-rule) 
+  (concept ":OPACITY:") 
+  (words ("opacity" "opacities")))
+  
+((ruleid "density-word-rule") 
+  (concept ":DENSITY:") 
+  (words 
+    ("density" "densities")))
+    
+((ruleid "streaky-word-rule") 
+  (concept ":STREAKY:") 
+  (words 
+    ("streaks" "streaky")))
+  
+((ruleid "ill-defined-word-rule") 
+  (concept ":ILL-DEFINED:")
+  (words ("hazy" "vague" "ill defined" "ill-defined" "poorly marginated" "indistinct")))
+  
+((ruleid "compressive-word-rule") 
+  (concept ":COMPRESSIVE:")
+  (words ("compressive")))
+  
+((ruleid "linear-word-rule") 
+  (concept ":LINEAR:")
+  (words ("linear" "some linear features" "strandy linear")))
+  
+((ruleid "diffuse-word-rule") 
+  (concept ":DIFFUSE:")
+  (words ("diffuse")))
+  
+((ruleid "patchy-word-rule") 
+  (concept ":PATCHY:")
+  (words ("patchy")))
+  
+((ruleid "localized-word-rule") 
+  (concept ":LOCALIZED:")
+  (words ("local" "localized")))
+  
+((ruleid "metastatic-word-rule") 
+  (concept ":METASTATIC:")
+  (words ("metastatic")))
+  
+((ruleid "disease-word-rule") 
+  (concept ":DISEASE:")
+  (words ("disease")))
+  
+((ruleid "abnormality-0") 
+  (concept ":ABNORMALITY:") 
+  (words 
+    ("abnormalities" "abnormality")))
+    
+((ruleid "rounded-shape-word-rule") 
+  (concept ":ROUNDED:") 
+  (words 
+    ("round" "rounded")))
+    
+;; quantitative modifiers
+((ruleid "mild-word-rule") 
+  (concept ":MINIMAL:")
+  (words ("mild" "minimal")))
+  
+((ruleid "medium-word-rule") 
+  (concept ":MODERATE:")
+  (words ("medium" "moderate")))
+  
+((ruleid "severe-word-rule") 
+  (concept ":MAXIMAL:")
+  (words ("severe" "maximal")))
+  
+((ruleid "acute-word-rule") 
+  (concept ":ACUTE:")
+  (words ("acute")))
+  
+((ruleid "chronic-word-rule") 
+  (concept ":CHRONIC:")
+  (words ("chronic" "persists")))
+  
+((ruleid "active-word-rule") 
+  (concept ":ACTIVE:")
+  (words ("active")))
+  
+((ruleid dense-word-rule)
+ (concept ":DENSE:")
+ (words ("dense")))
+ 
+
+
+
+)

@@ -1,0 +1,208 @@
+{
+    "target_rules": [
+        {
+            "literal": "pneumonia",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "FOCAL",
+                                "INFILTRATE",
+                                "COVID"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "PNEUMONIA"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "consolidation",
+            "category": "CONSOLIDATION",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "PATCHY",
+                                "FOCAL"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "CONSOLIDATION"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "infiltrate",
+            "category": "INFILTRATE",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": "INFILTRATE"
+                    },
+                    "OP": "+"
+                },
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "DENSITY"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                }
+            ]
+        },
+        {
+            "literal": "infiltrate",
+            "category": "INFILTRATE",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "FOCAL",
+                                "PATCHY"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "DENSITY"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "hospital-acquired pneumonia",
+            "category": "HOSPITAL_ACQUIRED_PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "hospital"},
+                {"LOWER":  "-", "OP":  "?"},
+                {"LOWER":  "acquired"},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "hap",
+            "category": "HOSPITAL_ACQUIRED_PNEUMONIA"
+        },
+        {
+            "literal": "opacity",
+            "category": "OPACITY",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "LINEAR",
+                                "STREAKY",
+                                "STRANDING"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "OPACITY"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "CAP",
+            "category": "PNEUMONIA"
+
+        },
+        {
+            "literal": "treatment for pneumonia",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": "TREATMENT"
+                    },
+                    "OP": "+"
+                },
+                {"LOWER":  "for"},
+                {
+                    "_": {
+                        "concept_tag": "PNEUMONIA"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "Klebsiella pneumonia",
+            "category": "IGNORE",
+            "pattern": [
+                {"LOWER":  {"IN":  ["k", "k.", "klebsiella"]}},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "pneumonia vaccination",
+            "category": "IGNORE",
+            "pattern": [
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"},
+                {"LOWER":  "vaccination"}
+            ]
+        },
+        {
+            "literal": "pneumonia and/or atelectasis",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumonia and/or atelectasis",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "atelectasis",
+            "category": "ATELECTASIS",
+            "pattern": [{"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}]
+        },
+        {
+            "literal": "aeration",
+            "category": "AERATION",
+            "pattern": [{"_":  {"concept_tag":  "AERATION"}, "OP":  "+"}]
+        },
+        {
+            "literal": "cardiopulmonary process",
+            "category": "CARDIOPULMONARY_PROCESS"
+        }
+    ]
+}
