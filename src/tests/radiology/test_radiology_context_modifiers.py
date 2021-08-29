@@ -147,3 +147,18 @@ class TestRadiologyContextModifiers:
         doc = nlp(text)
         msg = testutils.test_entity_modifier_extension_true(doc, 'consolidation', 'is_uncertain')
         assert (msg == '')
+
+    def test_no_significant_consolidation_negated(self, testutils):
+        text = "no significant consolidation"
+        doc = nlp(text)
+
+        msg = testutils.test_entity_modifier_extension_true(doc, 'consolidation', 'is_negated')
+
+        assert (msg == '')
+
+    def test_no_significant_change_consolidation(self, testutils):
+        text = "no significant change in consolidation"
+        doc = nlp(text)
+        assert len(doc.ents)
+        ent = doc.ents[0]
+        assert ent._.is_negated is False

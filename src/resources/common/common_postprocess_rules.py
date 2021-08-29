@@ -14,16 +14,16 @@ postprocess_rules = [
         description="Ignore mentions of pneumonia in the 'medications' section"
     ),
 
-    PostprocessingRule(
-        patterns=[
-            PostprocessingPattern(lambda ent: ent.lower_ == "cap"),
-            (
-                # This condition is redundant with the previous rule
-                # PostprocessingPattern(lambda ent: ent._.section_category == "medications"),
-                PostprocessingPattern(lambda ent: ent.sent._.contains("mg|medication")),
-             )
-        ],
-        action=postprocessing_functions.remove_ent,
-        description="In the medications, disambiguate 'CAP'."
-    ),
+    # PostprocessingRule(
+    #     patterns=[
+    #         PostprocessingPattern(lambda ent: ent.lower_ == "cap"),
+    #         (
+    #             # This condition is redundant with the previous rule
+    #             # PostprocessingPattern(lambda ent: ent._.section_category == "medications"),
+    #             PostprocessingPattern(lambda ent: ent.sent._.contains("mg|medication")),
+    #          )
+    #     ],
+    #     action=postprocessing_functions.remove_ent,
+    #     description="In the medications, disambiguate 'CAP'."
+    # ),
 ]

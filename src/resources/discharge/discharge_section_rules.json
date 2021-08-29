@@ -70,6 +70,24 @@
             "parents": [],
             "category": "diagnoses",
             "parent_required": false,
+            "literal": "Dx:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Emergency Room Dx:",
+            "pattern": [
+                {"LOWER": "emergency"},
+                {"LOWER":  {"IN":  ["room", "department", "depart"]}},
+                {"LOWER":  {"IN":  ["diagnosis", "diagnoses", "dx"]}},
+                {"LOWER":  ":"}
+            ]
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
             "literal": "Primary Diagnosis:"
         },
         {
@@ -136,6 +154,12 @@
             "parents": [],
             "category": "hospital_course",
             "parent_required": false,
+            "literal": "EMERGENCY ROOM COURSE AND REEVALUATION:"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
             "literal": "HOSPITAL COURSE:"
         },
         {
@@ -172,7 +196,8 @@
             "parents": [],
             "category": "imaging",
             "parent_required": false,
-            "literal": "Radiology:"
+            "literal": "Radiology:",
+            "pattern": [{"LOWER":  "radiology"}, {"OP":  "?"}, {"LOWER":  ":"}]
         },
         {
             "parents": [],
@@ -370,7 +395,45 @@
             "parents": [],
             "category": "observation_and_plan",
             "parent_required": false,
-            "literal": "ASSESSMENT/PLAN:"
+            "literal": "AP:",
+            "pattern": "[\\n\\r][\\s]*ap:",
+            "metadata": {"comment": "Match AP: at the beginning of a line without a colon"}
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "A/P",
+            "pattern": "[\\n\\r][\\s]*a/?p[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes a/p appears without a colon, but need to be careful to not pick up the line in the middle of the text"}
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "A:",
+            "pattern": "[\\n\\r][\\s]*a:[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes A: and P: appear separately as section titles, but needs to be cautious."}
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "RADIOLOGY",
+            "pattern": "[\\n\\r][\\s]*RADIOLOGY[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes 'RADIOLOGY' appears without a colon, but need to be careful to not pick up the line in the middle of the text"}
+        },
+        {
+            "category": "imaging",
+            "literal": "CXR:",
+            "pattern": [{"TEXT":  "CXR"}, {"TEXT":  ":"}]
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT/PLAN:",
+            "pattern": "ASSESSMENT/PLAN:?"
         },
         {
             "parents": [],
@@ -438,11 +501,18 @@
             "parent_required": false,
             "literal": "FINAL DIAGNOSIS:"
         },
+
         {
             "parents": [],
             "category": "impression",
             "parent_required": false,
             "literal": "IMPRESSION:"
+        },
+        {
+            "parents": [],
+            "category": "impression",
+            "parent_required": false,
+            "literal": "IMPRESSIONS:"
         },
         {
             "parents": [],
@@ -604,6 +674,12 @@
             "parents": [],
             "category": "problem_list",
             "parent_required": false,
+            "literal": "Computerized Problem List is the source for the following:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
             "literal": "Current Problems:"
         },
         {
@@ -694,7 +770,8 @@
             "parents": [],
             "category": "history_of_present_illness",
             "parent_required": false,
-            "literal": "HISTORY OF PRESENT ILLNESS:"
+            "literal": "HISTORY OF PRESENT ILLNESS:",
+            "pattern": "HISTORY OF PRESENT ILLNESS:?"
         },
         {
             "parents": [],
@@ -745,6 +822,13 @@
             "literal": "DIAGNOSIS:"
         },
         {
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "DIAGNOSTIC IMPRESSIONS:",
+            "pattern": "DIAGNOSTIC IMPRESSIONS?:"
+        },
+
+        {
             "parents": [],
             "category": "medications",
             "parent_required": false,
@@ -793,10 +877,12 @@
             "literal": "EMERGENCY DEPARTMENT COURSE:"
         },
         {
-            "parents": [],
             "category": "hospital_course",
-            "parent_required": false,
             "literal": "ED COURSE:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "ER COURSE:"
         },
         {
             "parents": [],
@@ -818,9 +904,60 @@
         },
         {
             "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "X-RAY:"
+        },
+        {
+            "category": "imaging",
+            "literal": "Report/Impression Text:",
+            "pattern": [
+                {"LOWER":  {"IN":  ["report", "impression"]}},
+                {"LOWER":  "text"},
+                {"LOWER":  ":"}
+            ]
+        },
+        {
+            "category": "imaging",
+            "literal": "Report:"
+        },
+
+        {
+            "parents": [],
             "category": "observation_and_plan",
             "parent_required": false,
             "literal": "ASSESSMENT AND PLAN:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT AND PLAN\n",
+            "pattern": "[\\n\\r][\\s]*Assessment (and|&) PLAN[\\s]*[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Assessment/Diagnosis"
+        },
+        {
+            "category": "observation_and_plan",
+            "literal": "IMPRESSION/ASSESSMENT"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "PLAN:",
+            "pattern": [{"LOWER":  "plan"}, {"LOWER": ":"}]
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "PLAN:",
+            "pattern": "[\\n\\r][\\s]*PLAN[\\s]*[\\n\\r]"
         },
         {
             "parents": [],
@@ -858,6 +995,34 @@
             "parent_required": false,
             "literal": "Active Non-VA Medications Status",
             "pattern":  "Active (Non-VA|Outpatient) Medications([\\s\\n\\r]+Status)?"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "Medical Decision Making:"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "Decision Making:"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "MDM:"
+        },
+        {
+            "category": "problem_list",
+            "literal": "Active Problems",
+            "pattern": "Active[\\s]+problems[\\s]+-[\\s]+Computerized[\\s]+Problem[\\s]+List[\\s]+is[\\s]+the[\\s]+source[\\s]+for[\\s]+the[\\s]+following:"
+        },
+        {
+            "category": "patient_instructions",
+            "literal": "Discharge Instructions",
+            "pattern": "Discharge Instructions:?"
         }
     ]
 }

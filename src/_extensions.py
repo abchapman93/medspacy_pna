@@ -27,12 +27,11 @@ def set_doc_extensions():
         except ValueError as e: # If the attribute has already set, this will raise an error
             pass
 
-
 def get_anatomy(span):
     """Naive getter function for anatomy. If the span is modified by any anatomical locations, take the first one."""
     for modifier in span._.modifiers:
         if modifier.category == "LOCALIZED_ANATOMY":
-            return modifier.span.text
+            return modifier.span#.text
 
 def get_possible_existence(span):
     """Naive getter function for possible_existence. If the span is modified by any possible existence, take the first one."""
@@ -88,10 +87,13 @@ _span_extensions = {
     "is_improved": {"getter": get_improved},
     "is_worsened": {"getter": get_worsened},
     "is_ignored": {"default": False},
+    "linked_ents": {"default": tuple()}
 }
 
 _doc_extensions = {
     "document_classification": {"default": None},
+    "normalized_document_classification": {"getter": lambda doc: "POS" if doc._.document_classification == "POSSIBLE"
+        else doc._.document_classification},
 }
 
 _token_extensions = {

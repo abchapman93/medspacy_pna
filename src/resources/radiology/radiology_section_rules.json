@@ -311,6 +311,14 @@
             "literal": "REASON FOR STUDY:",
             "parent_required": false,
             "category": "indication"
+        },
+        {
+            "literal": "IMPRESSION_TEXT:",
+            "category": "impression"
+        },
+        {
+            "literal": "REPORT_TEXT:",
+            "category": "report_text"
         }
     ]
 }

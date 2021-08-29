@@ -1190,18 +1190,7 @@
             "category": "PNEUMONIA",
             "pattern": "broncho-?pneumonia"
         },
-        {
-            "literal": "infectious/inflammatory process",
-            "category": "PNEUMONIA"
-        },
-        {
-            "literal": "infectious/inflammatory process",
-            "category": "PNEUMONIA",
-            "pattern": [
-                {"LOWER": {"IN":  ["infectious", "inflammatory"]}},
-                {"LOWER":  "process"}
-            ]
-        },
+
         {
             "literal": "bkp",
             "category": "PNEUMONIA"

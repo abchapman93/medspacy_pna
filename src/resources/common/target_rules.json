@@ -70,8 +70,8 @@
             ]
         },
         {
-            "literal": "infiltrate",
-            "category": "INFILTRATE",
+            "literal": "density",
+            "category": "DENSITY",
             "pattern": [
                 {
                     "_": {
@@ -132,7 +132,9 @@
         },
         {
             "literal": "CAP",
-            "category": "PNEUMONIA"
+            "category": "AMBIGUOUS_PNEUMONIA",
+            "attributes": {"is_ignored":  true},
+            "metadata": {"comment": "need to work more on disambiguating this, taking it out for now"}
 
         },
         {
@@ -163,6 +165,14 @@
             ]
         },
         {
+            "literal": "interstitial pneumonia",
+            "category": "IGNORE",
+            "pattern": [
+                {"LOWER":  "interstitial"},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
             "literal": "pneumonia vaccination",
             "category": "IGNORE",
             "pattern": [
@@ -170,31 +180,39 @@
                 {"LOWER":  "vaccination"}
             ]
         },
-        {
-            "literal": "pneumonia and/or atelectasis",
-            "category": "PNEUMONIA",
-            "pattern": [
-                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"},
-                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
-                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}
-            ],
-            "attributes": {"is_uncertain":  true}
-        },
-        {
-            "literal": "pneumonia and/or atelectasis",
-            "category": "PNEUMONIA",
-            "pattern": [
-                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"},
-                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
-                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
-            ],
-            "attributes": {"is_uncertain":  true}
-        },
+
         {
             "literal": "atelectasis",
             "category": "ATELECTASIS",
             "pattern": [{"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}]
         },
+        {
+            "literal": "acute chest disease",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "acute"},
+                {"LOWER":  {"IN":  ["chest", "intrathoracic"]}},
+                {"LOWER":  "disease"}
+            ],
+            "attributes": {"is_ignored":  true}
+        },
+        {
+            "literal": "pulmonary edema",
+            "category": "PULMONARY_EDEMA"
+        },
+        {
+            "literal": "pleural effusion",
+            "category": "PLEURAL_EFFUSION"
+        },
+        {
+            "literal": "pulmonary emphysema",
+            "category": "EMPHYSEMA"
+        },
+        {
+            "literal": "soft tissue attenuation",
+            "category": "SOFT_TISSUE_ATTENUATION"
+        },
+
         {
             "literal": "aeration",
             "category": "AERATION",
@@ -203,6 +221,50 @@
         {
             "literal": "cardiopulmonary process",
             "category": "CARDIOPULMONARY_PROCESS"
+        },
+        {
+            "literal": "cavitation",
+            "category": "CAVITATION"
+        },
+        {
+            "literal": "cavitary",
+            "category": "CAVITATION"
+        },
+        {
+            "literal": "inflammation",
+            "category": "INFLAMMATION"
+        },
+        {
+            "literal": "inflammatory",
+            "category": "INFLAMMATION"
+        },
+        {
+            "literal": "interstitial lung disease",
+            "category": "INTERSTITIAL_LUNG_DISEASE"
+        },
+        {
+            "literal": "pneumonic infiltrate",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "pneumonic"},
+                {"_":  {"concept_tag":  "INFILTRATE"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "fibrosis",
+            "category": "FIBROSIS"
+        },
+        {
+            "literal": "pulmonary fibrosis",
+            "category": "FIBROSIS"
+        },
+        {
+            "literal": "fibrotic",
+            "category": "FIBROSIS",
+            "pattern": [
+                {"LOWER":  "fibrotic"},
+                {"LOWER":  "tissue", "OP":  "?"}
+            ]
         }
     ]
 }

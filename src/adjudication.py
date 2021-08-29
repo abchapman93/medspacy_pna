@@ -5,7 +5,8 @@ from lxml import etree
 from medspacy.visualization import visualize_ent, visualize_dep
 # from src.nlp.utils import build_nlp
 
-DOCUMENT_ANNOTATION_CLASSES = {"DOCUMENT_POSITIVE": "POS", "DOCUMENT_POSSIBLE": "POS", "DOCUMENT_NEGATIVE": "NEG",}
+DOCUMENT_ANNOTATION_CLASSES = {"DOCUMENT_POSITIVE": "POS", "DOCUMENT_POSSIBLE": "POS", "DOCUMENT_NEGATIVE": "NEG",
+                               "DOCUMENT_NOT_MD_NOTE": "NEG"}
 
 attributes = ['is_negated', 'is_hypothetical', 'is_uncertain', 'is_historical']
 
@@ -80,6 +81,7 @@ def load_ehost_annotations(directory, sub_directories=None):
                         how="left")
 
     ehost_df = ehost_df[ehost_df["mention_class"].isin(DOCUMENT_ANNOTATION_CLASSES)]
+    # print(ehost_df[ehost_df["mention_class"] == "DOCUMENT_NOT_MD_NOTE"])
 #     print(ehost_df)
     ehost_df = ehost_df.rename({"mention_class": "document_classification"}, axis=1)
     # TODO: if needed, get attributes

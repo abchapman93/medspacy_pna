@@ -472,6 +472,23 @@
             "direction": "FORWARD"
         },
         {
+            "literal": "differential diagnosis",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD",
+            "pattern": [
+                {"LOWER":  "differential"},
+                {"LOWER": {
+                    "IN": [
+                        "diagnosis",
+                        "dx"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ]
+        },
+
+        {
             "literal": "presumed",
             "category": "POSSIBLE_EXISTENCE",
             "direction": "FORWARD"
@@ -531,7 +548,8 @@
                     "LOWER": {
                         "IN": [
                             "did",
-                            "could"
+                            "could",
+                            "can"
                         ]
                     }
                 },
@@ -550,7 +568,17 @@
                     "LOWER": "out"
                 }
             ],
-            "direction": "BACKWARD"
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "cannot rule out",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "cannot exclude",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
         },
         {
             "literal": "does not look like",
@@ -660,7 +688,11 @@
         {
             "literal": "previously seen",
             "category": "HISTORICAL",
-            "direction": "BIDIRECTIONAL"
+            "direction": "BIDIRECTIONAL",
+            "pattern": [
+                {"LOWER":  {"REGEX":  "previous"}},
+                {"LOWER":  "seen", "OP":  "?"}
+            ]
         },
         {
             "literal": "if",
@@ -721,6 +753,21 @@
                 }
             ],
             "direction": "BACKWARD"
+        },
+        {
+            "literal": "consistent with",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD",
+            "pattern": [
+                {"LOWER":  {"IN":  ["compatible", "consistent"]}},
+                {"LOWER":  {"IN":  ["with", "w", "w/"]}},
+                {"LOWER":  "/", "OP":  "?"}
+            ]
+        },
+        {
+            "literal": "c/w",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
         },
         {
             "literal": "may be ruled out for",
@@ -923,6 +970,30 @@
                             "suspicious"
                         ]
                     }
+                }
+            ],
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "no significant change",
+            "category": "PSEUDO",
+            "pattern": [
+                {
+                    "LOWER": "no"
+                },
+                {
+                    "LOWER": "significant"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "interval"
+                        ],
+                        "OP": "?"
+                    }
+                },
+                {
+                    "LOWER":  "change"
                 }
             ],
             "direction": "FORWARD"
@@ -1272,6 +1343,15 @@
                             "likely"
                         ]
                     }
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "representing",
+                            "represents"
+                        ]
+                    },
+                    "OP": "?"
                 }
             ],
             "direction": "FORWARD"
@@ -1279,17 +1359,20 @@
         {
             "literal": "cannot be excluded",
             "category": "POSSIBLE_EXISTENCE",
-            "direction": "BACKWARD"
+            "direction": "BACKWARD",
+            "pattern": [
+                {"LOWER":  "can"},
+                {"LOWER":  "not"},
+                {"LOWER":  {"IN":  ["entirely", "completely"]}, "OP":  "?"},
+                {"LOWER":  "be"},
+                {"LOWER":  {"IN":  ["entirely", "completely"]}, "OP":  "?"},
+                {"LOWER":  "excluded"}
+            ]
         },
         {
             "literal": "prophylaxis",
             "category": "NEGATED_EXISTENCE",
             "direction": "BACKWARD"
-        },
-        {
-            "literal": "r/o",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
         },
         {
             "literal": "rather than",
@@ -1306,104 +1389,7 @@
             "category": "HYPOTHETICAL",
             "direction": "FORWARD"
         },
-        {
-            "literal": "ro",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
-        },
-        {
-            "literal": "rule out",
-            "category": "POSSIBLE_EXISTENCE",
-            "pattern": [
-                {
-                    "LOWER": {
-                        "IN": [
-                            "may",
-                            "might",
-                            "must",
-                            "should",
-                            "will",
-                            "could"
-                        ]
-                    },
-                    "OP": "?"
-                },
-                {
-                    "LOWER": "rule"
-                },
-                {
-                    "LOWER": {
-                        "IN": [
-                            "him",
-                            "her",
-                            "them",
-                            "patient",
-                            "pt"
-                        ]
-                    },
-                    "OP": "?"
-                },
-                {
-                    "LOWER": "out"
-                },
-                {
-                    "LOWER": {
-                        "IN": [
-                            "against",
-                            "for"
-                        ]
-                    },
-                    "OP": "?"
-                }
-            ],
-            "direction": "FORWARD"
-        },
-        {
-            "literal": "rule the patient out",
-            "category": "POSSIBLE_EXISTENCE",
-            "pattern": [
-                {
-                    "LOWER": {
-                        "IN": [
-                            "may",
-                            "might",
-                            "must",
-                            "should",
-                            "will",
-                            "could"
-                        ]
-                    },
-                    "OP": "?"
-                },
-                {
-                    "LOWER": "rule"
-                },
-                {
-                    "LOWER": "the"
-                },
-                {
-                    "LOWER": {
-                        "IN": [
-                            "patient",
-                            "pt"
-                        ]
-                    }
-                },
-                {
-                    "LOWER": "out"
-                },
-                {
-                    "LOWER": {
-                        "IN": [
-                            "against",
-                            "for"
-                        ]
-                    },
-                    "OP": "?"
-                }
-            ],
-            "direction": "FORWARD"
-        },
+
         {
             "literal": "ruled out",
             "category": "NEGATED_EXISTENCE",
@@ -1483,7 +1469,7 @@
         },
         {
             "literal": "secondary",
-            "category": "NEGATED_EXISTENCE",
+            "category": "RELATION",
             "pattern": [
                 {
                     "LOWER": "secondary"
@@ -1493,7 +1479,7 @@
                     "OP": "?"
                 }
             ],
-            "direction": "TERMINATE"
+            "direction": "FORWARD"
         },
         {
             "literal": "should he",
@@ -1569,6 +1555,14 @@
             "literal": "suggestive of",
             "category": "POSSIBLE_EXISTENCE",
             "direction": "FORWARD"
+        },
+        {
+            "literal": "suggest",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD",
+            "pattern": [
+                {"LOWER":  {"IN":  ["suggest", "suggests", "suggesting"]}}
+            ]
         },
         {
             "literal": "suspicious for",
@@ -1670,6 +1664,13 @@
             "direction": "FORWARD"
         },
         {
+            "literal": "w/o",
+            "category": "NEGATED_EXISTENCE",
+            "direction": "FORWARD",
+            "pattern": [{"LOWER":  {"IN":  ["w/o", "wo"]}}],
+            "max_scope": null
+        },
+        {
             "literal": "without any evidence of",
             "category": "NEGATED_EXISTENCE",
             "pattern": [
@@ -1711,32 +1712,7 @@
             "category": "POSSIBLE_EXISTENCE",
             "direction": "FORWARD"
         },
-        {
-            "literal": "evaluate for",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
-        },
-        {
-            "literal": "assess for",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
-        },
-        {
-            "literal": "eval for",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
-        },
-        {
-            "literal": "eval",
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "BIDIRECTIONAL"
-        },
-        {
-            "literal": "?",
-            "max_scope": 1,
-            "category": "POSSIBLE_EXISTENCE",
-            "direction": "BIDIRECTIONAL"
-        },
+
         {
             "literal": "? of",
             "category": "POSSIBLE_EXISTENCE",
@@ -1781,12 +1757,13 @@
             "direction": "BIDIRECTIONAL"
         },
         {
-            "literal": "probable",
+            "literal": "?",
             "category": "POSSIBLE_EXISTENCE",
-            "direction": "FORWARD"
+            "direction": "BIDIRECTIONAL",
+            "max_scope": 2
         },
         {
-            "literal": "r/o",
+            "literal": "probable",
             "category": "POSSIBLE_EXISTENCE",
             "direction": "FORWARD"
         },

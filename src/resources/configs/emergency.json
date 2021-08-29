@@ -11,7 +11,8 @@
       ],
       "context": [
         "common/context_rules.json",
-        "common/anatomy_descriptor_modifier_rules.json"
+        "common/anatomy_descriptor_modifier_rules.json",
+        "emergency/emergency_context_rules.json"
       ],
       "sectionizer": [
         "discharge/discharge_section_rules.json"

@@ -15,12 +15,12 @@ class TestLoadPipeline:
         cfg = load_cfg_file(filepath)
         assert cfg
 
-    def test_load_config_file_new_wd(self):
-        """Test that the relative paths of the resource files work from another working directory"""
-        filepath = "./moore-pna/src/resources/configs/discharge.json"
-        os.chdir("..")
-        cfg = load_cfg_file(filepath)
-        assert cfg
+    # def test_load_config_file_new_wd(self):
+    #     """Test that the relative paths of the resource files work from another working directory"""
+    #     filepath = "./moore-pna/src/resources/configs/discharge.json"
+    #     os.chdir("..")
+    #     cfg = load_cfg_file(filepath)
+    #     assert cfg
     #
     # def test_load_rules_from_config(self):
     #     filepath = "./src/resources/configs/discharge.json"
