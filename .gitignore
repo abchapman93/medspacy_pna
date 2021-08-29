@@ -1,0 +1,3 @@
+logging.ini
+*__pycache__*
+.idea/*

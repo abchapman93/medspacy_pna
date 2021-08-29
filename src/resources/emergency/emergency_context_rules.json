@@ -1,0 +1,160 @@
+{
+  "context_rules": [
+
+    {
+            "literal": "r/o",
+            "max_scope": 1,
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+        },
+    {
+            "literal": "ro",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+      },
+      {
+          "literal": "r/o",
+          "category": "POSSIBLE_EXISTENCE",
+          "direction": "FORWARD"
+      },
+        {
+            "literal": "rule out",
+            "category": "POSSIBLE_EXISTENCE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "him",
+                            "her",
+                            "them",
+                            "patient",
+                            "pt"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "rule the patient out",
+            "category": "POSSIBLE_EXISTENCE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": "the"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "patient",
+                            "pt"
+                        ]
+                    }
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+    {
+      "literal": "ddx includes",
+      "category": "POSSIBLE_EXISTENCE",
+      "pattern": [
+        {"LOWER":  "ddx"},
+        {"LOWER":  "includes", "OP":  "?"}
+      ],
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "risk of",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "presenting with",
+      "category": "TERMINATE",
+      "direction": "TERMINATE",
+      "pattern": [
+        {"LEMMA":  "present"},
+        {"LOWER":  {"IN":  ["w", "with", "w/"]}}
+      ]
+    },
+    {
+      "literal": "is not feeling Xxx",
+      "category": "PSEUDO",
+      "direction": "PSEUDO",
+      "pattern": [
+        {"LEMMA":  "be", "OP":  "?"},
+        {"LEMMA":  "not"},
+        {"LOWER":  "feeling"}
+      ],
+      "metadata": {"comment": "Avoid phrase 'is not feeling well' being parsed as 'is not'"}
+    },
+    {
+      "literal": "doubt",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "BIDIRECTIONAL",
+      "pattern": [{"LOWER":  {"IN":  ["doubt", "doubtful"]}}]
+    },
+    {
+      "literal": "educated",
+      "category": "HYPOTHETICAL",
+      "direction": "FORWARD",
+      "pattern": [{"LOWER":  {"REGEX":  "educat(e|ion)"}}]
+    }
+  ]
+}

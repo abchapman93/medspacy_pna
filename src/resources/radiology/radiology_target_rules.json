@@ -1,0 +1,82 @@
+{
+    "target_rules": [
+        {
+            "literal": "acute chest disease",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "acute"},
+                {"LOWER":  {"IN":  ["chest", "intrathoracic", "lung", "cardiopulmonary"]}, "OP":  "?"},
+                {"LOWER":  {"IN": ["disease", "findings", "process"]}}
+            ],
+            "attributes": {"is_ignored":  true}
+        },
+        {
+            "literal": "edema",
+            "category": "PULMONARY_EDEMA"
+        },
+        {
+            "literal": "infectious/inflammatory process",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "infectious/inflammatory process",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER": {"IN":  ["infectious", "inflammatory"]}},
+                {"LOWER":  "process"}
+            ]
+        },
+        {
+            "literal": "pneumonia and/or atelectasis",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumonia and/or atelectasis",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or"]}},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumonia and/or infiltrate",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or", "/"]}},
+                {"_":  {"concept_tag":  "INFILTRATE"}, "OP":  "+"}
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumonia and/or infiltrate",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"_":  {"concept_tag":  "INFILTRATE"}, "OP":  "+"},
+                {"LOWER": {"IN":  ["and", "and/or", "or", "/"]}},
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}
+
+            ],
+            "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumon*/atelectasis",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  {"REGEX":  "^pneum"}},
+                {"LOWER": {"IN":  ["and", "and/or", "or", "/"]}},
+                {"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}
+
+            ],
+            "attributes": {"is_uncertain":  true}
+        }
+    ]
+}
