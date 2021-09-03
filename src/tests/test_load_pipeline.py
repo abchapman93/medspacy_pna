@@ -10,10 +10,10 @@ class TestLoadPipeline:
     #     domain = "emergency"
     #     nlp = build_nlp(domain)
 
-    def test_load_config_file(self):
-        filepath = "./src/resources/configs/discharge.json"
-        cfg = load_cfg_file(filepath)
-        assert cfg
+    # def test_load_config_file(self):
+    #     filepath = "./src/resources/configs/discharge.json"
+    #     cfg = load_cfg_file(filepath)
+    #     assert cfg
 
     # def test_load_config_file_new_wd(self):
     #     """Test that the relative paths of the resource files work from another working directory"""

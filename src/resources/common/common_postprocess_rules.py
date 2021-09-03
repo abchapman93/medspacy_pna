@@ -3,6 +3,9 @@ from medspacy.postprocess import PostprocessingPattern, PostprocessingRule
 
 from ...constants import TARGET_CONCEPTS, FINDINGS_CONCEPTS, PNEUMONIA_CONCEPTS
 
+def set_ignored(ent, i, value=True):
+    ent._.is_ignored = value
+
 postprocess_rules = [
     PostprocessingRule(
         patterns=[

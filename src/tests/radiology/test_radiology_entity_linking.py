@@ -1,7 +1,5 @@
-import pytest
-
 from src.util import build_nlp
-from src.document_classifier import link_evidence
+# from src.document_classification.radiology_document_classifier import link_evidence
 
 
 nlp = build_nlp("radiology")
@@ -11,7 +9,7 @@ class TestRadiologyLogic:
     def test_link_evidence(self):
         text = "Opacity most likely due to atelectasis."
         doc = nlp(text, disable=["document_classifier"])
-        link_evidence(doc)
+        clf.link_evidence(doc)
         assert len(doc.ents) == 2
         for ent in doc.ents:
             assert len(ent._.linked_ents)
@@ -31,7 +29,7 @@ class TestRadiologyLogic:
     def test_not_link_evidence_clf(self):
         text = "Opacity most likely due to atelectasis. There is infiltrate."
         doc = nlp(text, disable=["document_classifier"])
-        cls1 = clf.classify_document(doc, schema="full", link_ents=False)
+        cls1 = clf.classify_document(doc, schema="full")
         assert cls1 == "NEG"
 
 

@@ -77,6 +77,10 @@
 
             ],
             "attributes": {"is_uncertain":  true}
+        },
+        {
+            "literal": "pneumonitis",
+            "category": "PNEUMONIA"
         }
     ]
 }

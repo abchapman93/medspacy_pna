@@ -1,6 +1,7 @@
 from medspacy.postprocess import postprocessing_functions
 from medspacy.postprocess import PostprocessingPattern, PostprocessingRule
 from ...constants import PNEUMONIA_CONCEPTS, FINDINGS_CONCEPTS, TARGET_CONCEPTS
+from ..common.common_postprocess_rules import set_ignored
 
 def disambiguate_impression(span, window_size=5):
 
@@ -45,6 +46,18 @@ postprocess_rules = [
         action=postprocessing_functions.set_negated, action_args=(True,),
         description="Set the phrase 'the risk of pneumonia is low' to be negated"
     ),
+    PostprocessingRule(
+        patterns=[
+            PostprocessingPattern(lambda ent: ent.label_ == "RAD_PNEUMONIA"),
+            (
+                PostprocessingPattern(lambda ent: ent._.section_category == "imaging"),
+                PostprocessingPattern(lambda ent: ent.sent._.contains(r"(chest|cxr|x-ray|imaging)", regex=True, case_insensitive=True)),
+            )
+        ],
+        action=set_ignored, action_args=(False,),
+        description="Ignore mentions of terms like 'infectious disease' unless they appear in imaging or in the context of 'chest'"
+    ),
+
     # TODO: will need to revisit this to make it more specific
     # PostprocessingRule(
     #     patterns=[

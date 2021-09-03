@@ -7,7 +7,6 @@ from medspacy.section_detection import Sectionizer
 from medspacy.postprocess import Postprocessor
 
 # from src.resources import callbacks
-from medspacy.preprocess import PreprocessingRule
 from medspacy.target_matcher import TargetRule
 from medspacy.context import ConTextRule
 from medspacy.section_detection import SectionRule
@@ -19,15 +18,12 @@ from src.resources.common import common_postprocess_rules
 from src.resources.emergency import emergency_preprocess_rules, emergency_postprocess_rules
 from src.resources.discharge import discharge_postprocess_rules
 from src.resources.radiology import radiology_postprocess_rules
-from src.document_classifier import DocumentClassifier
 
 import os
 from pathlib import Path
 import warnings
 
 from src.constants import DOMAINS, CONFIG_FILES
-
-import pytest
 
 RESOURCES_FOLDER = os.path.join(Path(__file__).resolve().parents[0], "resources")
 
@@ -95,8 +91,14 @@ def build_nlp(domain=None, cfg_file=None, model="en_core_web_sm"):
     postprocessor = Postprocessor(debug=debug)
     nlp.add_pipe(postprocessor)
 
-    clf = DocumentClassifier(domain)
-    nlp.add_pipe(clf)
+    if domain == "radiology":
+        from .document_classification.radiology_document_classifier import RadiologyDocumentClassifier
+        clf = RadiologyDocumentClassifier()
+        nlp.add_pipe(clf)
+    else:
+        from .document_classification.emergency_document_classifier import EmergencyDocumentClassifier
+        clf = EmergencyDocumentClassifier()
+        nlp.add_pipe(clf)
 
     # Add the rules loaded from the config file
     for (name, component_rules) in rules.items():

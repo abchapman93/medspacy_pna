@@ -7,7 +7,8 @@
         "common/concept_tag_rules.json"
       ],
       "target_matcher": [
-        "common/target_rules.json"
+        "common/target_rules.json",
+        "emergency/target_rules.json"
       ],
       "context": [
         "common/context_rules.json",

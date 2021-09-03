@@ -5,6 +5,7 @@ from src.constants import FINDINGS_CONCEPTS
 
 nlp = build_nlp("discharge")
 
+@pytest.mark.skip(reason="Haven't started on discharge yet")
 class TestDischargeLogic:
     def test_pos_doc(self):
         text = "The patient developed pneumonia."

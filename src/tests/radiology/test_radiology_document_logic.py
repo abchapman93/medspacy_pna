@@ -1,11 +1,15 @@
 import pytest
 
 from src.util import build_nlp
+from src.document_classification.radiology_document_classifier import RadiologyDocumentClassifier
 
 
 nlp = build_nlp("radiology")
 
 class TestRadiologyLogic:
+    def test_clf_class(self):
+        assert isinstance(nlp.get_pipe("document_classifier"), RadiologyDocumentClassifier)
+
     def test_pos_doc(self):
         text = "Impression: There is infiltrate."
         doc = nlp(text)
@@ -56,8 +60,8 @@ class TestRadiologyLogic:
         text = "No evidence of pneumonia."
         doc = nlp(text, disable=["document_classifier"])
         clf = nlp.get_pipe("document_classifier")
-        assert clf.classify_document(doc, "keywords") == "POS"
-        assert clf.classify_document(doc, "full") == "NEG"
+        assert clf.classify_document(doc, schema="keywords") == "POS"
+        assert clf.classify_document(doc, schema="full") == "NEG"
 
     def test_attribute_classification(self):
         texts = [
@@ -69,4 +73,4 @@ class TestRadiologyLogic:
         clf = nlp.get_pipe("document_classifier")
         for text, expected_cls in texts:
             doc = nlp(text)
-            assert clf.classify_document(doc, "attributes") == expected_cls
+            assert clf.classify_document(doc, schema="attributes") == expected_cls

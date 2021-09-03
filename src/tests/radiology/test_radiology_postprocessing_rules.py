@@ -48,3 +48,13 @@ class TestRadiologyLogic:
             assert ent._.is_negated is True
             nlp.get_pipe("postprocessor")(doc)
             assert ent._.is_ignored is False
+
+    def test_ro_pneumonia(self): # TODO: Move this somewhere else
+        text = "objective r/o pneumonia"
+        doc = nlp(text)
+        # doc[0].is_sent_start = True
+        # for token in doc[1:]: # sentence splitting issues
+        #     token.is_sent_start = False
+        assert len(doc.ents) == 1
+        assert doc.ents[0].label_ == "PNEUMONIA"
+        assert doc.ents[0]._.is_hypothetical is True

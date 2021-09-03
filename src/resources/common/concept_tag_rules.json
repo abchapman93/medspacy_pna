@@ -1196,10 +1196,6 @@
             "category": "PNEUMONIA"
         },
         {
-            "literal": "pneumonitis",
-            "category": "PNEUMONIA"
-        },
-        {
             "literal": "interstitial lung markings",
             "category": "PNEUMONIA"
         },

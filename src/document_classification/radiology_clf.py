@@ -1,0 +1,11 @@
+ALTERNATE_DIAGNOSES = {
+        "ATELECTASIS",
+        "PULMONARY_EDEMA",
+        # "SOFT_TISSUE_ATTENUATION",
+        # "PLEURAL_EFFUSION",
+        # "EMPHYSEMA",
+        "INTERSTITIAL_LUNG_DISEASE",
+        "FIBROSIS",
+
+}
+
