@@ -1,0 +1,15 @@
+{
+  "context_rules": [
+
+    {
+      "literal": "does not confirm",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "consistent with",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    }
+  ]
+}

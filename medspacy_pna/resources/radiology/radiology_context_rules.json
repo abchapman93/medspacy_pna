@@ -1,0 +1,209 @@
+{
+  "context_rules": [
+    {
+          "literal": "chest view",
+          "category": "HYPOTHETICAL",
+          "direction": "FORWARD",
+      "pattern": [
+        {"LOWER":  "chest"},
+        {"OP":  "?"},
+        {"LIKE_NUM":  true, "OP":  "?"},
+        {"LOWER":  {"IN": ["view", "views"]}}
+      ],
+      "metadata": {"description":  "mention of 'chest view' is usually talking about the reason for exam, not findings"}
+      },
+    {
+      "literal": "limit evaluation",
+      "category": "HYPOTHETICAL",
+      "direction": "FORWARD",
+      "pattern": [
+        {"LOWER":
+          {"IN":
+            [
+              "limit",
+              "limits",
+              "limited"
+            ]
+          }
+        },
+        {"LOWER":  "evaluation"}
+      ]
+    },
+    {
+      "literal": "cannot exclude",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "difficult to exclude",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+            "literal": "evaluate for",
+            "category": "HYPOTHETICAL",
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "assess for",
+            "category": "HYPOTHETICAL",
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "eval for",
+            "category": "HYPOTHETICAL",
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "eval",
+            "category": "HYPOTHETICAL",
+            "direction": "BIDIRECTIONAL"
+        },
+        {
+            "literal": "?",
+            "max_scope": 1,
+            "category": "HYPOTHETICAL",
+            "direction": "BIDIRECTIONAL"
+        },
+      {
+            "literal": "may be related to",
+            "category": "RELATION",
+            "direction": "FORWARD"
+        },
+       {
+            "literal": "related to",
+            "max_scope": 1,
+            "category": "RELATION",
+            "direction": "FORWARD"
+        },
+    {
+            "literal": "r/t",
+            "max_scope": 1,
+            "category": "RELATION",
+            "direction": "FORWARD"
+        },
+    {
+            "literal": "ro",
+            "category": "HYPOTHETICAL",
+            "direction": "FORWARD"
+      },
+      {
+          "literal": "r/o",
+          "category": "HYPOTHETICAL",
+          "direction": "FORWARD"
+      },
+    {
+            "literal": "evaluate for",
+            "category": "HYPOTHETICAL",
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "rule out",
+            "category": "HYPOTHETICAL",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "him",
+                            "her",
+                            "them",
+                            "patient",
+                            "pt"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "rule the patient out",
+            "category": "HYPOTHETICAL",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": "the"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "patient",
+                            "pt"
+                        ]
+                    }
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+    {
+      "literal": "possibly with",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "may be considered",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "BACKWARD"
+    },
+    {
+      "literal": "may consider",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "BACKWARD"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "section_rules": [
+
+    {
+            "literal": "Summary:",
+            "category": "hospital_course",
+      "pattern": "[\\n\\r][\\s]*Summary:[\\s]*[\\n\\r]"
+
+    },
+    {
+      "literal": "PRESENTATION AND HOSPITAL COURSE",
+      "category": "hospital_course"
+    },
+    {
+      "literal": "Brief Hospital Course by Problem",
+      "category": "hospital_course"
+    },
+
+    {
+      "literal": "Hospital Course and Review of Systems:",
+      "category": "hospital_course"
+    },
+    {
+      "literal": "Summarization of Observation stay:",
+      "category": "hospital_course",
+      "pattern": [
+        {"LOWER": {"REGEX":  "summar"}},
+        {"LOWER": "of"},
+        {"LOWER": {"IN": ["observation", "hospitalization", "stay", "hospital"]}},
+        {"LOWER": "/", "OP": "?"},
+        {"LOWER": {"IN": ["observation", "hospitalization", "stay"]}, "OP": "?"}
+      ]
+    },
+    {
+      "literal": "\\nSummary of Hospitalization",
+      "category": "hospital_course",
+      "pattern": "[\\r\\n]\\s*Summar[a-zA-Z]+ of (observation|hospital|stay)"
+    },
+    {
+      "literal": "REASON FOR ADMISSION:",
+      "category": "admission_diagnoses"
+    },
+    {
+      "literal": "Admit Diagnoses",
+      "category": "admission_diagnoses",
+      "pattern": "admi(t|ssion|tting|tted) (diagnosis|diagnoses|dx)[\\s]*(:|[\\n\\r])"
+    },
+    {
+      "literal": "PRIMARY DIAGNOSIS FOR THIS ADMISSION:",
+      "category": "admission_diagnoses"
+    }
+
+  ]
+}

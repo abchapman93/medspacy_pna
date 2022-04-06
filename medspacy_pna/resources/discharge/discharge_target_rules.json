@@ -1,0 +1,14 @@
+{
+    "target_rules": [
+        {
+            "literal": "The patient has COPD or had Pneumonia during this admission.",
+            "category": "TEMPLATE"
+        },
+        {
+            "literal": "No pneumonia diagnosis available",
+            "category": "TEMPLATE"
+
+        }
+
+    ]
+}

@@ -1,0 +1,1360 @@
+{
+    "section_rules": [
+        {
+            "parents": [],
+            "category": "addendum",
+            "parent_required": false,
+            "literal": "ADDENDUM:"
+        },
+        {
+            "parents": [],
+            "category": "addendum",
+            "parent_required": false,
+            "literal": "Addendum:"
+        },
+       {
+            "parents": [],
+            "category": "addendum",
+            "parent_required": false,
+            "literal": "<<ADDENDUM>>:",
+        "metadata": {"comment": "artificial section header that shouldn't be confused with imaging"}
+        },
+        {
+            "parents": [],
+            "category": "allergies",
+            "parent_required": false,
+            "literal": "ALLERGIC REACTIONS:"
+        },
+        {
+            "parents": [],
+            "category": "allergies",
+            "parent_required": false,
+            "literal": "ALLERGIES:"
+        },
+        {
+            "parents": [],
+            "category": "chief_complaint",
+            "parent_required": false,
+            "literal": "CC:"
+        },
+        {
+            "parents": [],
+            "category": "chief_complaint",
+            "parent_required": false,
+            "literal": "CHIEF COMPLAINT:"
+        },
+        {
+            "parents": [],
+            "category": "chief_complaint",
+            "parent_required": false,
+            "literal": "Chief Complaint:"
+        },
+        {
+            "parents": [],
+            "category": "comments",
+            "parent_required": false,
+            "literal": "COMMENTS:"
+        },
+        {
+            "parents": [],
+            "category": "admission_diagnoses",
+            "parent_required": false,
+            "literal": "ADMISSION DIAGNOSES:"
+        },
+        {
+            "parents": [],
+            "category": "admission_diagnoses",
+            "parent_required": false,
+            "literal": "Admitting Diagnosis:",
+            "pattern": [
+                {
+                    "LOWER": {"IN": ["admitting", "admission"]}
+                },
+                {"LOWER": {"IN":  ["diagnoses", "dx", "diagnosis"]}},
+                {"LOWER":  ":"}
+
+            ]
+        },
+        {
+            "literal": "Adm Dx:",
+            "category": "admission_diagnoses"
+        },
+        {
+            "category": "admission_diagnoses",
+            "literal": "PRINCIPAL ADMISSION DIAGNOSIS",
+            "pattern": [
+                {"TEXT":  "PRINCIPAL"},
+                {"TEXT":  "ADMISSION"},
+                {"TEXT":  {"IN":  ["DIAGNOSIS", "DIAGNOSES"]}}
+            ]
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "DIAGNOSES:"
+        },
+        {
+          "literal": "PRIMARY DISCHARGE DIAGNOSIS (PRESENT ON ADMISSION):",
+          "category": "discharge_diagnoses"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Dx:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Emergency Room Dx:",
+            "pattern": [
+                {"LOWER": "emergency"},
+                {"LOWER":  {"IN":  ["room", "department", "depart"]}},
+                {"LOWER":  {"IN":  ["diagnosis", "diagnoses", "dx"]}},
+                {"LOWER":  ":"}
+            ]
+        },
+
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Primary Diagnosis:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Primary:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "SECONDARY DIAGNOSES:"
+        },
+        {
+            "category": "diagnoses",
+            "literal": "SECONDARY DIAGNOSES",
+            "pattern": [
+                {"TEXT":  "SECONDARY"},
+                {"TEXT":  {"IN":  ["DIAGNOSIS", "DIAGNOSES"]}}
+            ]
+        },
+        {
+            "category": "diagnoses",
+            "literal": "PRIMARY DIAGNOSIS DURING ADMISSION/TREATMENT:"
+        },
+        {
+            "category": "diagnoses",
+            "literal": "SECONDARY DIAGNOSIS DURING ADMISSION/TREATMENT:"
+        },
+        {
+            "category": "diagnoses",
+            "literal": "SECONDARY DIAGNOSIS (ES) DURING ADMISSION/TREATMENT:"
+        },
+        {
+            "literal": "DIAGNOSIS AT THE TIME OF DEATH",
+            "category": "discharge_diagnoses",
+            "pattern": [
+                {"TEXT":  {"IN":  ["DIAGNOSIS", "DIAGNOSES"]}},
+                {"TEXT":  "AT"},
+                {"TEXT":  "THE"},
+                {"TEXT":  "TIME"},
+                {"TEXT":  "OF"},
+                {"TEXT":  "DEATH"}
+            ]
+        },
+        {
+            "category": "discharge_diagnoses",
+            "literal": "DISCHARGE DIAGNOSIS(ES):"
+        },
+        {
+            "category": "discharge_diagnoses",
+            "literal": "DISCHARGE DX:"
+        },
+      {
+            "category": "medical_decision_making",
+            "literal": "Differential DX:",
+        "pattern": "[\\r\\n]\\s*diff(erential)? (dx|diagnosis|diagnoses)\\s*[\\-:\\n\\r]"
+        },
+        {
+            "category": "admission_diagnoses",
+            "literal": "ADMITTING DIAGNOSIS(ES):"
+        },
+        {
+            "category": "admission_diagnoses",
+            "literal": "Admission DIAGNOSIS(ES):"
+        },
+        {
+            "category": "admission_diagnoses",
+            "literal": "REASON FOR ADMISSION/DIAGNOSIS(ES):"
+        },
+        {
+            "category": "diagnoses",
+            "literal": "DIAGNOSIS(ES):"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Secondary Diagnoses:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Secondary Diagnosis:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "Secondary:"
+        },
+        {
+            "parents": [],
+            "category": "family_history",
+            "parent_required": false,
+            "literal": "Family History:"
+        },
+        {
+            "parents": [],
+            "category": "family_history",
+            "parent_required": false,
+            "literal": "FAMILY HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "history_of_present_illness",
+            "parent_required": false,
+            "literal": "HISTORY OF PRESENT ILLNESS:"
+        },
+      {
+        "category": "history_of_present_illness",
+        "literal": "HISTORY OF PRESENTING ILLNESS:"
+      },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "Brief Hospital Course:"
+        },
+      {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "BRIEF COURSE OF STAY:"
+        },
+
+      {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "Brief Hospital Course:",
+            "pattern": "Brief Hospital Course\\s*[\\n\\r]"
+        },
+       {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "Brief Hospital Course (...)",
+            "pattern": "[\\n\\r]\\s*(Brief )?Hospital Course"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "Course in Hospital/Details of Hospitalization:"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "Course in Hospital:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "Hospital Medicine Course"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "SUMMARY OF OBSERVATION COURSE:"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "CONCISE SUMMARY OF HOSPITAL COURSE BY ISSUE/SYSTEM:"
+        },
+        {
+            "parents": [],
+            "category": "ed_course",
+            "parent_required": false,
+            "literal": "EMERGENCY ROOM COURSE AND REEVALUATION:"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "HOSPITAL COURSE:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "Course of Treatment:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "HOSPITAL COURSE & MANAGEMENT:"
+        },
+
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "SUMMARY OF HOSPITAL COURSE:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "[\\n\\r]Hospital Course",
+            "pattern": "[\\n\\r]Hospital Course"
+        },
+
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "IMAGING:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "INTERPRETATION:"
+        },
+      {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "ECG INTERPRETATION:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "Imaging:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "MRI:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "Radiology:",
+            "pattern": [{"LOWER":  "radiology"}, {"OP":  "?"}, {"LOWER":  ":"}]
+        },
+        {
+          "literal": "CXR Radiology Report",
+          "category": "imaging"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "ADMISSION LABS:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Admission Labs:"
+        },
+        {
+          "category": "labs_and_studies",
+          "literal": "Labs ordered/reviewed:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Discharge Labs:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "ECHO:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "FINDINGS:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "Findings:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "INDICATION:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "LABS:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Labs:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "MICRO:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Micro:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Microbiology:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Pertinent Results:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "STUDIES:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Studies:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "ACTIVE MEDICATIONS LIST:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "ACTIVE MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "ADMISSION MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "CURRENT MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "DISCHARGE MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "Discharge Medications:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "HOME MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS AT HOME:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS LIST:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS ON ADMISSION:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS ON DISCHARGE:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS ON TRANSFER:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS PRIOR TO ADMISSION:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "neurological",
+            "parent_required": false,
+            "literal": "Neuro:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "A/P:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal":  "\\nA/P",
+            "pattern": "[\\n\\r]\\s*A/P"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "AP:",
+            "pattern": "[\\n\\r][\\s]*ap:",
+            "metadata": {"comment": "Match AP: at the beginning of a line without a colon"}
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "A/P",
+            "pattern": "[\\n\\r][\\s]*a/?p[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes a/p appears without a colon, but need to be careful to not pick up the line in the middle of the text"}
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "A:",
+            "pattern": "[\\n\\r][\\s]*a:[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes A: and P: appear separately as section titles, but needs to be cautious."}
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "RADIOLOGY",
+            "pattern": "[\\n\\r][\\s]*RADIOLOGY[\\s]*[\\n\\r]",
+            "metadata": {"comment": "Sometimes 'RADIOLOGY' appears without a colon, but need to be careful to not pick up the line in the middle of the text"}
+        },
+        {
+            "category": "imaging",
+            "literal": "CXR:",
+            "pattern": [{"TEXT":  "CXR"}, {"TEXT":  ":"}]
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT/PLAN:",
+            "pattern": "ASSESSMENT/PLAN:?"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT:"
+        },
+        {
+          "category": "observation_and_plan",
+          "literal": "Ass:",
+          "pattern": "[\\n\\r]\\s*Ass:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESMENT:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "pattern": "[\\n\\r]+[\\s]*ASSESSMENT[\\s]*[\\n\\r]+",
+            "literal": "ASSESSMENT"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Assessment/Plan:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Clinical Impression:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "DISCHARGE DIAGNOSES:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "DISCHARGE DIAGNOSES",
+            "pattern": "DISCHARGE DIAGNOS[EI]S[\\s]*[\\r\\n]"
+        },
+        {
+            "parents": [],
+            "category": "admission_diagnoses",
+            "parent_required": false,
+            "literal": "ADMISSION DIAGNOSES",
+            "pattern": "ADMISSION DIAGNOS[EI]S[\\s]*[\\r\\n]"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "DIAGNOSES",
+            "pattern": "[\\s]*[\\r\\n][\\s]*DIAGNOSES[\\s]*[\\r\\n]"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "DISCHARGE DIAGNOSIS:"
+        },
+        {
+            "category": "discharge_diagnoses",
+            "literal": "PRINCIPAL ADMISSION DIAGNOSIS",
+            "pattern": [
+                {"TEXT":  "PRINCIPAL"},
+                {"TEXT":  "DISCHARGE"},
+                {"TEXT":  {"IN":  ["DIAGNOSIS", "DIAGNOSES"]}}
+            ]
+        },
+        {
+            "category": "discharge_diagnoses",
+            "literal": "PRINCIPAL DIAGNOSIS",
+            "pattern": "[\\r\\n][\\s]*PRINCIPAL DIAGNOS(ES|IS)"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Discharge Condition:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "Discharge Diagnoses:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "Discharge Diagnosis:"
+        },
+        {
+            "literal": "PRIMARY PRINCIPAL DIAGNOSIS ADDRESSED AT THIS HOSPITALIZATION:",
+            "category": "discharge_diagnoses"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Discharge Disposition:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "FINAL DIAGNOSES:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "Principal Diagnosis/Diagnoses"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Secondary Diagnoses and Co-morbidities"
+        },
+        {
+          "category": "problem_list",
+          "literal": "Comorbid conditions:"
+        },
+        {
+            "parents": [],
+            "category": "discharge_diagnoses",
+            "parent_required": false,
+            "literal": "FINAL DIAGNOSIS:"
+        },
+
+        {
+            "parents": [],
+            "category": "impression",
+            "parent_required": false,
+            "literal": "IMPRESSION:"
+        },
+        {
+            "parents": [],
+            "category": "impression",
+            "parent_required": false,
+            "literal": "IMPRESSIONS:"
+        },
+        {
+            "parents": [],
+            "category": "impression",
+            "parent_required": false,
+            "literal": "Impression and Plan:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Impression and Recommendation:"
+        },
+        {
+            "parents": [],
+            "category": "other",
+            "parent_required": false,
+            "literal": "Facility:"
+        },
+        {
+            "parents": [],
+            "category": "other",
+            "parent_required": false,
+            "literal": "Service:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "Current Medical Problems:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "Resolved Problems:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Active Problems:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "History of Chronic Illness:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "MHx:"
+        },
+        {
+            "literal": "Prior Hospitalizations:",
+            "category": "past_medical_history"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PAST HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PAST MEDICAL HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PAST MEDICAL Hx:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PAST SURGICAL HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PMH:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PMHx:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "Past Medical History:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "UNDERLYING MEDICAL CONDITION:"
+        },
+        {
+            "parents": [],
+            "category": "patient_education",
+            "parent_required": false,
+            "literal": "Education:"
+        },
+        {
+            "parents": [],
+            "category": "patient_education",
+            "parent_required": false,
+            "literal": "Patient Education:"
+        },
+        {
+            "parents": [],
+            "category": "patient_instructions",
+            "parent_required": false,
+            "literal": "DISCHARGE INSTRUCTIONS/FOLLOWUP:"
+        },
+        {
+            "parents": [],
+            "category": "patient_instructions",
+            "parent_required": false,
+            "literal": "DISCHARGE INSTRUCTIONS:"
+        },
+        {
+            "parents": [],
+            "category": "patient_instructions",
+            "parent_required": false,
+            "literal": "Discharge Instructions:"
+        },
+        {
+            "parents": [],
+            "category": "patient_instructions",
+            "parent_required": false,
+            "literal": "Followup Instructions:"
+        },
+        {
+            "parents": [],
+            "category": "physical_exam",
+            "parent_required": false,
+            "literal": "PE:"
+        },
+        {
+            "parents": [],
+            "category": "physical_exam",
+            "parent_required": false,
+            "literal": "PHYSICAL EXAM:"
+        },
+        {
+            "parents": [],
+            "category": "physical_exam",
+            "parent_required": false,
+            "literal": "PHYSICAL EXAMINATION:"
+        },
+        {
+            "parents": [],
+            "category": "physical_exam",
+            "parent_required": false,
+            "literal": "Physical Exam:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Active Problem List:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Computerized Problem List is the source for the following:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Current Problems:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Medical Problems:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "PROBLEM LIST:"
+        },
+        {
+            "parents": [],
+            "category": "problem_list",
+            "parent_required": false,
+            "literal": "Problem List:"
+        },
+        {
+            "parents": [],
+            "category": "reason_for_examination",
+            "parent_required": false,
+            "literal": "REASON FOR THIS EXAMINATION:"
+        },
+        {
+            "parents": [],
+            "category": "signature",
+            "parent_required": false,
+            "literal": "Electronic Signature:"
+        },
+        {
+            "parents": [],
+            "category": "signature",
+            "parent_required": false,
+            "literal": "Signed electronically by:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "PMHSx:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "PSH:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "SH:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "Sexual History:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "Social History:"
+        },
+        {
+            "parents": [],
+            "category": "social_history",
+            "parent_required": false,
+            "literal": "SOCIAL HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "hospital_course",
+            "parent_required": false,
+            "literal": "HOSPITAL COURSE:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "DISCHARGE MEDICATIONS:"
+        },
+        {
+            "parents": [],
+            "category": "history_of_present_illness",
+            "parent_required": false,
+            "literal": "HISTORY OF PRESENT ILLNESS:",
+            "pattern": "HISTORY OF (THE )PRESENT ILLNESS:?"
+        },
+        {
+          "category": "history_of_present_illness",
+          "literal": "HISTORY OF PRESENT ILLNESS",
+          "pattern": "HISTORY OF PRESENT ILLNESS[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "procedures",
+            "parent_required": false,
+            "literal": "OPERATIONS/PROCEDURES:"
+        },
+        {
+            "parents": [],
+            "category": "procedures",
+            "parent_required": false,
+            "literal": "PROCEDURES PERFORMED DURING THIS HOSPITALIZATION:"
+        },
+        {
+            "parents": [],
+            "category": "patient_instructions",
+            "parent_required": false,
+            "literal": "DIRECTIONS:"
+        },
+        {
+            "parents": [],
+            "category": "history_of_present_illness",
+            "parent_required": false,
+            "literal": "HPI:"
+        },
+        {
+            "category": "history_of_present_illness",
+            "literal": "Brief History:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "CONDITION ON DISCHARGE:"
+        },
+        {
+            "parents": [],
+            "category": "procedures",
+            "parent_required": false,
+            "literal": "Procedure/Study:"
+        },
+        {
+            "parents": [],
+            "category": "procedures",
+            "parent_required": false,
+            "literal": "PROCEDURES:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "Result:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "DIAGNOSIS:"
+        },
+        {
+            "category": "diagnoses",
+            "literal": "DIAGNOSES",
+            "pattern": "[\\n\\r][\\s]*DIAGNOS[IE]S[\\s]*[\\n\\r]"
+        },
+
+        {
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "DIAGNOSTIC IMPRESSIONS:",
+            "pattern": "DIAGNOSTIC IMPRESSIONS?:"
+        },
+
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "DISCHARGE MEDICATION LIST:"
+        },
+        {
+            "parents": [],
+            "category": "labs_and_studies",
+            "parent_required": false,
+            "literal": "LAB SUMMARY:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PERTINENT PAST MEDICAL AND SURGICAL HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "review_of_systems",
+            "parent_required": false,
+            "literal": "REVIEW OF SYSTEMS:"
+        },
+        {
+            "parents": [],
+            "category": "diagnoses",
+            "parent_required": false,
+            "literal": "PRINCIPAL DIAGNOSIS:"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "SIGNIFICANT PAST MEDICAL HISTORY:"
+        },
+        {
+            "parents": [],
+            "category": "review_of_systems",
+            "parent_required": false,
+            "literal": "PERTINENT REVIEW OF SYSTEMS:"
+        },
+        {
+            "parents": [],
+            "category": "ed_course",
+            "parent_required": false,
+            "literal": "EMERGENCY DEPARTMENT COURSE:"
+        },
+        {
+            "category": "ed_course",
+            "literal": "ED COURSE:"
+        },
+        {
+            "category": "ed_course",
+            "literal": "ER COURSE:"
+        },
+        {
+            "category": "hospital_course",
+            "literal": "HOSPITAL COURSE",
+            "pattern": "[\\n\\r]HOSPITAL COURSE[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "vitals",
+            "parent_required": false,
+            "literal": "VITALS:"
+        },
+        {
+            "parents": [],
+            "category": "vitals",
+            "parent_required": false,
+            "literal": "VITALS:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "Radiographic Studies:"
+        },
+        {
+            "parents": [],
+            "category": "imaging",
+            "parent_required": false,
+            "literal": "X-RAY:"
+        },
+        {
+            "category": "imaging",
+            "literal": "Report/Impression Text:",
+            "pattern": [
+                {"LOWER":  {"IN":  ["report", "impression"]}},
+                {"LOWER":  "text"},
+                {"LOWER":  ":"}
+            ]
+        },
+        {
+            "category": "imaging",
+            "literal": "Report:"
+        },
+
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT AND PLAN:"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "ASSESSMENT AND PLAN\n",
+            "pattern": "[\\n\\r][\\s]*Assessment (and|&) PLAN[\\s]*[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "past_medical_history",
+            "parent_required": false,
+            "literal": "PAST MEDICAL HISTORY\n",
+            "pattern": "[\\n\\r][\\s]*PAST MEDICAL HISTORY[\\s]*[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "Assessment/Diagnosis"
+        },
+        {
+            "category": "observation_and_plan",
+            "literal": "IMPRESSION/ASSESSMENT"
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "PLAN:",
+            "pattern": [{"LOWER":  "plan"}, {"LOWER": ":"}]
+        },
+        {
+            "parents": [],
+            "category": "observation_and_plan",
+            "parent_required": false,
+            "literal": "PLAN:",
+            "pattern": "[\\n\\r][\\s]*PLAN[\\s]*[\\n\\r]"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "CURRENT MEDS:"
+        },
+        {
+            "parents": [],
+            "category": "allergies",
+            "parent_required": false,
+            "literal": "ALLERGIES/ADVERSE REACTIONS:"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "Active Non-VA Medications Status"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "Active Inpatient Medications Status"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "Active Outpatient Medications Status"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "********** MEDICATIONS **********"
+        },
+        {
+            "parents": [],
+            "category": "medications",
+            "parent_required": false,
+            "literal": "Active Non-VA Medications Status",
+            "pattern":  "Active (Non-VA|Outpatient) Medications([\\s\\n\\r]+Status)?"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "Medical Decision Making:",
+            "pattern": "Medical[ -]?Decision[ -]?Making\\s*[:\\n\\r]"
+        },
+      {
+
+            "category": "medical_decision_making",
+            "literal": "Medical Decision Making:",
+            "pattern": "[\\n\\r]\\s*Medical[ -]?Decision[ -]?Making"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "Decision Making:"
+        },
+        {
+            "parents": [],
+            "category": "medical_decision_making",
+            "parent_required": false,
+            "literal": "MDM:"
+        },
+
+        {
+            "category": "problem_list",
+            "literal": "Active Problems",
+            "pattern": "Active[\\s]+problems[\\s]+-[\\s]+Computerized[\\s]+Problem[\\s]+List[\\s]+is[\\s]+the[\\s]+source[\\s]+for[\\s]+the[\\s]+following:"
+        },
+        {
+            "category": "patient_instructions",
+            "literal": "Discharge Instructions",
+            "pattern": "Discharge Instructions(:|\\s*[\\n\\r])"
+        },
+        {
+            "category": "problem_list",
+            "literal": "Active Problem",
+            "pattern": "Active Problems?[\\s\\r]+"
+        },
+        {
+            "literal":"axis-iii",
+            "category": "DSM",
+            "pattern": [
+                {"LOWER": "axis"},
+                {"LOWER":  "-", "OP":  "?"},
+                {"LOWER":  {"IN":  ["i", "ii", "iii", "iv", "v", "1", "2", "3", "4", "5"]}}
+            ]
+        },
+        {
+            "literal": "REASON FOR ADMISSION (H&P):",
+            "category": "history_of_present_illness"
+        }
+
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "preprocessing_rules": [
+    {
+      "pattern": "[\\n]{2,}",
+      "repl": "\\n",
+      "desc": "Replace multiple new lines with one."
+    },
+	{
+      "pattern": "[\\n]\\s+[\\n]",
+      "repl": "\\n\\n",
+      "desc": "Replace multiple new lines with one."
+    },
+    {
+      "pattern": "\\xa0",
+      "repl": " "
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+    "context_rules": [
+        {
+            "literal": "ANATOMY",
+            "category": "LOCALIZED_ANATOMY",
+            "max_scope": 5,
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "LOCATION"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "ANATOMY"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "ANATOMY",
+            "category": "LOCATION",
+            "max_scope": 5,
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "LOCATION"
+                            ]
+                        }
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "DESCRIPTOR",
+            "category": "DESCRIPTOR",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": "DESCRIPTOR"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "category": "DESCRIPTOR",
+            "literal": "parenchymal"
+        },
+        {
+            "literal": "pleural effusion",
+            "category": "PSEUDO",
+            "direction": "PSEUDO",
+            "pattern": [
+                {
+                    "LOWER": "pleural"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "effusion",
+                            "effusions"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+          "literal": "in the left upper lobe",
+            "category": "LOCALIZED_ANATOMY",
+            "direction": "BACKWARD"
+        }
+    ]
+}

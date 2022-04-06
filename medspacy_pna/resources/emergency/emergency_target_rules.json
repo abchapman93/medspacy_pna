@@ -1,0 +1,40 @@
+{
+    "target_rules": [
+        {
+            "literal": "acute disease",
+            "category": "RAD_PNEUMONIA",
+            "attributes": {"is_ignored":  true}
+        },
+        {
+            "literal": "airspace disease",
+            "category": "RAD_PNEUMONIA",
+            "pattern": "air( )?space disease"
+        },
+        {
+            "literal": "pneumonitis",
+            "category": "RAD_PNEUMONIA"
+        },
+        {
+            "literal": "parapneumonia effusion",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "empyema",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "empyema",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonia protocial",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "CAP",
+            "category": "PNEUMONIA",
+            "metadata": {"comment": "need to work more on disambiguating this, taking it out for now"},
+            "attributes": {"is_ignored":  true}
+        }
+    ]
+}

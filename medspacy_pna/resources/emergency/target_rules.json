@@ -1,0 +1,29 @@
+{
+    "target_rules": [
+        {
+            "literal": "acute disease",
+            "category": "RAD_PNEUMONIA",
+            "attributes": {"is_ignored":  true}
+        },
+        {
+            "literal": "pneumonitis",
+            "category": "RAD_PNEUMONIA"
+        },
+        {
+            "literal": "parapneumonia effusion",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "empyema",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "empyema",
+            "category": "PNEUMONIA"
+        },
+        {
+            "literal": "pneumonia protocial",
+            "category": "PNEUMONIA"
+        }
+    ]
+}

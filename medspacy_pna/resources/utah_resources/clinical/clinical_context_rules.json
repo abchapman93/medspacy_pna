@@ -1,0 +1,45 @@
+{
+  "context_rules": [
+
+    {
+      "literal": "lower suspicion for",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "FORWARD",
+      "pattern": [
+        {"LOWER": "lower"},
+        {"LOWER": "clinical", "OP": "?"},
+        {"LOWER": "suspicion"},
+        {"LOWER": "for"}
+      ]
+    },
+    {
+      "literal": "No e/o",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "r/out",
+      "category": "IGNORE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "Xxx ago",
+      "category": "HISTORICAL",
+      "direction": "BIDIRECTIONAL",
+      "pattern": [
+        {"LOWER": {"IN": ["month", "week", "year", "months", "years"]}},
+        {"LOWER": "ago"}
+      ]
+    },
+    {
+      "literal": "could result in",
+      "category": "HYPOTHETICAL",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "#",
+      "category": "TERMINATE",
+      "direction": "TERMINATE"
+    }
+  ]
+}

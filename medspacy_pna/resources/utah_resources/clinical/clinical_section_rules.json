@@ -1,0 +1,149 @@
+{
+  "section_rules": [
+    {
+      "parents": [],
+      "category": "imaging",
+      "parent_required": false,
+      "literal": "INDICATIONS:"
+    },
+    {
+      "parents": [],
+      "category": "imaging",
+      "parent_required": false,
+      "literal": "Imaging Results",
+      "pattern": "Imaging Results\\s*[\\n\\r]"
+    },
+
+    {
+      "category": "medications",
+      "literal": "Patient's Medications",
+      "pattern": "Patient's Medications\\s*[\\n\\r]"
+    },
+    {
+      "category": "medications",
+      "literal": "Current Discharge Medication List",
+      "pattern": "Current Discharge Medication List\\s*[\\n\\r]"
+    },
+    {
+      "category": "medication_diagnoses",
+      "literal": "Associated Diagnoses:",
+      "parents": ["medications"]
+    },
+    {
+      "category": "patient_instructions",
+      "literal": "Medication Instructions:"
+    },
+    {
+      "category": "history_of_present_illness",
+      "literal": "Patient History:",
+      "pattern": "[\\n\\r]\\s*Patient History:"
+    },
+    {
+      "category": "history_of_present_illness",
+      "literal": "Patient History:",
+      "pattern": "[\\n\\r]\\s*History:?\\s*[\\n\\r]"
+    },
+    {
+      "category": "history_of_present_illness",
+      "literal": "Reason for Hospitalization:"
+    },
+    {
+      "category": "history_of_present_illness",
+      "literal": "Identifying Information:"
+    },
+
+    {
+      "category": "discharge_diagnoses",
+      "literal": "DIAGNOSES AT DEATH:"
+    },
+    {
+      "category": "hospital_course",
+      "literal": "Xxx Course by Problem:",
+      "pattern": [
+        {"LOWER": {"IN": ["emergency", "er", "ed", "hospital", "icu", "hospitalization"]}},
+        {"LOWER": {"IN": ["room", "department"]}, "OP": "?"},
+        {"LOWER": "course"},
+        {"LOWER": "by"},
+        {"LOWER": "problem"},
+        {"LOWER": ":"}
+      ]
+    },
+    {
+      "literal": "Physical Exam",
+      "category": "physical_exam",
+      "pattern": "[\\n\\r]\\s*Physical Exam\\s*[\\n\\r]"
+    },
+    {
+      "literal": "Social History",
+      "category": "social_history",
+      "pattern": "[\\n\\r]\\s*Social History\\s*[\\n\\r]"
+    },
+    {
+      "literal": "Chief Complaint",
+      "category": "chief_complaint",
+      "pattern": "[\\n\\r]\\s*Chief Complaint\\s*[\\n\\r]"
+    },
+    {
+      "literal": "Chief Complaint",
+      "category": "chief_complaint",
+      "pattern": "History:?\\s[\\n\\r]\\s*Chief Complaint\\s*[\\n\\r]"
+    },
+    {
+      "literal": "Diagnoses leading to death",
+      "pattern": "Diagnoses leading to death\\s*[\\n\\r]",
+      "category": "discharge_diagnoses"
+    },
+    {
+      "literal": "Diagnoses at discharge: Active Problems",
+      "category": "discharge_diagnoses",
+      "pattern": [
+        {"LOWER": "diagnoses"},
+        {"LOWER": "at"},
+        {"LOWER": "discharge"},
+        {"LOWER": ":", "OP": "?"},
+        {"IS_SPACE": true, "OP": "*"},
+        {"LOWER": "active"},
+        {"LOWER": "problems"},
+        {"LOWER": ":", "OP": "?"}
+      ]
+    },
+    {
+      "literal": "At time of discharge: Active Problems",
+      "category": "discharge_diagnoses",
+       "pattern": [
+        {"LOWER": "at"},
+        {"LOWER": "time"},
+        {"LOWER": "of"},
+        {"LOWER": "discharge"},
+        {"LOWER": ":", "OP": "?"},
+        {"IS_SPACE": true, "OP": "*"},
+        {"LOWER": "active"},
+        {"LOWER": "problems"},
+        {"LOWER": ":", "OP": "?"}
+      ]
+    },
+
+    {
+      "literal": "Patient Active Problem List Diagnosis",
+      "category": "problem_list",
+       "pattern": [
+        {"LOWER": "patient"},
+        {"LOWER": "active"},
+        {"LOWER": "problem"},
+        {"LOWER": "list"},
+        {"LOWER": ":", "OP": "?"},
+        {"IS_SPACE": true, "OP": "*"},
+        {"LOWER": {"IN": ["diagnosis", "diagnoses"]}},
+        {"LOWER": ":", "OP": "?"}
+      ]
+    },
+
+    {
+      "literal": "Resolved problems:",
+      "category": "diagnoses",
+      "parents": ["discharge_diagnoses"]
+    }
+
+
+  ]
+}

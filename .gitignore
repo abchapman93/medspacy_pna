@@ -1,0 +1,7 @@
+logging.ini
+*__pycache__*
+.idea/*
+chpc.txt
+edw.txt
+process_documents_uu.py
+*checkpoint.ipynb

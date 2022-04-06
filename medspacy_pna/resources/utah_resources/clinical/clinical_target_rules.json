@@ -1,0 +1,21 @@
+{
+  "target_rules": [
+      {
+        "category": "IGNORE",
+        "literal": "Streptococcus Pneumonia",
+        "pattern": [
+          {"LOWER": {"IN": ["streptococcus", "s.", "klebsiela"]}},
+          {"_": {"concept_tag": "PNEUMONIA"}, "OP": "+"}
+        ]
+      },
+    {
+      "literal": "CT-CAP",
+      "category": "IGNORE",
+      "pattern": [
+        {"LOWER": "ct"},
+        {"LOWER": "-", "OP": "?"},
+        {"LOWER": "cap"}
+      ]
+    }
+    ]
+}

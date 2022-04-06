@@ -1,0 +1,119 @@
+{
+  "context_rules": [
+
+    {
+      "literal": "ddx includes",
+      "category": "POSSIBLE_EXISTENCE",
+      "pattern": [
+        {"LOWER":  "ddx"},
+        {"LOWER":  "includes", "OP":  "?"}
+      ],
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "risk of",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "presenting with",
+      "category": "TERMINATE",
+      "direction": "TERMINATE",
+      "pattern": [
+        {"LOWER":  {"REGEX":  "present"}},
+        {"LOWER":  {"IN":  ["w", "with", "w/"]}}
+      ]
+    },
+    {
+      "literal": "is not feeling Xxx",
+      "category": "PSEUDO",
+      "direction": "PSEUDO",
+      "pattern": [
+        {"LOWER":  {"IN": ["is", "be", "are", "was"]}, "OP":  "?"},
+        {"LOWER":  "not"},
+        {"LOWER":  "feeling"}
+      ],
+      "metadata": {"comment": "Avoid phrase 'is not feeling well' being parsed as 'is not'"}
+    },
+    {
+      "literal": "doubt",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "BIDIRECTIONAL",
+      "pattern": [{"LOWER":  {"IN":  ["doubt", "doubtful"]}}]
+    },
+    {
+      "literal": "educated",
+      "category": "HYPOTHETICAL",
+      "direction": "FORWARD",
+      "pattern": [{"LOWER":  {"REGEX":  "educat(e|ion)"}}]
+    },
+    {
+      "literal": "prevent",
+      "category": "HYPOTHETICAL",
+      "direction": "forward",
+      "pattern": [{"LOWER": {"REGEX": "prevent"}}]
+    },
+    {
+      "literal": "less likely",
+      "category": "NEGATED_EXISTENCE"
+    },
+    {
+      "literal": "less likely than",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "BACKWARD"
+    },
+    {
+      "literal": "less likely to be",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "evaluate for",
+      "category": "POSSIBLE_EXISTENCE",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+      "literal": "suggestive of",
+      "category": "POSSIBLE_EXISTENCE",
+      "direction": "FORWARD"
+    },
+    {
+        "literal": "consistent with",
+        "category": "POSSIBLE_EXISTENCE",
+        "direction": "FORWARD",
+        "pattern": [
+            {"LOWER":  {"IN":  ["compatible", "consistent"]}},
+            {"LOWER":  {"IN":  ["with", "w", "w/"]}},
+            {"LOWER":  "/", "OP":  "?"}
+        ]
+    },
+    {
+            "literal": "c/w",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+    },
+    {
+      "literal": "S/P",
+      "category": "HISTORICAL",
+      "direction": "FORWARD",
+      "max_scope": 3
+    },
+    {
+      "literal": "status post",
+      "category": "HISTORICAL",
+      "direction": "FORWARD",
+      "max_scope": 3
+    },
+    {
+      "literal": "low risk for",
+      "category": "NEGATED_EXISTENCE",
+      "direction": "FORWARD",
+      "pattern": [
+        {"LOWER":  {"IN": ["low", "lower"]}},
+        {"LOWER": "risk"},
+        {"LOWER": "for"}
+      ]
+    }
+  ]
+}

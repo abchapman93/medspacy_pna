@@ -1,0 +1,117 @@
+{
+  "context_rules": [
+
+    {
+            "literal": "initially",
+            "category": "HISTORICAL",
+            "direction": "FORWARD",
+            "metadata": {"description":  "phrases like 'initially treated' will typically refer to an initial diagnosis which might change by discharge"}
+    },
+
+    {
+            "literal": "r/o",
+            "max_scope": 1,
+            "category": "IGNORE",
+            "direction": "FORWARD"
+        },
+    {
+            "literal": "ro",
+            "category": "IGNORE",
+            "direction": "FORWARD"
+      },
+        {
+            "literal": "rule out",
+            "category": "IGNORE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "him",
+                            "her",
+                            "them",
+                            "patient",
+                            "pt"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "rule the patient out",
+            "category": "IGNORE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": "the"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "patient",
+                            "pt"
+                        ]
+                    }
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        }
+
+  ]
+}

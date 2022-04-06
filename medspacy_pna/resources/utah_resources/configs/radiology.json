@@ -1,0 +1,18 @@
+{
+  "domain": "discharge",
+  "resources": [
+    {
+      "preprocessor": [
+
+      ],
+      "target_matcher":
+              [
+
+              ],
+      "context": [
+        "radiology/radiology_context_rules.json"
+      ]
+
+    }
+  ]
+}

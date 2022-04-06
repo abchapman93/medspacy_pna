@@ -1,0 +1,23 @@
+{
+  "domain": "radiology",
+  "resources": [
+    {
+      "concept_tagger": [
+        "common/anatomy_concept_tag_rules.json",
+        "common/concept_tag_rules.json"
+      ],
+      "target_matcher": [
+        "common/target_rules.json",
+        "radiology/radiology_target_rules.json"
+      ],
+      "context": [
+        "common/context_rules.json",
+        "radiology/radiology_context_rules.json",
+        "common/anatomy_descriptor_modifier_rules.json"
+      ],
+      "sectionizer": [
+        "radiology/radiology_section_rules.json"
+      ]
+    }
+  ]
+}

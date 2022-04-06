@@ -1,0 +1,19 @@
+{
+  "domain": "emergency",
+  "resources": [
+    {
+      "preprocessor": [
+        "clinical\\clinical_preprocess_rules.json"
+      ],
+      "sectionizer": [
+        "clinical\\clinical_section_rules.json"
+      ],
+      "context": [
+        "clinical\\clinical_context_rules.json"
+      ],
+      "target_matcher": [
+        "clinical\\clinical_target_rules.json"
+      ]
+    }
+  ]
+}

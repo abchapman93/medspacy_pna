@@ -1,0 +1,279 @@
+{
+    "target_rules": [
+        {
+            "literal": "pneumonia",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "FOCAL",
+                                "INFILTRATE",
+                                "COVID"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "PNEUMONIA"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "consolidation",
+            "category": "CONSOLIDATION",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "PATCHY",
+                                "FOCAL"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "CONSOLIDATION"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "infiltrate",
+            "category": "INFILTRATE",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": "INFILTRATE"
+                    },
+                    "OP": "+"
+                },
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "DENSITY"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                }
+            ]
+        },
+        {
+            "literal": "density",
+            "category": "DENSITY",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "FOCAL",
+                                "PATCHY"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "DENSITY"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "hospital-acquired pneumonia",
+            "category": "HOSPITAL_ACQUIRED_PNEUMONIA",
+            "pattern": [
+                {"LOWER":  {"IN": ["hospital", "healthcare"]}},
+                {"LOWER":  "-", "OP":  "?"},
+                {"LOWER":  {"IN": ["associated", "acquired"]}},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "hap",
+            "category": "HOSPITAL_ACQUIRED_PNEUMONIA"
+        },
+        {
+            "literal": "opacity",
+            "category": "OPACITY",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": {
+                            "IN": [
+                                "LINEAR",
+                                "STREAKY",
+                                "STRANDING"
+                            ]
+                        }
+                    },
+                    "OP": "*"
+                },
+                {
+                    "_": {
+                        "concept_tag": "OPACITY"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "treatment for pneumonia",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {
+                    "_": {
+                        "concept_tag": "TREATMENT"
+                    },
+                    "OP": "+"
+                },
+                {"LOWER":  "for"},
+                {
+                    "_": {
+                        "concept_tag": "PNEUMONIA"
+                    },
+                    "OP": "+"
+                }
+            ]
+        },
+        {
+            "literal": "Klebsiella/other pneumonia",
+            "category": "IGNORE",
+            "pattern": [
+                {"LOWER":  {"IN":  ["k", "k.", "klebsiella", "chlamydophila", "mycoplasma"]}},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "interstitial pneumonia",
+            "category": "IGNORE",
+            "pattern": [
+                {"LOWER":  "interstitial"},
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "pneumonia vaccination",
+            "category": "IGNORE",
+            "pattern": [
+                {"_":  {"concept_tag":  "PNEUMONIA"}, "OP":  "+"},
+                {"LOWER":  {"IN": ["vaccination", "vaccine"]}}
+            ]
+        },
+
+        {
+            "literal": "atelectasis",
+            "category": "ATELECTASIS",
+            "pattern": [{"_":  {"concept_tag":  "ATELECTASIS"}, "OP":  "+"}]
+        },
+        {
+            "literal": "acute chest disease",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "acute"},
+                {"LOWER":  {"IN":  ["chest", "intrathoracic"]}},
+                {"LOWER":  "disease"}
+            ],
+            "attributes": {"is_ignored":  true}
+        },
+        {
+            "literal": "pulmonary edema",
+            "category": "PULMONARY_EDEMA"
+        },
+        {
+            "literal": "pleural effusion",
+            "category": "PLEURAL_EFFUSION"
+        },
+        {
+            "literal": "pulmonary emphysema",
+            "category": "EMPHYSEMA"
+        },
+        {
+            "literal": "soft tissue attenuation",
+            "category": "SOFT_TISSUE_ATTENUATION"
+        },
+
+        {
+            "literal": "aeration",
+            "category": "AERATION",
+            "pattern": [{"_":  {"concept_tag":  "AERATION"}, "OP":  "+"}]
+        },
+        {
+            "literal": "cardiopulmonary process",
+            "category": "CARDIOPULMONARY_PROCESS"
+        },
+        {
+            "literal": "cavitation",
+            "category": "CAVITATION"
+        },
+        {
+            "literal": "cavitary",
+            "category": "CAVITATION"
+        },
+        {
+            "literal": "inflammation",
+            "category": "INFLAMMATION"
+        },
+        {
+            "literal": "inflammatory",
+            "category": "INFLAMMATION"
+        },
+        {
+            "literal": "interstitial lung disease",
+            "category": "INTERSTITIAL_LUNG_DISEASE"
+        },
+        {
+            "literal": "pneumonic infiltrate",
+            "category": "PNEUMONIA",
+            "pattern": [
+                {"LOWER":  "pneumonic"},
+                {"_":  {"concept_tag":  "INFILTRATE"}, "OP":  "+"}
+            ]
+        },
+        {
+            "literal": "fibrosis",
+            "category": "FIBROSIS"
+        },
+        {
+            "literal": "pulmonary fibrosis",
+            "category": "FIBROSIS"
+        },
+        {
+            "literal": "fibrotic",
+            "category": "FIBROSIS",
+            "pattern": [
+                {"LOWER":  "fibrotic"},
+                {"LOWER":  "tissue", "OP":  "?"}
+            ]
+        },
+        {
+            "literal": "[] Pneumonia",
+            "category": "TEMPLATE",
+            "pattern": "[\\[\\(] ?[\\]\\)] Pneumonia"
+        },
+      {
+        "literal": "Pneumonia No",
+        "category": "TEMPLATE",
+        "pattern": "[\\r\\n]\\s*Pneumonia No\\s*[\\r\\n]"
+      },
+        {
+            "literal": "NCIP",
+            "category": "PNEUMONIA",
+            "attributes": {"is_ignored": true},
+            "metadata": {"comment": "Need to check this term"}
+        }
+    ]
+}

@@ -1,0 +1,115 @@
+{
+  "context_rules": [
+
+    {
+            "literal": "r/o",
+            "max_scope": 1,
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+        },
+    {
+            "literal": "ro",
+            "category": "POSSIBLE_EXISTENCE",
+            "direction": "FORWARD"
+      },
+      {
+          "literal": "r/o",
+          "category": "POSSIBLE_EXISTENCE",
+          "direction": "FORWARD"
+      },
+        {
+            "literal": "rule out",
+            "category": "POSSIBLE_EXISTENCE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "him",
+                            "her",
+                            "them",
+                            "patient",
+                            "pt"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        },
+        {
+            "literal": "rule the patient out",
+            "category": "POSSIBLE_EXISTENCE",
+            "pattern": [
+                {
+                    "LOWER": {
+                        "IN": [
+                            "may",
+                            "might",
+                            "must",
+                            "should",
+                            "will",
+                            "could"
+                        ]
+                    },
+                    "OP": "?"
+                },
+                {
+                    "LOWER": "rule"
+                },
+                {
+                    "LOWER": "the"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "patient",
+                            "pt"
+                        ]
+                    }
+                },
+                {
+                    "LOWER": "out"
+                },
+                {
+                    "LOWER": {
+                        "IN": [
+                            "against",
+                            "for"
+                        ]
+                    },
+                    "OP": "?"
+                }
+            ],
+            "direction": "FORWARD"
+        }
+
+  ]
+}
