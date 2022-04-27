@@ -25,7 +25,7 @@ setup(
     description="Flexible medspaCy NLP pipeline for detecting assertions of pneumonia in different clinical notes.",
     author="alec.chapman",
     author_email="alec.chapman@hsc.utah.edu",
-    packages=["medspacy_pna"],
+    packages=find_namespace_packages(),
     install_requires=[
         "medspacy>=0.2.0.0",
     ],
