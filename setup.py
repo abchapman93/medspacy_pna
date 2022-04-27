@@ -21,7 +21,7 @@ resource_files = package_files("./medspacy_pna/resources")
 
 setup(
     name="medspacy_pna",
-    version="0.0.0.1",
+    version="0.0.0.2",
     description="Flexible medspaCy NLP pipeline for detecting assertions of pneumonia in different clinical notes.",
     author="alec.chapman",
     author_email="alec.chapman@hsc.utah.edu",
