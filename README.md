@@ -1,5 +1,5 @@
 # MedspaCy Pneumonia NLP
-Flexible medspaCy NLP pipeline for detecting assertions of pneumonia in different clinical notes.
+Flexible NLP pipeline for identifying pneumonia in across clinical settings and institutions implemented using medspaCy.
 
 ## Overview
 This package implements a [medspaCy](https://github.com/medspacy/medspacy) pipeline for classifying pneumonia diagnoses
