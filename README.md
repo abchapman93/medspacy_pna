@@ -13,7 +13,7 @@ University of Utah. Rules designed for University of Utah's Epic EHR are provide
  added to the pipeline. Custom rules can be designed and added in a similar manner. 
 See `notebooks/` for detailed documentation and examples.
 
-A preprint describing the development and evaluation of this system is available here: ["Development and evaluation of an interoperable natural language processing system for identifying pneumonia across clinical settings of care"](https://www.medrxiv.org/content/10.1101/2022.05.10.22274910v1)
+This work was published in December 2022 in JAMIA Open: ["Development and evaluation of an interoperable natural language processing system for identifying pneumonia across clinical settings of care and institutions"](https://academic.oup.com/jamiaopen/article/5/4/ooac114/6965695?login=false). Supplemental materials for the manuscript can be found on the journal webiste or here under `supplemental_materials/`.
 
 ## Quickstart
 ### Installation
